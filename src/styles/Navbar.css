@@ -1,0 +1,19 @@
+.custom-navbar {
+  background-color: #45b3e0; /* Calm blue */
+  padding: 0.75rem 1rem;
+}
+
+.custom-navbar .navbar-brand {
+  color: #fff;
+  font-weight: bold;
+}
+
+.custom-navbar .nav-link {
+  color: #fff;
+  margin: 0 0.75rem;
+  font-weight: 500;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #FF4500; /* Bright orange on hover */
+}

@@ -1,0 +1,9 @@
+* Brand palette */
+:root{
+  --primary-blue:   #3097c6;
+  --secondary-orange: #f26117;  /* bright */
+  /* --brand-orange-soft:#ff944d; softer option */
+  --tertiary1-green:  #378e4d;  /* growth */
+  /* --brand-green-soft:#6FBF73; */
+  --tertiary2-cream:  #fcf1e1;
+}

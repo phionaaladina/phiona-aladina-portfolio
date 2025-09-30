@@ -1,0 +1,20 @@
+.footer {
+  background-color: #45b3e0; /* Calm blue */
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.footer a {
+  color: #FF4500; /* Bright orange for contrast */
+}
+
+
+.footer a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer p {
+  margin: 0.5rem 0 0 0;
+}
