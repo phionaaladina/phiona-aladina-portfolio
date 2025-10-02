@@ -44,8 +44,7 @@ const Home = () => {
              
               {/* Profile image */}
               <img
-                src="/mep.jpg"
-                // src="/menw.jpg"
+                src={process.env.PUBLIC_URL + '/mep.jpg'}
                 alt="Fiona A. Aladina - Software Engineer & Tech Trainer"
                 className="hero-image img-fluid"
               />
