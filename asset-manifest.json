@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/phiona-aladina-portfolio/static/css/main.b0b25e30.css",
-    "main.js": "/phiona-aladina-portfolio/static/js/main.6c0e9d02.js",
+    "main.js": "/phiona-aladina-portfolio/static/js/main.0be7c3d6.js",
     "static/js/453.4a8acf00.chunk.js": "/phiona-aladina-portfolio/static/js/453.4a8acf00.chunk.js",
     "static/media/bootstrap-icons.woff?": "/phiona-aladina-portfolio/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
     "static/media/bootstrap-icons.woff2?": "/phiona-aladina-portfolio/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "index.html": "/phiona-aladina-portfolio/index.html",
     "main.b0b25e30.css.map": "/phiona-aladina-portfolio/static/css/main.b0b25e30.css.map",
-    "main.6c0e9d02.js.map": "/phiona-aladina-portfolio/static/js/main.6c0e9d02.js.map",
+    "main.0be7c3d6.js.map": "/phiona-aladina-portfolio/static/js/main.0be7c3d6.js.map",
     "453.4a8acf00.chunk.js.map": "/phiona-aladina-portfolio/static/js/453.4a8acf00.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b0b25e30.css",
-    "static/js/main.6c0e9d02.js"
+    "static/js/main.0be7c3d6.js"
   ]
 }
