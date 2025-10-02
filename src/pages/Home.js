@@ -44,7 +44,7 @@ const Home = () => {
              
               {/* Profile image */}
               <img
-                src="mep.jpg"
+                src="../mep.jpg"
                 // src="/menw.jpg"
                 alt="Fiona A. Aladina - Software Engineer & Tech Trainer"
                 className="hero-image img-fluid"
