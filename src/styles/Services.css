@@ -1,0 +1,202 @@
+:root {
+  --primary-blue: #3097c6;
+  --secondary-orange: #f26117;
+  --tertiary1-green: #378e4d;
+  --tertiary2-cream: #fcf1e1;
+}
+
+/* Services Page */
+.services-page {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+/* Header */
+.services-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+}
+
+/* Service Card */
+.service-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--primary-blue);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-card:nth-child(2) {
+  border-top-color: var(--secondary-orange);
+}
+
+.service-card:nth-child(3) {
+  border-top-color: var(--tertiary1-green);
+}
+
+/* Service Icon */
+.service-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  background: #3097c6; /* fallback color */
+}
+
+.service-card:nth-child(1) .service-icon {
+  background: linear-gradient(135deg, #3097c6, #5da2d1);
+}
+
+.service-card:nth-child(2) .service-icon {
+  background: linear-gradient(135deg, var(--secondary-orange), #ff6b35);
+}
+
+.service-card:nth-child(3) .service-icon {
+  background: linear-gradient(135deg, var(--tertiary1-green), #5ba068);
+}
+
+.service-icon i {
+  font-size: 2rem;
+  color: white;
+}
+
+/* Service Content */
+.service-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-description {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Service Features */
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left; /* align features left for neat ticks */
+}
+
+.service-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* space between tick and text */
+  margin-bottom: 0.6rem;
+}
+
+.service-features li:last-child {
+  margin-bottom: 0;
+}
+
+.service-features i {
+  color: var(--tertiary1-green);
+  flex-shrink: 0; /* keep icon size */
+  margin-top: 0.1rem; /* vertical align with text */
+}
+
+.service-features span {
+  line-height: 1.5;
+}
+
+/* CTA Section */
+.services-cta {
+  text-align: center;
+  background: linear-gradient(135deg, var(--tertiary2-cream), #ffffff);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.services-cta h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+}
+
+.services-cta p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  background: var(--secondary-orange);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .services-page { padding: 3rem 1rem; }
+  .section-title { font-size: 2rem; white-space: normal; } /* allow wrap on small screens */
+  .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .service-card { padding: 2rem; }
+  .services-cta { padding: 2rem 1.5rem; }
+  .services-cta h2 { font-size: 1.6rem; }
+}
+
+@media (max-width: 576px) {
+  .section-title { font-size: 1.8rem; }
+  .service-title { font-size: 1.3rem; }
+}
