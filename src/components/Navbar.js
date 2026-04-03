@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 
 const CustomNavbar = () => {
+  const location = useLocation();
   const [expanded, setExpanded] = useState(false);
 
   const closeNav = () => setExpanded(false);
@@ -24,25 +25,19 @@ const CustomNavbar = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/" onClick={closeNav} active={window.location.pathname === "/"}>
+            <Nav.Link as={Link} to="/" onClick={closeNav} active={location.pathname === "/"}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/about" onClick={closeNav} active={window.location.pathname === "/about"}>
-              About
-            </Nav.Link>
-            <Nav.Link as={Link} to="/projects" onClick={closeNav} active={window.location.pathname === "/projects"}>
+            <Nav.Link as={Link} to="/projects" onClick={closeNav} active={location.pathname === "/projects"}>
               Projects
             </Nav.Link>
-            {/* <Nav.Link as={Link} to="/skills" onClick={closeNav} active={window.location.pathname === "/skills"}>
-              Skills
-            </Nav.Link> */}
-            <Nav.Link as={Link} to="/gallery" onClick={closeNav} active={window.location.pathname === "/gallery"}>
+            <Nav.Link as={Link} to="/about" onClick={closeNav} active={location.pathname === "/about"}>
+              About
+            </Nav.Link>
+            <Nav.Link as={Link} to="/gallery" onClick={closeNav} active={location.pathname === "/gallery"}>
               Gallery
             </Nav.Link>
-            {/* <Nav.Link as={Link} to="/services" onClick={closeNav} active={window.location.pathname === "/services"}>
-              Services
-            </Nav.Link> */}
-            <Nav.Link as={Link} to="/contact" onClick={closeNav} active={window.location.pathname === "/contact"}>
+            <Nav.Link as={Link} to="/contact" onClick={closeNav} active={location.pathname === "/contact"}>
               Contact
             </Nav.Link>
           </Nav>
