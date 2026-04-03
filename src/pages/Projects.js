@@ -14,7 +14,7 @@ const projects = [
     image: "/mamagym.png",
     tech: ["Next.js", "TailwindCSS", "MySQL", "Node.js"],
     github: "https://github.com/phionaaladina",
-    live: "https:mamagymwear256.com"
+    live: "https://mamagymwear256.com/"
   },
   {
     id: 1,
