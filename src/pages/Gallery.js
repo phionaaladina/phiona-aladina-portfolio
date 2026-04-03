@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { X, ChevronLeft, ChevronRight, ArrowRight, Maximize2, FileText, Send } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ArrowRight, Maximize2 } from 'lucide-react';
 import '../styles/Gallery.css';
 
 const galleryItems = [

@@ -100,7 +100,9 @@ const Contact = () => {
               <div className="contact-socials">
                 <a href="https://linkedin.com/in/phiona-aladina" target="_blank" rel="noreferrer" className="contact-social-btn"><Linkedin size={17} /></a>
                 <a href="https://github.com/phionaaladina"       target="_blank" rel="noreferrer" className="contact-social-btn"><Github size={17} /></a>
-                <a href="#" className="contact-social-btn"><Twitter size={17} /></a>
+                <a href="https://twitter.com/phionaaladina" target="_blank" rel="noreferrer" className="contact-social-btn">
+                  <Twitter size={17} />
+                </a>
               </div>
             </div>
           </Col>

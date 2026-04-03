@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Github, ExternalLink, ArrowRight, FileText, Send } from 'lucide-react';
+import { Github, ExternalLink, ArrowRight, FileText } from 'lucide-react';
 import '../styles/Projects.css';
 
 const projects = [

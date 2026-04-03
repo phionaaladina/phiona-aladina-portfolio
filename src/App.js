@@ -22,9 +22,6 @@ import Gallery from "./pages/Gallery";
 import Services from "./pages/Services";
 
 const AppContent = () => {
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
-
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />

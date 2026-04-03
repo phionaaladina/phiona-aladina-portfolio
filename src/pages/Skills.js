@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Code, Users, GraduationCap, Settings, Lightbulb, ClipboardList, Sparkles, Send, ArrowRight } from "lucide-react";
+import { Code, Users, GraduationCap, Settings, Lightbulb, ClipboardList, Send } from "lucide-react";
 import "../styles/Skills.css";
 
 const skills = [

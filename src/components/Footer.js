@@ -24,7 +24,7 @@ const Footer = () => {
                 <a href="https://github.com/fiona-aladina" target="_blank" rel="noopener noreferrer">
                   <Github size={18} />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a href="https://twitter.com/phionaaladina" target="_blank" rel="noopener noreferrer">
                   <Twitter size={18} />
                 </a>
               </div>
