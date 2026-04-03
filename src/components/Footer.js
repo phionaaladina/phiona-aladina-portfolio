@@ -18,10 +18,10 @@ const Footer = () => {
                 and mentorship.
               </p>
               <div className="footer-socials">
-                <a href="https://linkedin.com/in/phiona-aladina" target="_blank" rel="noopener noreferrer">
+                <a href="www.linkedin.com/in/phionaaladina" target="_blank" rel="noopener noreferrer">
                   <Linkedin size={18} />
                 </a>
-                <a href="https://github.com/fiona-aladina" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/phionaaladina" target="_blank" rel="noopener noreferrer">
                   <Github size={18} />
                 </a>
                 <a href="https://twitter.com/phionaaladina" target="_blank" rel="noopener noreferrer">
