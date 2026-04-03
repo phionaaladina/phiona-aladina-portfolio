@@ -1,167 +1,170 @@
-/* Skills Page Redesign - Ultra Clean Pink & White */
+/* Skills Page — Professional Editorial Layout with Strong Elevation */
 @import './variables.css';
 
 .skills-page-premium {
   padding: 6rem 0 8rem;
-  background-color: var(--bg-main);
-  position: relative;
-  overflow: hidden;
-  min-height: 100vh;
+  background-color: #f8fafc; /* Soft grey-blue background to make white cards pop */
 }
 
-/* Background Blobs */
-.skills-bg-blobs {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: 0; pointer-events: none;
-}
-
-.blob-1 { width: 450px; height: 450px; background: var(--primary-accent); top: -50px; left: -50px; opacity: 0.08; }
-.blob-2 { width: 400px; height: 400px; background: var(--secondary-accent); bottom: -50px; right: -50px; opacity: 0.1; }
-
-/* Header */
-.skills-header-premium {
-  text-align: center;
+/* ── Rule Line ── */
+.editorial-rule {
+  height: 2px;
+  background: linear-gradient(to right, #db2777 0%, #fbcfe8 40%, transparent 100%);
+  border-radius: 99px;
   margin-bottom: 5rem;
-  position: relative;
-  z-index: 10;
 }
 
-.skills-title-premium {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  color: var(--text-main);
-  margin-bottom: 1.2rem;
-  letter-spacing: -0.03em;
-}
-
-.skills-subtitle-premium {
-  font-size: 1.15rem;
-  color: var(--text-muted);
-  max-width: 650px;
-  margin: 0 auto;
-}
-
-/* Skills Grid - Clean Cards */
-.skill-card-premium {
-  background: white;
-  padding: 3rem 2rem;
-  border-radius: 32px;
-  border: 1px solid var(--slate-100);
-  box-shadow: var(--shadow-sm);
+/* ── Arm Cards (High-Contrast Raised) ── */
+.skills-arm-card {
   height: 100%;
-  transition: var(--transition-smooth);
+  padding: 4.5rem 3.5rem;
+  border-radius: 24px;
+  border: 1px solid #ffffff;
+  background-color: #ffffff; /* Pure white for high contrast */
+  /* Strong, professional shadow for deep elevation */
+  box-shadow: 
+    0 20px 50px -12px rgba(0, 0, 0, 0.08), 
+    0 10px 20px -10px rgba(0, 0, 0, 0.04);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-.skill-card-premium:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-premium);
-  border-color: var(--primary-accent-light);
+.skills-arm-card:hover {
+  transform: translateY(-15px); /* Increased lift */
+  box-shadow: 
+    0 50px 80px -20px rgba(219, 39, 119, 0.15), 
+    0 30px 50px -30px rgba(0, 0, 0, 0.1);
+  border-color: #fce7f3;
 }
 
-.skill-icon-bg {
-  width: 64px;
-  height: 64px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2rem;
-  transition: var(--transition-smooth);
+.skills-arm-card.trainer-arm:hover {
+  box-shadow: 
+    0 50px 80px -20px rgba(2, 132, 199, 0.15), 
+    0 30px 50px -30px rgba(0, 0, 0, 0.1);
+  border-color: #e0f2fe;
 }
 
-.skill-icon-technical { background: var(--primary-accent-light); color: var(--primary-accent); }
-.skill-icon-leadership { background: var(--secondary-accent-light); color: var(--secondary-accent); }
-.skill-icon-management { background: var(--tertiary-accent-light); color: var(--tertiary-accent); }
-
-.skill-name-premium {
-  font-size: 1.4rem;
+/* Balanced Headings (Refined weight - 700) */
+.arm-title {
+  font-family: var(--font-main);
+  font-size: clamp(1.35rem, 2.8vw, 1.65rem);
   font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 1rem;
+  color: #3f3f46;
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-.skill-desc-premium {
-  font-size: 1rem;
-  color: var(--text-muted);
+.arm-intro {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  color: #52525b;
   line-height: 1.7;
-  margin-bottom: 2.5rem;
-  flex-grow: 1;
+  margin-bottom: 3rem;
 }
 
-.skill-tags-premium {
+/* ── Subgroups ── */
+.arm-subgroup {
+  margin-bottom: 2.5rem;
+}
+
+.subgroup-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14rem;
+  color: #a1a1aa;
+  margin-bottom: 1.2rem;
+}
+
+/* Tag Cloud */
+.skill-tag-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.7rem;
 }
 
-.skill-tag-pill {
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
+.skill-tag-clean {
+  font-family: var(--font-body);
+  padding: 0.4rem 0.9rem;
+  background: #f8fafc;
+  color: #475569;
+  border-radius: 8px;
   font-size: 0.8rem;
-  font-weight: 700;
-  transition: var(--transition-fast);
+  font-weight: 600;
+  border: 1px solid #f1f5f9;
 }
 
-.tag-technical { background: var(--slate-100); color: var(--text-muted); }
-.tag-leadership { background: var(--soft-pink); color: var(--primary-accent); }
-.tag-management { background: var(--light-pink); color: var(--secondary-accent); }
-
-.skill-card-premium:hover .tag-technical {
-  background: var(--primary-accent-light);
-  color: var(--primary-accent);
+/* Lists */
+.arm-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.8rem 1.5rem;
 }
 
-/* CTA Footer Section */
-.skills-footer-cta {
-  margin-top: 6rem;
+.arm-list li {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: #3f3f46;
   position: relative;
-  z-index: 10;
+  padding-left: 1.2rem;
 }
 
-.cta-card-premium {
-  background: var(--slate-dark);
-  padding: 4rem 3.5rem;
-  border-radius: 40px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.25);
+.arm-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #db2777;
+  font-weight: bold;
 }
 
-.btn-contact-premium {
-  padding: 1.1rem 2.8rem;
-  background: var(--primary-accent-gradient);
-  color: white;
-  border-radius: 100px;
+.skills-arm-card.trainer-arm .arm-list li::before {
+  color: #0284c7;
+}
+
+/* ── Minimal Footer CTA ── */
+.skills-minimal-footer {
+  margin-top: 6rem;
+  padding-top: 5rem;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.footer-cta-content h3 {
+  font-family: var(--font-main);
+  font-size: clamp(1.8rem, 4vw, 2.1rem);
+  margin-bottom: 1.2rem;
   font-weight: 700;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  transition: var(--transition-smooth);
+  letter-spacing: -0.02em;
 }
 
-.btn-contact-premium:hover {
-  background: white;
-  color: var(--primary-accent);
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+.footer-cta-link-clean {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #db2777;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: gap 0.3s ease;
+}
+
+.footer-cta-link-clean:hover {
+  gap: 1rem;
 }
 
 @media (max-width: 991px) {
-  .cta-card-premium { flex-direction: column; text-align: center; padding: 3rem 1.5rem; }
-  .about-content-premium { padding: 0; }
+  .skills-arm-card { padding: 3rem 2rem; }
+  .arm-list { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
-  .skills-header-premium { margin-bottom: 3.5rem; }
-  .skill-card-premium { padding: 2.5rem 1.5rem; }
-  .skills-title-premium { font-size: 2rem; }
+  .arm-title { font-size: 1.5rem; }
+  .footer-cta-content h3 { font-size: 1.7rem; }
 }

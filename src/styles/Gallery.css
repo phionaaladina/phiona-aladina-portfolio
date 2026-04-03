@@ -26,7 +26,7 @@
 .gallery-heading {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
-  color: #18181b;
+  color: #3f3f46;
   letter-spacing: -0.03em;
   line-height: 1.05;
   margin-bottom: 1.2rem;
@@ -198,7 +198,7 @@
 .cta-card-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #18181b;
+  color: #3f3f46;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
@@ -266,7 +266,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #18181b;
+  color: #3f3f46;
   transition: var(--transition-fast);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 10000;
@@ -357,7 +357,7 @@
 .lb-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #18181b;
+  color: #3f3f46;
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
   line-height: 1.15;

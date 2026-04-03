@@ -58,7 +58,7 @@
 }
 
 .chapter-body strong {
-  color: #18181b;
+  color: #3f3f46;
   font-weight: 700;
 }
 
@@ -97,7 +97,7 @@
   padding: 0.8rem 1.8rem;
   background: transparent;
   border: 2px solid #fbcfe8;
-  color: #18181b;
+  color: #3f3f46;
   font-weight: 700;
   border-radius: 50px;
   text-decoration: none !important;

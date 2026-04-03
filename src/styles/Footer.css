@@ -1,7 +1,7 @@
 @import './variables.css';
 
 .footer-premium {
-  background-color: #18181b; /* Zinc-900 — neutral dark, no blue */
+  background-color: #3f3f46; /* Softer Zinc-700 — neutral dark, no blue */
   color: rgba(255, 255, 255, 0.55);
   padding: 4.5rem 0 2rem;
   font-family: var(--font-body); /* DM Sans */

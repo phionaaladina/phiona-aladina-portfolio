@@ -20,10 +20,10 @@
   /* Neutral Palette - Clean White & Warm Charcoal (No Blue) */
   --bg-main: #ffffff;
   --bg-subtle: #fffafb; /* Warm pinkish white */
-  --text-main: #27272a; /* Zinc-800 - Neutral/Warm charcoal */
+  --text-main: #3f3f46; /* Softer Zinc-700 for less heavy feel */
   --text-muted: #52525b; /* Zinc-600 */
   --text-light: #a1a1aa; /* Zinc-400 */
-  --slate-dark: #18181b; /* Zinc-900 */
+  --slate-dark: #3f3f46; /* Harmonized with text-main */
   --slate-100: #f4f4f5; /* Zinc-100 */
   
   --border-glass: rgba(255, 255, 255, 0.3);

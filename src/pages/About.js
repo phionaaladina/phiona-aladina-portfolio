@@ -7,29 +7,32 @@ import "../styles/About.css";
 const chapters = [
   {
     title: "Who I Am",
-    text: `I'm Fiona Aladina, a Software Engineer, Tech Educator, and Community Leader passionate about empowering young people through technology, innovation, and mentorship.`
+    bold: "Software Engineer and Tech Educator",
+    text: `I'm Fiona A., a Software Engineer and Tech Educator passionate about empowering young people through technology, innovation, and mentorship.`
   },
   {
     title: "My Journey",
     bold: "resilience and purpose",
-    text: `My journey is one of resilience and purpose. Growing up as the firstborn in a challenging environment taught me strength, compassion, and the power of perseverance. From working as a cleaner, beautician, and nanny (my favorite role) to make ends meet for my 4 siblings and myself, to getting into computer science and discovering my passion for technology and empowering others. Each experience, though humble, shaped my empathy and fueled my desire to create opportunities for others to rise and thrive.`
+    text: `My journey is one of resilience and purpose. Growing up in a challenging environment taught me strength, compassion, and the power of perseverance. From working as a cleaner, beautician, and nanny (my favorite role) to make ends meet for my 4 siblings and myself, to discovering my passion for technology. Each experience, though humble, shaped my empathy and fueled my desire to create opportunities for others to rise and thrive.`
   },
   {
     title: "Breaking Barriers",
+    bold: "dare to dream beyond their circumstances",
     text: `It shaped my drive to break barriers and create opportunities, not only for myself but for my siblings and others who dare to dream beyond their circumstances.`
   },
   {
     title: "My Impact",
     bold: "1000 young women, youth, and children",
-    text: `Over the years, I've trained and mentored more than 1000 young women, youth, and children in digital literacy, coding, life skills, and entrepreneurship. I've seen technology transform lives, helping learners gain confidence, launch businesses, and build careers they once thought impossible.`
+    text: `Over the years, I've trained and mentored more than 1000 young women, youth, and children in digital literacy, coding, life skills, and entrepreneurship. I've seen technology transform lives, helping learners gain confidence and build careers they once thought impossible.`
   },
   {
     title: "My Belief",
-    bold: "we can always rise again",
-    text: `I believe that we can always rise again, no matter what life throws our way. Every setback carries a lesson, and every effort, no matter how small, brings us closer to the future we imagine.`
+    bold: "every setback carries a lesson",
+    text: `I believe that we can always rise again. Every setback carries a lesson, and every effort, no matter how small, brings us closer to the future we imagine.`
   },
   {
     title: "My Mission",
+    bold: "bridge digital gaps, inspire creativity, and nurture the next generation",
     text: `Today, my mission is to bridge digital gaps, inspire creativity, and nurture the next generation of innovators through inclusive learning and impactful tech solutions.`
   }
 ];
@@ -47,7 +50,7 @@ const About = () => (
       {/* ── Top: Unified Masthead ── */}
       <div className="editorial-masthead">
         <div className="masthead-main-text-about">
-          <h1 className="masthead-name">Fiona A. <span>Aladina</span></h1>
+          <h1 className="masthead-title">Fiona A. <span>Aladina</span></h1>
           <div className="masthead-roles-row">
             <span className="role-tag">Software Engineer</span>
             <span className="role-dash">/</span>

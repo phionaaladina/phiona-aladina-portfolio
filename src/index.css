@@ -194,11 +194,12 @@ code {
 }
 
 .masthead-title, .masthead-heading {
-  font-size: clamp(1.8rem, 4.2vw, 2.6rem);
+  font-family: var(--font-main);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 700;
-  color: #18181b;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  color: #3f3f46;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   margin-bottom: 1.2rem;
 }
 
@@ -230,13 +231,10 @@ code {
 .role-tag {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-muted);
+  color: #3f3f46; /* Matching softened editorial grey */
   letter-spacing: 0.01em;
 }
 
-.role-tag:first-child {
-  color: var(--primary-accent);
-}
 
 .role-dash {
   color: #e4e4e7;
@@ -279,7 +277,7 @@ code {
   padding: 0.8rem 1.8rem;
   background: transparent;
   border: 2px solid #fbcfe8;
-  color: #18181b;
+  color: #3f3f46;
   font-weight: 700;
   border-radius: 50px;
   font-size: 0.92rem;

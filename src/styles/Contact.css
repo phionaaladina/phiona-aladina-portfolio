@@ -26,7 +26,7 @@
 .contact-heading {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
-  color: #18181b;
+  color: #3f3f46;
   letter-spacing: -0.03em;
   line-height: 1.05;
   margin-bottom: 1.2rem;
@@ -62,7 +62,7 @@
 .contact-info-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: #3f3f46;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   margin-bottom: 2.5rem;
@@ -101,7 +101,7 @@
 .contact-detail-info p {
   font-size: 0.98rem;
   font-weight: 700;
-  color: #18181b;
+  color: #3f3f46;
   margin: 0;
   text-decoration: none;
 }
@@ -151,7 +151,7 @@
 .form-card-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: #3f3f46;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   margin-bottom: 0.5rem;
@@ -172,7 +172,7 @@
   padding: 0.9rem 1.2rem;
   font-size: 0.95rem;
   font-weight: 500;
-  color: #18181b;
+  color: #3f3f46;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   font-family: var(--font-main);

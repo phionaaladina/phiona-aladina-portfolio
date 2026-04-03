@@ -31,6 +31,9 @@ const CustomNavbar = () => {
             <Nav.Link as={Link} to="/projects" onClick={closeNav} active={location.pathname === "/projects"}>
               Projects
             </Nav.Link>
+            <Nav.Link as={Link} to="/skills" onClick={closeNav} active={location.pathname === "/skills"}>
+              Skills
+            </Nav.Link>
             <Nav.Link as={Link} to="/about" onClick={closeNav} active={location.pathname === "/about"}>
               About
             </Nav.Link>

@@ -10,7 +10,7 @@ const projects = [
     num: "01",
     title: "MamaGym Wear 256",
     category: "E-Commerce",
-    description: "A full e-commerce platform for selling fitness apparel and accessories, with shopping cart, checkout, and product management.",
+    description: "A full e-commerce platform for selling fitness apparel and accessories, with shopping cart, checkout, and product management. With fully functional admin and user dashboards.",
     image: "/mamagym.png",
     tech: ["Next.js", "TailwindCSS", "MySQL", "Node.js"],
     github: "https://github.com/phionaaladina",

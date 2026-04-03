@@ -179,7 +179,7 @@
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   font-weight: 600;
-  color: #18181b;
+  color: #3f3f46;
   letter-spacing: -0.02em;
   line-height: 1.1;
   margin: 0;
@@ -315,9 +315,10 @@
 }
 
 .cta-btn-outline {
-  background: transparent;
-  color: #18181b;
-  border: 1.5px solid #fce7f3 !important;
+  background: #ffffff;
+  color: #3f3f46;
+  border: 2px solid #fbcfe8 !important; /* Sturdier Blush Border */
+  box-shadow: 0 4px 12px rgba(251, 207, 232, 0.2);
   transition: all 0.25s ease;
 }
 .cta-btn-outline:hover {

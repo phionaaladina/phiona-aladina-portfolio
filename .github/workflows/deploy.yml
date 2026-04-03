@@ -3,7 +3,7 @@ name: 🚀 Build & Deploy to cPanel
 on:
   push:
     branches:
-      - main  # Change to "master" if that's your main branch
+      - main  
 
 jobs:
   build-and-deploy:
@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build/
           server-dir: ./public_html/phionaaladina.unihubug.com/
-          # Optional: exclude unwanted files
+          # Exclude unwanted files
           exclude: |
             **/.git*
             **/.git*/**
