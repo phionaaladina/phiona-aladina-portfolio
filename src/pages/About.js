@@ -27,7 +27,7 @@ const chapters = [
   },
   {
     title: "My Belief",
-    bold: "every setback carries a lesson",
+    bold: "Every setback carries a lesson",
     text: `I believe that we can always rise again. Every setback carries a lesson, and every effort, no matter how small, brings us closer to the future we imagine.`
   },
   {

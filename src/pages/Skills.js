@@ -70,7 +70,7 @@ const Skills = () => {
               </div> */}
               <h2 className="arm-title">Digital Skills Training</h2>
               <p className="arm-intro">
-                I design and deliver hands-on learning experiences that make technology practical, accessible, and impactful—with a core focus on <strong>Accessibility & Inclusive Design</strong>.
+                I design and deliver hands-on learning experiences that make technology practical, accessible, and impactful, with a core focus on <strong>Accessibility & Inclusive Design</strong>.
               </p>
 
               <div className="arm-subgroup">

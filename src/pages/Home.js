@@ -568,8 +568,7 @@ const Home = () => {
       {/* Background mesh */}
       <div className="hero-mesh" />
 
-      {/* Vertical accent line */}
-      <div className="hero-accent-line" />
+      {/* Vertical accent line removed per feedback */}
 
       <Container className="home-hero-container">
         <Row className="align-items-center g-0">
@@ -653,6 +652,7 @@ const Home = () => {
         </Row>
       </Container>
 
+      {/* Scroll cue removed per feedback
       <div
         className="hero-scroll-cue"
         onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
@@ -660,6 +660,7 @@ const Home = () => {
         <span className="hero-scroll-cue-text">Scroll</span>
         <ArrowDown size={14} color="#a1a1aa" strokeWidth={2} />
       </div>
+      */}
 
     </section>
   );

@@ -111,7 +111,7 @@
 .project-img-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(219,39,119,0.82);
+  background: rgba(63, 63, 70, 0.85); /* Sophisticated subtle grey instead of pink */
   display: flex;
   align-items: center;
   justify-content: center;
