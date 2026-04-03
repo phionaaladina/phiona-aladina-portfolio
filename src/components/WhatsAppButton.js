@@ -1,8 +1,9 @@
 import React from "react";
+import { MessageCircle } from "lucide-react";
 import "../styles/WhatsAppButton.css";
 
 const WhatsAppButton = () => {
-  const phoneNumber = "256773874765"; // Your number without + or spaces
+  const phoneNumber = "256773874765";
   const message = "Hi Fiona! I found your portfolio and would like to connect.";
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
@@ -11,10 +12,11 @@ const WhatsAppButton = () => {
       href={whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="whatsapp-float"
+      className="whatsapp-premium-float"
       aria-label="Chat on WhatsApp"
     >
-      <i className="fab fa-whatsapp"></i>
+      <MessageCircle size={30} />
+      <span className="whatsapp-tooltip">Chat with me</span>
     </a>
   );
 };

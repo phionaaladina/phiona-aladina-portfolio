@@ -1,32 +1,3 @@
-// import { Navbar, Nav, Container } from "react-bootstrap";
-// import { Link } from "react-router-dom"; // <- import Link
-// import "../styles/Navbar.css";
-
-// const CustomNavbar = () => {
-//   return (
-//     <Navbar className="custom-navbar" expand="lg" sticky="top">
-//       <Container>
-//         <Navbar.Brand as={Link} to="/">Fiona A. Aladina</Navbar.Brand>
-//         <Navbar.Toggle aria-controls="navbar-nav" />
-//         <Navbar.Collapse id="navbar-nav">
-//           <Nav className="ms-auto">
-//             <Nav.Link as={Link} to="/">Home</Nav.Link>
-//             <Nav.Link as={Link} to="/about">About</Nav.Link>
-//             {/* <Nav.Link as={Link} to="/my-story">My Story</Nav.Link> */}
-//             <Nav.Link as={Link} to="/projects">Projects</Nav.Link>
-//             <Nav.Link as={Link} to="/skills">Skills</Nav.Link>
-//             <Nav.Link as={Link} to="/gallery">Gallery</Nav.Link>
-//             <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
-//           </Nav>
-//         </Navbar.Collapse>
-//       </Container>
-//     </Navbar>
-//   );
-// };
-
-// export default CustomNavbar;
-
-
 import { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -47,30 +18,31 @@ const CustomNavbar = () => {
     >
       <Container>
         <Navbar.Brand as={Link} to="/" onClick={closeNav}>
-          Fiona A. Aladina
+          <span className="brand-name">Aladina</span>
+          <span className="brand-tagline">Software Engineer | Digital Skills Trainer</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/" onClick={closeNav}>
+            <Nav.Link as={Link} to="/" onClick={closeNav} active={window.location.pathname === "/"}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/about" onClick={closeNav}>
+            <Nav.Link as={Link} to="/about" onClick={closeNav} active={window.location.pathname === "/about"}>
               About
             </Nav.Link>
-            <Nav.Link as={Link} to="/projects" onClick={closeNav}>
+            <Nav.Link as={Link} to="/projects" onClick={closeNav} active={window.location.pathname === "/projects"}>
               Projects
             </Nav.Link>
-            <Nav.Link as={Link} to="/skills" onClick={closeNav}>
+            {/* <Nav.Link as={Link} to="/skills" onClick={closeNav} active={window.location.pathname === "/skills"}>
               Skills
-            </Nav.Link>
-            <Nav.Link as={Link} to="/gallery" onClick={closeNav}>
+            </Nav.Link> */}
+            <Nav.Link as={Link} to="/gallery" onClick={closeNav} active={window.location.pathname === "/gallery"}>
               Gallery
             </Nav.Link>
-            <Nav.Link as={Link} to="/services" onClick={closeNav}>
+            {/* <Nav.Link as={Link} to="/services" onClick={closeNav} active={window.location.pathname === "/services"}>
               Services
-            </Nav.Link>
-            <Nav.Link as={Link} to="/contact" onClick={closeNav}>
+            </Nav.Link> */}
+            <Nav.Link as={Link} to="/contact" onClick={closeNav} active={window.location.pathname === "/contact"}>
               Contact
             </Nav.Link>
           </Nav>

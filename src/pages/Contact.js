@@ -1,1042 +1,171 @@
-import React from "react";
+import React, { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import { Send, Mail, Phone, MapPin, Linkedin, Github, Twitter, CheckCircle, AlertCircle, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 import "../styles/Contact.css";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState({ submitting: false, submitted: false, error: null });
+
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ submitting: true, submitted: false, error: null });
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "6ab40fdb-2ef6-41fe-b022-d867a4200617",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact from ${formData.name}`,
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setStatus({ submitting: false, submitted: true, error: null });
+        setFormData({ name: "", email: "", message: "" });
+      } else throw new Error(result.message);
+    } catch {
+      setStatus({ submitting: false, submitted: false, error: "Failed to send. Please email me directly." });
+    }
+  };
+
   return (
-    <section className="contact-section" id="contact">
-      <div className="container">
-        {/* Header */}
-        <div className="contact-header">
-          <h2 className="contact-title">Get In Touch</h2>
-          <p className="contact-subtitle">
-            Open to new opportunities and collaborations.
-          </p>
-        </div>
+    <div className="editorial-page">
+      <Container>
 
-        {/* Contact Info */}
-        <div className="contact-info">
-          <div className="contact-item">
-            <i className="fas fa-envelope"></i>
-            <a href="mailto:phionaaladina@gmail.com">
-              phionaaladina@gmail.com
+        {/* ── Page Masthead (Editorial Layout) ── */}
+        <div className="editorial-masthead">
+          <div className="masthead-main-text">
+            <div className="masthead-eyebrow">Get In Touch</div>
+            <h1 className="masthead-title">Let's Build <span>Something Great</span></h1>
+            <p className="masthead-sub">
+              Have a project, opportunity, or just want to say hi? My inbox is always open.
+            </p>
+          </div>
+
+          <div className="masthead-ctas">
+            <a
+              href="/aladina_resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="editorial-btn-primary"
+            >
+              <FileText size={15} /> View Resume
             </a>
-          </div>
-          <div className="contact-item">
-            <i className="fas fa-phone"></i>
-            <a href="tel:+256773874765">+256 773 874 765</a>
-          </div>
-          <div className="contact-item">
-            <i className="fas fa-map-marker-alt"></i>
-            <span>Kampala, Uganda</span>
+            <Link to="/projects" className="editorial-btn-secondary">
+              Our Projects
+            </Link>
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="social-links">
-          <a
-            href="https://www.linkedin.com/in/phionaaladina/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-          >
-            <i className="fab fa-linkedin-in"></i>
-          </a>
-          <a
-            href="https://github.com/phionaaladina"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
-          >
-            <i className="fab fa-github"></i>
-          </a>
-          <a
-            href="https://twitter.com/yourhandle"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Twitter"
-          >
-            <i className="fab fa-twitter"></i>
-          </a>
-        </div>
+        <div className="editorial-rule" />
 
-        {/* Footer Note */}
-        <p className="footer-note">© 2025 Fiona Aladina. All rights reserved.</p>
-      </div>
-    </section>
+        <Row className="g-4 align-items-start">
+
+          {/* Left: Info */}
+          <Col lg={4}>
+            <div className="contact-info-card">
+              <div className="contact-info-title">Contact Info</div>
+
+              <div className="contact-detail-row">
+                <div className="contact-detail-icon"><Mail size={18} /></div>
+                <div className="contact-detail-info">
+                  <h4>Email</h4>
+                  <a href="mailto:phionaaladina@gmail.com">phionaaladina@gmail.com</a>
+                </div>
+              </div>
+
+              <div className="contact-detail-row">
+                <div className="contact-detail-icon"><Phone size={18} /></div>
+                <div className="contact-detail-info">
+                  <h4>Phone</h4>
+                  <a href="tel:+256773874765">+256 773 874 765</a>
+                </div>
+              </div>
+
+              <div className="contact-detail-row">
+                <div className="contact-detail-icon"><MapPin size={18} /></div>
+                <div className="contact-detail-info">
+                  <h4>Location</h4>
+                  <p>Kampala, Uganda</p>
+                </div>
+              </div>
+
+              <div className="contact-socials">
+                <a href="https://linkedin.com/in/phiona-aladina" target="_blank" rel="noreferrer" className="contact-social-btn"><Linkedin size={17} /></a>
+                <a href="https://github.com/phionaaladina"       target="_blank" rel="noreferrer" className="contact-social-btn"><Github size={17} /></a>
+                <a href="#" className="contact-social-btn"><Twitter size={17} /></a>
+              </div>
+            </div>
+          </Col>
+
+          {/* Right: Form */}
+          <Col lg={8}>
+            <div className="contact-form-card">
+              <div className="form-card-title">Send a Message</div>
+              <p className="form-card-sub">I'll get back to you within 24 hours.</p>
+
+              {status.submitted ? (
+                <div className="contact-success">
+                  <CheckCircle size={52} color="#db2777" />
+                  <h4>Message Sent!</h4>
+                  <p>Thank you for reaching out. I'll reply as soon as possible.</p>
+                  <button
+                    onClick={() => setStatus({ ...status, submitted: false })}
+                    className="contact-submit-btn"
+                    style={{ maxWidth: 240, margin: '0 auto' }}
+                  >
+                    Send Another
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit}>
+                  {status.error && (
+                    <div className="contact-error">
+                      <AlertCircle size={17} /> {status.error}
+                    </div>
+                  )}
+                  <Row className="g-3 mb-3">
+                    <Col md={6}>
+                      <input
+                        type="text" name="name" value={formData.name}
+                        onChange={handleChange} className="contact-input"
+                        placeholder="Your name" required
+                      />
+                    </Col>
+                    <Col md={6}>
+                      <input
+                        type="email" name="email" value={formData.email}
+                        onChange={handleChange} className="contact-input"
+                        placeholder="Email address" required
+                      />
+                    </Col>
+                  </Row>
+                  <div className="mb-4">
+                    <textarea
+                      name="message" value={formData.message}
+                      onChange={handleChange} className="contact-input"
+                      rows="6" placeholder="Tell me about your project or idea..."
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="contact-submit-btn" disabled={status.submitting}>
+                    {status.submitting ? "Sending..." : "Send Message"} <Send size={17} />
+                  </button>
+                </form>
+              )}
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
 export default Contact;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import "../styles/Contact.css";
-
-// const Contact = () => {
-//   return (
-//     <section className="contact-section" id="contact">
-//       <div className="container">
-//         {/* Header */}
-//         <div className="contact-header text-center">
-//           <h2 className="contact-title">Get In Touch</h2>
-//           <p className="contact-subtitle">
-//             Open to new opportunities and collaborations.
-//           </p>
-//         </div>
-
-//         {/* Contact Info */}
-//         <div className="contact-content">
-//           <div className="contact-info">
-//             <div className="contact-item">
-//               <i className="fas fa-envelope"></i>
-//               <a href="mailto:phionaaladina@gmail.com">phionaaladina@gmail.com</a>
-//             </div>
-//             <div className="contact-item">
-//               <i className="fas fa-phone"></i>
-//               <a href="tel:+256773874765">+256 773 874 765</a>
-//             </div>
-//             <div className="contact-item">
-//               <i className="fas fa-map-marker-alt"></i>
-//               <span>Kampala, Uganda</span>
-//             </div>
-//           </div>
-
-//           {/* Social Links */}
-//           <div className="social-links">
-//             <a
-//               href="https://www.linkedin.com/in/phionaaladina/"
-//               target="_blank"
-//               rel="noreferrer"
-//               aria-label="LinkedIn"
-//             >
-//               <i className="fab fa-linkedin-in"></i>
-//             </a>
-//             <a
-//               href="https://github.com/phionaaladina"
-//               target="_blank"
-//               rel="noreferrer"
-//               aria-label="GitHub"
-//             >
-//               <i className="fab fa-github"></i>
-//             </a>
-//             <a
-//               href="https://twitter.com/yourhandle"
-//               target="_blank"
-//               rel="noreferrer"
-//               aria-label="Twitter"
-//             >
-//               <i className="fab fa-twitter"></i>
-//             </a>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Contact;
-
-
-
-
-
-
-// // import "../styles/Contact.css";
-
-// // const Contact = () => {
-// //   const [formData, setFormData] = useState({
-// //     name: "",
-// //     email: "",
-// //     message: ""
-// //   });
-
-// //   const [isSubmitting, setIsSubmitting] = useState(false);
-
-// //   const handleChange = (e) => {
-// //     setFormData({ ...formData, [e.target.name]: e.target.value });
-// //   };
-
-// //   const handleSubmit = async (e) => {
-// //     e.preventDefault();
-// //     setIsSubmitting(true);
-    
-// //     // Simulate form submission
-// //     setTimeout(() => {
-// //       alert("Message submitted! Thank you for reaching out. I'll get back to you soon!");
-// //       setFormData({ name: "", email: "", message: "" });
-// //       setIsSubmitting(false);
-// //     }, 1500);
-// //   };
-
-// //   return (
-// //     <section className="contact-section" id="contact">
-// //       <div className="container">
-// //         {/* Header */}
-// //         <div className="contact-header">
-// //           <div className="section-badge">
-// //             <i className="fas fa-envelope"></i>
-// //             Let's Connect
-// //           </div>
-// //           <h2 className="contact-title">Get In Touch</h2>
-// //           <p className="contact-subtitle">
-// //             Ready to collaborate? I'd love to hear about your project and discuss how we can work together!
-// //           </p>
-// //         </div>
-
-// //         <div className="row contact-content">
-// //           {/* Contact Info */}
-// //           <div className="col-lg-5 col-md-6 mb-4">
-// //             <div className="contact-info-card">
-// //               <div className="contact-info-header">
-// //                 <div className="info-icon">
-// //                   <i className="fas fa-heart"></i>
-// //                 </div>
-// //                 <h4>Let's Chat!</h4>
-// //                 <p>I'm always excited to connect with fellow innovators and collaborators</p>
-// //               </div>
-
-// //               <div className="contact-methods">
-// //                 <div className="contact-item">
-// //                   <div className="contact-item-icon email-icon">
-// //                     <i className="fas fa-envelope"></i>
-// //                   </div>
-// //                   <div className="contact-item-content">
-// //                     <h6>Email Me</h6>
-// //                     <p>phionaaladina@gmail.com</p>
-// //                   </div>
-// //                 </div>
-
-// //                 <div className="contact-item">
-// //                   <div className="contact-item-icon phone-icon">
-// //                     <i className="fas fa-phone"></i>
-// //                   </div>
-// //                   <div className="contact-item-content">
-// //                     <h6>Call or Text</h6>
-// //                     <p>+256 773874765</p>
-// //                   </div>
-// //                 </div>
-
-// //                 <div className="contact-item">
-// //                   <div className="contact-item-icon location-icon">
-// //                     <i className="fas fa-map-marker-alt"></i>
-// //                   </div>
-// //                   <div className="contact-item-content">
-// //                     <h6>Location</h6>
-// //                     <p>Kampala, Uganda</p>
-// //                   </div>
-// //                 </div>
-// //               </div>
-
-// //               {/* Social Media */}
-// //               <div className="social-section">
-// //                 <h6 className="social-title">Connect on Social</h6>
-// //                 <div className="social-links">
-// //                   <a href="https://www.linkedin.com/in/phionaaladina/" target="_blank" rel="noreferrer" className="social-link linkedin">
-// //                     <i className="fab fa-linkedin-in"></i>
-// //                     <span>LinkedIn</span>
-// //                   </a>
-// //                   <a href="https://twitter.com/yourhandle" target="_blank" rel="noreferrer" className="social-link twitter">
-// //                     <i className="fab fa-twitter"></i>
-// //                     <span>Twitter</span>
-// //                   </a>
-// //                   <a href="https://facebook.com/yourprofile" target="_blank" rel="noreferrer" className="social-link facebook">
-// //                     <i className="fab fa-facebook-f"></i>
-// //                     <span>Facebook</span>
-// //                   </a>
-// //                   <a href="https://github.com/phionaaladina" target="_blank" rel="noreferrer" className="social-link github">
-// //                     <i className="fab fa-github"></i>
-// //                     <span>GitHub</span>
-// //                   </a>
-// //                 </div>
-// //               </div>
-// //             </div>
-// //           </div>
-
-// //           {/* Contact Form */}
-// //           <div className="col-lg-7 col-md-6">
-// //             <div className="contact-form-card">
-// //               <div className="form-header">
-// //                 <div className="form-icon">
-// //                   <i className="fas fa-paper-plane"></i>
-// //                 </div>
-// //                 <h4>Send me a message</h4>
-// //                 <p>I typically respond within 24 hours</p>
-// //               </div>
-
-// //               <form className="contact-form" onSubmit={handleSubmit}>
-// //                 <div className="form-group">
-// //                   <label htmlFor="name" className="form-label">
-// //                     <i className="fas fa-user"></i>
-// //                     Your Name
-// //                   </label>
-// //                   <input
-// //                     type="text"
-// //                     className="form-control"
-// //                     id="name"
-// //                     name="name"
-// //                     value={formData.name}
-// //                     onChange={handleChange}
-// //                     required
-// //                     placeholder=""
-// //                   />
-// //                 </div>
-
-// //                 <div className="form-group">
-// //                   <label htmlFor="email" className="form-label">
-// //                     <i className="fas fa-envelope"></i>
-// //                     Email Address
-// //                   </label>
-// //                   <input
-// //                     type="email"
-// //                     className="form-control"
-// //                     id="email"
-// //                     name="email"
-// //                     value={formData.email}
-// //                     onChange={handleChange}
-// //                     required
-// //                     placeholder="your.email@example.com"
-// //                   />
-// //                 </div>
-
-// //                 <div className="form-group">
-// //                   <label htmlFor="message" className="form-label">
-// //                     <i className="fas fa-comment-dots"></i>
-// //                     Your Message
-// //                   </label>
-// //                   <textarea
-// //                     className="form-control"
-// //                     id="message"
-// //                     name="message"
-// //                     rows="5"
-// //                     value={formData.message}
-// //                     onChange={handleChange}
-// //                     required
-// //                     placeholder="Tell me about your project, ideas, or just say hello! I'd love to hear from you..."
-// //                   ></textarea>
-// //                 </div>
-
-// //                 <button 
-// //                   type="submit" 
-// //                   className={`contact-btn ${isSubmitting ? 'submitting' : ''}`}
-// //                   disabled={isSubmitting}
-// //                 >
-// //                   {isSubmitting ? (
-// //                     <>
-// //                       <i className="fas fa-spinner fa-spin"></i>
-// //                       Sending...
-// //                     </>
-// //                   ) : (
-// //                     <>
-// //                       <i className="fas fa-paper-plane"></i>
-// //                       Send Message
-// //                     </>
-// //                   )}
-// //                 </button>
-// //               </form>
-// //             </div>
-// //           </div>
-// //         </div>
-
-// //         {/* Footer Message */}
-// //         <div className="contact-footer">
-// //           <div className="footer-message">
-// //             <i className="fas fa-star"></i>
-// //             <span>Looking forward to hearing from you!</span>
-// //             <i className="fas fa-star"></i>
-// //           </div>
-// //         </div>
-// //       </div>
-// //     </section>
-// //   );
-// // };
-
-// // export default Contact;
-// import React, { useState } from "react";
-// import "../styles/Contact.css";
-
-// const Contact = () => {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     phone: "",
-//     message: ""
-//   });
-
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setIsSubmitting(true);
-    
-//     // Simulate form submission
-//     setTimeout(() => {
-//       alert("Message submitted! Thank you for reaching out. I'll get back to you soon! 💙");
-//       setFormData({ name: "", email: "", phone: "", message: "" });
-//       setIsSubmitting(false);
-//     }, 1500);
-//   };
-
-//   return (
-//     <section className="contact-section" id="contact">
-//       <div className="container">
-//         {/* Header */}
-//         <div className="contact-header">
-//           <div className="section-badge">
-//             <i className="fas fa-envelope"></i>
-//             Let's Connect
-//           </div>
-//           <h2 className="contact-title">Get In Touch</h2>
-//           <p className="contact-subtitle">
-//             Ready to collaborate? I'd love to hear about your project and discuss how we can work together!
-//           </p>
-//         </div>
-
-//         <div className="row contact-content">
-//           {/* Contact Info */}
-//           <div className="col-lg-5 col-md-6 mb-4">
-//             <div className="contact-info-card">
-//               <div className="contact-info-header">
-//                 <div className="info-icon">
-//                   <i className="fas fa-heart"></i>
-//                 </div>
-//                 <h4>Let's Chat!</h4>
-//                 <p>I'm always excited to connect with fellow innovators and collaborators</p>
-//               </div>
-
-//               <div className="contact-methods">
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon email-icon">
-//                     <i className="fas fa-envelope"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Email Me</h6>
-//                     <p>
-//                       <i className="fas fa-at"></i>
-//                       fiona.aladina@example.com
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon phone-icon">
-//                     <i className="fas fa-phone"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Call or Text</h6>
-//                     <p>
-//                       <i className="fas fa-mobile-alt"></i>
-//                       +256 7XXXXXXXXX
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon location-icon">
-//                     <i className="fas fa-map-marker-alt"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Location</h6>
-//                     <p>
-//                       <i className="fas fa-map-pin"></i>
-//                       Entebbe, Central Region, Uganda
-//                     </p>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* Social Media */}
-//               <div className="social-section">
-//                 <h6 className="social-title">Connect on Social</h6>
-//                 <div className="social-links">
-//                   <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noreferrer" className="social-link linkedin">
-//                     <i className="fab fa-linkedin-in"></i>
-//                     <span>LinkedIn</span>
-//                   </a>
-//                   <a href="https://twitter.com/yourhandle" target="_blank" rel="noreferrer" className="social-link twitter">
-//                     <i className="fab fa-x-twitter"></i>
-//                     <span>X (Twitter)</span>
-//                   </a>
-//                   <a href="https://facebook.com/yourprofile" target="_blank" rel="noreferrer" className="social-link facebook">
-//                     <i className="fab fa-facebook-f"></i>
-//                     <span>Facebook</span>
-//                   </a>
-//                   <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" className="social-link github">
-//                     <i className="fab fa-github"></i>
-//                     <span>GitHub</span>
-//                   </a>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Contact Form */}
-//           <div className="col-lg-7 col-md-6">
-//             <div className="contact-form-card">
-//               <div className="form-header">
-//                 <div className="form-icon">
-//                   <i className="fas fa-paper-plane"></i>
-//                 </div>
-//                 <h4>Send me a message</h4>
-//                 <p>I typically respond within 24 hours</p>
-//               </div>
-
-//               <form className="contact-form" onSubmit={handleSubmit}>
-//                 <div className="form-group">
-//                   <label htmlFor="name" className="form-label">
-//                     <i className="fas fa-user"></i>
-//                     Your Name
-//                   </label>
-//                   <input
-//                     type="text"
-//                     className="form-control"
-//                     id="name"
-//                     name="name"
-//                     value={formData.name}
-//                     onChange={handleChange}
-//                     required
-//                   />
-//                 </div>
-
-//                 <div className="form-group">
-//                   <label htmlFor="email" className="form-label">
-//                     <i className="fas fa-envelope"></i>
-//                     Email Address
-//                   </label>
-//                   <input
-//                     type="email"
-//                     className="form-control"
-//                     id="email"
-//                     name="email"
-//                     value={formData.email}
-//                     onChange={handleChange}
-//                     required
-//                   />
-//                 </div>
-
-//                 <div className="form-group">
-//                   <label htmlFor="phone" className="form-label">
-//                     <i className="fas fa-phone"></i>
-//                     Phone Number
-//                   </label>
-//                   <input
-//                     type="tel"
-//                     className="form-control"
-//                     id="phone"
-//                     name="phone"
-//                     value={formData.phone}
-//                     onChange={handleChange}
-//                   />
-//                 </div>
-
-//                 <div className="form-group">
-//                   <label htmlFor="message" className="form-label">
-//                     <i className="fas fa-comment-dots"></i>
-//                     Your Message
-//                   </label>
-//                   <textarea
-//                     className="form-control"
-//                     id="message"
-//                     name="message"
-//                     rows="5"
-//                     value={formData.message}
-//                     onChange={handleChange}
-//                     required
-//                   ></textarea>
-//                 </div>
-
-//                 <button 
-//                   type="submit" 
-//                   className={`contact-btn ${isSubmitting ? 'submitting' : ''}`}
-//                   disabled={isSubmitting}
-//                 >
-//                   {isSubmitting ? (
-//                     <>
-//                       <i className="fas fa-spinner fa-spin"></i>
-//                       Sending...
-//                     </>
-//                   ) : (
-//                     <>
-//                       <i className="fas fa-paper-plane"></i>
-//                       Send Message
-//                     </>
-//                   )}
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Footer Message */}
-//         <div className="contact-footer">
-//           <div className="footer-message">
-//             <i className="fas fa-star"></i>
-//             <span>Looking forward to hearing from you!</span>
-//             <i className="fas fa-star"></i>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Contact;
-// import React, { useState } from "react";
-// import "../styles/Contact.css";
-
-// const Contact = () => {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     message: ""
-//   });
-
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setIsSubmitting(true);
-    
-//     // Simulate form submission
-//     setTimeout(() => {
-//       alert("Message submitted! Thank you for reaching out. I'll get back to you soon!");
-//       setFormData({ name: "", email: "", message: "" });
-//       setIsSubmitting(false);
-//     }, 1500);
-//   };
-
-//   return (
-//     <section className="contact-section" id="contact">
-//       <div className="container">
-//         {/* Header */}
-//         <div className="contact-header">
-//           <div className="section-badge">
-//             <i className="fas fa-envelope"></i>
-//             Let's Connect
-//           </div>
-//           <h2 className="contact-title">Get In Touch</h2>
-//           <p className="contact-subtitle">
-//             Ready to collaborate? I'd love to hear about your project and discuss how we can work together!
-//           </p>
-//         </div>
-
-//         <div className="row contact-content">
-//           {/* Contact Info */}
-//           <div className="col-lg-5 col-md-6 mb-4">
-//             <div className="contact-info-card">
-//               <div className="contact-info-header">
-//                 <div className="info-icon">
-//                   <i className="fas fa-heart"></i>
-//                 </div>
-//                 <h4>Let's Chat!</h4>
-//                 <p>I'm always excited to connect with fellow innovators and collaborators</p>
-//               </div>
-
-//               <div className="contact-methods">
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon email-icon">
-//                     <i className="fas fa-envelope"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Email Me</h6>
-//                     <p>phionaaladina@gmail.com</p>
-//                   </div>
-//                 </div>
-
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon phone-icon">
-//                     <i className="fas fa-phone"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Call or Text</h6>
-//                     <p>+256 773874765</p>
-//                   </div>
-//                 </div>
-
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon location-icon">
-//                     <i className="fas fa-map-marker-alt"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Location</h6>
-//                     <p>Kampala, Uganda</p>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* Social Media */}
-//               <div className="social-section">
-//                 <h6 className="social-title">Connect on Social</h6>
-//                 <div className="social-links">
-//                   <a href="https://www.linkedin.com/in/phionaaladina/" target="_blank" rel="noreferrer" className="social-link linkedin">
-//                     <i className="fab fa-linkedin-in"></i>
-//                     <span>LinkedIn</span>
-//                   </a>
-//                   <a href="https://twitter.com/yourhandle" target="_blank" rel="noreferrer" className="social-link twitter">
-//                     <i className="fab fa-twitter"></i>
-//                     <span>Twitter</span>
-//                   </a>
-//                   <a href="https://facebook.com/yourprofile" target="_blank" rel="noreferrer" className="social-link facebook">
-//                     <i className="fab fa-facebook-f"></i>
-//                     <span>Facebook</span>
-//                   </a>
-//                   <a href="https://github.com/phionaaladina" target="_blank" rel="noreferrer" className="social-link github">
-//                     <i className="fab fa-github"></i>
-//                     <span>GitHub</span>
-//                   </a>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Contact Form */}
-//           <div className="col-lg-7 col-md-6">
-//             <div className="contact-form-card">
-//               <div className="form-header">
-//                 <div className="form-icon">
-//                   <i className="fas fa-paper-plane"></i>
-//                 </div>
-//                 <h4>Send me a message</h4>
-//                 <p>I typically respond within 24 hours</p>
-//               </div>
-
-//               <form className="contact-form" onSubmit={handleSubmit}>
-//                 <div className="form-group">
-//                   <label htmlFor="name" className="form-label">
-//                     <i className="fas fa-user"></i>
-//                     Your Name
-//                   </label>
-//                   <input
-//                     type="text"
-//                     className="form-control"
-//                     id="name"
-//                     name="name"
-//                     value={formData.name}
-//                     onChange={handleChange}
-//                     required
-//                     placeholder=""
-//                   />
-//                 </div>
-
-//                 <div className="form-group">
-//                   <label htmlFor="email" className="form-label">
-//                     <i className="fas fa-envelope"></i>
-//                     Email Address
-//                   </label>
-//                   <input
-//                     type="email"
-//                     className="form-control"
-//                     id="email"
-//                     name="email"
-//                     value={formData.email}
-//                     onChange={handleChange}
-//                     required
-//                     placeholder="your.email@example.com"
-//                   />
-//                 </div>
-
-//                 <div className="form-group">
-//                   <label htmlFor="message" className="form-label">
-//                     <i className="fas fa-comment-dots"></i>
-//                     Your Message
-//                   </label>
-//                   <textarea
-//                     className="form-control"
-//                     id="message"
-//                     name="message"
-//                     rows="5"
-//                     value={formData.message}
-//                     onChange={handleChange}
-//                     required
-//                     placeholder="Tell me about your project, ideas, or just say hello! I'd love to hear from you..."
-//                   ></textarea>
-//                 </div>
-
-//                 <button 
-//                   type="submit" 
-//                   className={`contact-btn ${isSubmitting ? 'submitting' : ''}`}
-//                   disabled={isSubmitting}
-//                 >
-//                   {isSubmitting ? (
-//                     <>
-//                       <i className="fas fa-spinner fa-spin"></i>
-//                       Sending...
-//                     </>
-//                   ) : (
-//                     <>
-//                       <i className="fas fa-paper-plane"></i>
-//                       Send Message
-//                     </>
-//                   )}
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Footer Message */}
-//         <div className="contact-footer">
-//           <div className="footer-message">
-//             <i className="fas fa-star"></i>
-//             <span>Looking forward to hearing from you!</span>
-//             <i className="fas fa-star"></i>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// // export default Contact;
-// import React, { useState } from "react";
-// import "../styles/Contact.css";
-
-// const Contact = () => {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     phone: "",
-//     message: ""
-//   });
-
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setIsSubmitting(true);
-    
-//     // Simulate form submission
-//     setTimeout(() => {
-//       alert("Message submitted! Thank you for reaching out. I'll get back to you soon! 💙");
-//       setFormData({ name: "", email: "", phone: "", message: "" });
-//       setIsSubmitting(false);
-//     }, 1500);
-//   };
-
-//   return (
-//     <section className="contact-section" id="contact">
-//       <div className="container">
-//         {/* Header */}
-//         <div className="contact-header">
-//           <div className="section-badge">
-//             <i className="fas fa-envelope"></i>
-//             Let's Connect
-//           </div>
-//           <h2 className="contact-title">Get In Touch</h2>
-//           <p className="contact-subtitle">
-//             Ready to collaborate? I'd love to hear about your project and discuss how we can work together!
-//           </p>
-//         </div>
-
-//         <div className="row contact-content">
-//           {/* Contact Info */}
-//           <div className="col-lg-5 col-md-6 mb-4">
-//             <div className="contact-info-card">
-//               <div className="contact-info-header">
-//                 <div className="info-icon">
-//                   <i className="fas fa-heart"></i>
-//                 </div>
-//                 <h4>Let's Chat!</h4>
-//                 <p>I'm always excited to connect with fellow innovators and collaborators</p>
-//               </div>
-
-//               <div className="contact-methods">
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon email-icon">
-//                     <i className="fas fa-envelope"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Email Me</h6>
-//                     <p>
-//                       <i className="fas fa-at"></i>
-//                       fiona.aladina@example.com
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon phone-icon">
-//                     <i className="fas fa-phone"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Call or Text</h6>
-//                     <p>
-//                       <i className="fas fa-mobile-alt"></i>
-//                       +256 7XXXXXXXXX
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <div className="contact-item">
-//                   <div className="contact-item-icon location-icon">
-//                     <i className="fas fa-map-marker-alt"></i>
-//                   </div>
-//                   <div className="contact-item-content">
-//                     <h6>Location</h6>
-//                     <p>
-//                       <i className="fas fa-map-pin"></i>
-//                       Entebbe, Central Region, Uganda
-//                     </p>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* Social Media */}
-//               <div className="social-section">
-//                 <h6 className="social-title">Connect on Social</h6>
-//                 <div className="social-links">
-//                   <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noreferrer" className="social-link linkedin">
-//                     <i className="fab fa-linkedin-in"></i>
-//                     <span>LinkedIn</span>
-//                   </a>
-//                   <a href="https://twitter.com/yourhandle" target="_blank" rel="noreferrer" className="social-link twitter">
-//                     <i className="fab fa-x-twitter"></i>
-//                     <span>X (Twitter)</span>
-//                   </a>
-//                   <a href="https://facebook.com/yourprofile" target="_blank" rel="noreferrer" className="social-link facebook">
-//                     <i className="fab fa-facebook-f"></i>
-//                     <span>Facebook</span>
-//                   </a>
-//                   <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" className="social-link github">
-//                     <i className="fab fa-github"></i>
-//                     <span>GitHub</span>
-//                   </a>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Contact Form */}
-//           <div className="col-lg-7 col-md-6">
-//             <div className="contact-form-card">
-//               <div className="form-header">
-//                 <div className="form-icon">
-//                   <i className="fas fa-paper-plane"></i>
-//                 </div>
-//                 <h4>Send me a message</h4>
-//                 <p>I typically respond within 24 hours</p>
-//               </div>
-
-//               <form className="contact-form" onSubmit={handleSubmit}>
-//                 <div className="form-group">
-//                   <label htmlFor="name" className="form-label">
-//                     <i className="fas fa-user"></i>
-//                     Your Name
-//                   </label>
-//                   <input
-//                     type="text"
-//                     className="form-control"
-//                     id="name"
-//                     name="name"
-//                     value={formData.name}
-//                     onChange={handleChange}
-//                     required
-//                   />
-//                 </div>
-
-//                 <div className="form-group">
-//                   <label htmlFor="email" className="form-label">
-//                     <i className="fas fa-envelope"></i>
-//                     Email Address
-//                   </label>
-//                   <input
-//                     type="email"
-//                     className="form-control"
-//                     id="email"
-//                     name="email"
-//                     value={formData.email}
-//                     onChange={handleChange}
-//                     required
-//                   />
-//                 </div>
-
-//                 <div className="form-group">
-//                   <label htmlFor="phone" className="form-label">
-//                     <i className="fas fa-phone"></i>
-//                     Phone Number
-//                   </label>
-//                   <input
-//                     type="tel"
-//                     className="form-control"
-//                     id="phone"
-//                     name="phone"
-//                     value={formData.phone}
-//                     onChange={handleChange}
-//                   />
-//                 </div>
-
-//                 <div className="form-group">
-//                   <label htmlFor="message" className="form-label">
-//                     <i className="fas fa-comment-dots"></i>
-//                     Your Message
-//                   </label>
-//                   <textarea
-//                     className="form-control"
-//                     id="message"
-//                     name="message"
-//                     rows="5"
-//                     value={formData.message}
-//                     onChange={handleChange}
-//                     required
-//                   ></textarea>
-//                 </div>
-
-//                 <button 
-//                   type="submit" 
-//                   className={`contact-btn ${isSubmitting ? 'submitting' : ''}`}
-//                   disabled={isSubmitting}
-//                 >
-//                   {isSubmitting ? (
-//                     <>
-//                       <i className="fas fa-spinner fa-spin"></i>
-//                       Sending...
-//                     </>
-//                   ) : (
-//                     <>
-//                       <i className="fas fa-paper-plane"></i>
-//                       Send Message
-//                     </>
-//                   )}
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Footer Message */}
-//         <div className="contact-footer">
-//           <div className="footer-message">
-//             <i className="fas fa-star"></i>
-//             <span>Looking forward to hearing from you!</span>
-//             <i className="fas fa-star"></i>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Contact;

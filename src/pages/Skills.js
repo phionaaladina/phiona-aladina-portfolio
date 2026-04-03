@@ -1,270 +1,113 @@
-// import React from "react";
-// import "../styles/Skills.css";
-
-// const skills = [
-//   {
-//     title: "Web Development",
-//     note: "Building responsive and functional websites using modern technologies like HTML, CSS, JavaScript, React, and Node.js.",
-//     icon: "fas fa-code",
-//     category: "technical"
-//   },
-//   {
-//     title: "Training & Capacity Building",
-//     note: "Designing and delivering ICT, digital literacy, and entrepreneurship training programs that empower youth and women.",
-//     icon: "fas fa-chalkboard-teacher",
-//     category: "leadership"
-//   },
-//   {
-//     title: "Mentorship",
-//     note: "Guiding learners and early-career professionals through personal and professional development.",
-//     icon: "fas fa-user-friends",
-//     category: "leadership"
-//   },
-//   {
-//     title: "Coaching",
-//     note: "Supporting individuals to build clarity, resilience, and goal-setting strategies for growth.",
-//     icon: "fas fa-bullseye",
-//     category: "leadership"
-//   },
-//   {
-//     title: "IT Support",
-//     note: "Providing technical support, troubleshooting, and maintenance to ensure smooth system operations.",
-//     icon: "fas fa-tools",
-//     category: "technical"
-//   },
-// //   {
-// //     title: "Project Management",
-// //     note: "Planning, coordinating, and executing projects effectively with focus on impact and sustainability.",
-// //     icon: "fas fa-tasks",
-// //     category: "management"
-// //   },
-//   {
-//     title: "Innovation & Emerging Tech",
-//     note: "Exploring and applying technologies like VR, 3D printing, and AI to solve real-world challenges.",
-//     icon: "fas fa-lightbulb",
-//     category: "technical"
-//   }
-// ];
-
-// const Skills = () => {
-//   return (
-//     <section className="skills-section">
-//       <div className="container">
-//         <div className="skills-header">
-//           <div className="section-badge">
-//             Core Competencies
-//           </div>
-//           <h2 className="skills-title">My Skills & Expertise</h2>
-//           <p className="skills-subtitle">
-//             A comprehensive blend of technical proficiency, educational leadership, and innovative problem-solving
-//           </p>
-//         </div>
-        
-//         <div className="row skills-grid">
-//           {skills.map((skill, index) => (
-//             <div className="col-lg-4 col-md-6 mb-4" key={index}>
-//               <div className={`skill-card skill-card-${skill.category}`}>
-//                 <div className="skill-icon-wrapper">
-//                   <div className={`skill-icon skill-icon-${skill.category}`}>
-//                     <i className={skill.icon}></i>
-//                   </div>
-//                 </div>
-                
-//                 <div className="skill-content">
-//                   <h5 className="skill-title">{skill.title}</h5>
-//                   <p className="skill-description">{skill.note}</p>
-//                 </div>
-                
-//                 <div className={`skill-accent skill-accent-${skill.category}`}></div>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-        
-//         <div className="skills-footer">
-//           <div className="skills-cta">
-//             <p>Ready to collaborate on your next project?</p>
-//             <button className="cta-button">
-//               Let's Work Together
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Skills;
-
-
-// import React from "react";
-// import "../styles/Skills.css";
-
-// const skills = [
-//   {
-//     title: "Web & Software Development",
-//     note: "Building responsive websites, web apps, and custom solutions using HTML, CSS, JavaScript, React, and Node.js.",
-//     icon: "fas fa-code",
-//     category: "technical"
-//   },
-//   {
-//     title: "Digital Training & Mentorship",
-//     note: "Delivering ICT, digital literacy, and entrepreneurship training while guiding learners and early-career professionals for career and personal growth.",
-//     icon: "fas fa-chalkboard-teacher",
-//     category: "leadership"
-//   },
-//   {
-//     title: "Technical Support & IT Operations",
-//     note: "Troubleshooting, system maintenance, and ensuring smooth IT operations for organizations and individuals.",
-//     icon: "fas fa-tools",
-//     category: "technical"
-//   },
-//   {
-//     title: "Innovation & Emerging Technology",
-//     note: "Exploring VR, 3D printing, AI, and other technologies to create practical solutions to real-world challenges.",
-//     icon: "fas fa-lightbulb",
-//     category: "technical"
-//   },
-//   {
-//     title: "Project Management & Leadership",
-//     note: "Planning, coordinating, and executing projects with focus on impact, team guidance, and sustainable results.",
-//     icon: "fas fa-tasks",
-//     category: "management"
-//   }
-// ];
-
-// const Skills = () => {
-//   return (
-//     <section className="skills-section">
-//       <div className="container">
-//         {/* Header */}
-//         <div className="skills-header">
-//           <div className="section-badge">Core Competencies</div>
-//           <h2 className="skills-title">My Skills & Expertise</h2>
-//           <p className="skills-subtitle">
-//             A balanced mix of technical proficiency, leadership, and innovative problem-solving
-//           </p>
-//         </div>
-
-//         {/* Skills Grid */}
-//         <div className="row skills-grid">
-//           {skills.map((skill, index) => (
-//             <div className="col-lg-4 col-md-6 mb-4" key={index}>
-//               <div className={`skill-card skill-card-${skill.category}`}>
-//                 <div className="skill-icon-wrapper">
-//                   <div className={`skill-icon skill-icon-${skill.category}`}>
-//                     <i className={skill.icon}></i>
-//                   </div>
-//                 </div>
-
-//                 <div className="skill-content">
-//                   <h5 className="skill-title">{skill.title}</h5>
-//                   <p className="skill-description">{skill.note}</p>
-//                 </div>
-
-//                 <div className={`skill-accent skill-accent-${skill.category}`}></div>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-
-//         {/* CTA */}
-//         <div className="skills-footer">
-//           <div className="skills-cta">
-//             <p>Ready to collaborate on your next project?</p>
-//             <button className="cta-button">Let's Work Together</button>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Skills;
-
-
 import React from "react";
+import { Link } from "react-router-dom";
+import { Code, Users, GraduationCap, Settings, Lightbulb, ClipboardList, Sparkles, Send, ArrowRight } from "lucide-react";
 import "../styles/Skills.css";
 
 const skills = [
   {
     title: "Web & Software Development",
-    note: "Building responsive websites, web apps, and custom solutions using HTML, CSS, JavaScript, React, and Node.js.",
-    icon: "fas fa-code",
-    category: "technical"
+    note: "Crafting modern, responsive, and performance-optimized web solutions with a focus on user experience and clean code.",
+    icon: <Code size={28} />,
+    category: "technical",
+    tags: ["React", "JavaScript", "Node.js", "MySQL", "Bootstrap", "Next.js"]
   },
   {
-    title: "Digital Training",
-    note: "Delivering ICT, digital literacy, and entrepreneurship programs that empower youth and women.",
-    icon: "fas fa-chalkboard-teacher",
-    category: "leadership"
+    title: "Digital Training & Education",
+    note: "Empowering youth and women through tailored ICT literacy programs and entrepreneurship workshops.",
+    icon: <GraduationCap size={28} />,
+    category: "leadership",
+    tags: ["Curriculum Design", "ICT Literacy", "Workshops", "e-Learning"]
   },
   {
     title: "Mentorship & Coaching",
-    note: "Guiding learners and professionals through career, skill, and personal development.",
-    icon: "fas fa-user-friends",
-    category: "leadership"
+    note: "Guiding emerging professionals through career pathing, skill acquisition, and personal growth strategies.",
+    icon: <Users size={28} />,
+    category: "leadership",
+    tags: ["Career Pathing", "Public Speaking", "Goal Setting", "EQ"]
   },
   {
-    title: "Technical Support & IT Operations",
-    note: "Troubleshooting, system maintenance, and ensuring smooth IT operations.",
-    icon: "fas fa-tools",
-    category: "technical"
+    title: "IT Support & Infrastructure",
+    note: "Reliable technical support, system maintenance, and network troubleshooting for optimal business operations.",
+    icon: <Settings size={28} />,
+    category: "technical",
+    tags: ["Hardware Support", "Network Admin", "Cloud Tools", "Security"]
   },
   {
-    title: "Innovation & Emerging Technology",
-    note: "Exploring VR, 3D printing, AI, and other technologies to create practical solutions.",
-    icon: "fas fa-lightbulb",
-    category: "technical"
+    title: "Innovation & Emerging Tech",
+    note: "Driving digital transformation by exploring VR/AR, 3D printing applications, and AI integration.",
+    icon: <Lightbulb size={28} />,
+    category: "technical",
+    tags: ["3D Printing", "Virtual Reality", "AI Tools", "Prototyping"]
   },
   {
-    title: "Project Management & Leadership",
-    note: "Planning, coordinating, and executing projects with focus on impact, team guidance, and sustainability.",
-    icon: "fas fa-tasks",
-    category: "management"
+    title: "Project Management",
+    note: "Strategic planning and execution of community-focused projects with a commitment to sustainable impact.",
+    icon: <ClipboardList size={28} />,
+    category: "management",
+    tags: ["Agile", "Stakeholder Management", "M&E", "Strategic Planning"]
   }
 ];
 
 const Skills = () => {
   return (
-    <section className="skills-section">
+    <section className="skills-page-premium">
+      {/* Background Blobs */}
+      <div className="skills-bg-blobs">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+        <div className="blob blob-3"></div>
+      </div>
+      
       <div className="container">
         {/* Header */}
-        <div className="skills-header">
-          <div className="section-badge">Core Competencies</div>
-          <h2 className="skills-title">My Skills & Expertise</h2>
-          <p className="skills-subtitle">
-            A balanced mix of technical proficiency, leadership, and innovative problem-solving
+        <div className="skills-header-premium">
+          <h1 className="skills-title-premium">Skills & Capabilities</h1>
+          <p className="skills-subtitle-premium">
+            A fusion of technical excellence and strategic leadership, dedicated to building impactful digital solutions.
           </p>
         </div>
 
         {/* Skills Grid */}
-        <div className="row skills-grid">
+        <div className="row skills-grid-premium">
           {skills.map((skill, index) => (
             <div className="col-lg-4 col-md-6 mb-4" key={index}>
-              <div className={`skill-card skill-card-${skill.category}`}>
-                <div className="skill-icon-wrapper">
-                  <div className={`skill-icon skill-icon-${skill.category}`}>
-                    <i className={skill.icon}></i>
+              <div className={`skill-card-premium skill-card-${skill.category}`}>
+                <div className="skill-card-inner">
+                  <div className="skill-icon-outer">
+                    <div className={`skill-icon-bg skill-icon-${skill.category}`}>
+                      {skill.icon}
+                    </div>
+                  </div>
+
+                  <div className="skill-content-premium">
+                    <h3 className="skill-name-premium">{skill.title}</h3>
+                    <p className="skill-desc-premium">{skill.note}</p>
+                    
+                    <div className="skill-tags-premium">
+                      {skill.tags.map((tag, tIdx) => (
+                        <span key={tIdx} className={`skill-tag-pill tag-${skill.category}`}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-
-                <div className="skill-content">
-                  <h5 className="skill-title">{skill.title}</h5>
-                  <p className="skill-description">{skill.note}</p>
-                </div>
-
-                <div className={`skill-accent skill-accent-${skill.category}`}></div>
+                <div className={`skill-accent-bar accent-${skill.category}`}></div>
               </div>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="skills-footer">
-          <div className="skills-cta">
-            <p>Ready to collaborate on your next project?</p>
-            <button className="cta-button">Let's Work Together</button>
+        <div className="skills-footer-cta">
+          <div className="cta-card-premium">
+            <div className="cta-info">
+              <h3>Ready to build something together?</h3>
+              <p>I'm always open to discussing new projects, technical challenges, or community initiatives.</p>
+            </div>
+            <Link to="/contact" className="btn-contact-premium">
+              Get In Touch <Send size={20} />
+            </Link>
           </div>
         </div>
       </div>

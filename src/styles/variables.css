@@ -1,9 +1,55 @@
-* Brand palette */
-:root{
-  --primary-blue:   #3097c6;
-  --secondary-orange: #f26117;  /* bright */
-  /* --brand-orange-soft:#ff944d; softer option */
-  --tertiary1-green:  #378e4d;  /* growth */
-  /* --brand-green-soft:#6FBF73; */
-  --tertiary2-cream:  #fcf1e1;
+/* Global Design Tokens - Pink & White Brand Edition */
+:root {
+  /* Brand Colors - Sophisticated Pink Palette */
+  --primary-accent: #db2777; /* Deep Pink */
+  --primary-accent-light: rgba(219, 39, 119, 0.08);
+  --primary-accent-gradient: linear-gradient(135deg, #db2777 0%, #ec4899 100%);
+  
+  /* Lighter Spiced Pinks */
+  --light-pink: #fdf2f8; 
+  --soft-pink: #fce7f3;
+  --blush-pink: #fbcfe8;
+  --rose-pink: #f9a8d4;
+  
+  --secondary-accent: #ec4899; /* Pink-500 */
+  --secondary-accent-light: rgba(236, 72, 153, 0.1);
+  
+  --tertiary-accent: #fda4af; /* Rose Blush */
+  --tertiary-accent-light: rgba(253, 164, 175, 0.1);
+  
+  /* Neutral Palette - Clean White & Warm Charcoal (No Blue) */
+  --bg-main: #ffffff;
+  --bg-subtle: #fffafb; /* Warm pinkish white */
+  --text-main: #27272a; /* Zinc-800 - Neutral/Warm charcoal */
+  --text-muted: #52525b; /* Zinc-600 */
+  --text-light: #a1a1aa; /* Zinc-400 */
+  --slate-dark: #18181b; /* Zinc-900 */
+  --slate-100: #f4f4f5; /* Zinc-100 */
+  
+  --border-glass: rgba(255, 255, 255, 0.3);
+  --border-light: rgba(0, 0, 0, 0.05);
+  
+  /* Shadows & Glassmorphism */
+  --shadow-premium: 0 20px 25px -5px rgba(219, 39, 119, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-dark-bg: rgba(24, 24, 27, 0.82); /* Neutral dark */
+  
+  /* Typography */
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* Backward compatibility for old variable names during transition */
+:root {
+  --primary-blue: var(--primary-accent);
+  --primary-blue-light: var(--primary-accent-light);
+  --secondary-orange: var(--secondary-accent);
+  --secondary-orange-light: var(--secondary-accent-light);
+  --tertiary1-green: var(--tertiary-accent);
+  --tertiary1-green-light: var(--tertiary-accent-light);
 }

@@ -1,285 +1,182 @@
-// import React, { useState } from 'react';
-// import '../styles/Projects.css';
-
-// const Projects = () => {
-//   const projects = [
-//     {
-//       id: 1,
-//       title: "UNIHUB SOLUTIONS UGANDA PLATFORM",
-//       description: "A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.",
-//       image: process.env.PUBLIC_URL + "/unipg.png",
-//       technologies: ["React", "Node.js", "Python", "MySQL","Bootstrap"],
-//       githubUrl: "https://github.com/username/ecommerce-platform",
-//       liveUrl: "https://unihubug.com",
-//       category: "Web Development"
-//     },
-//     {
-//       id: 2,
-//       title: "MERAKI ACTION INITIATIVE WEBSITE",
-//       description: "A non-profit organization website built with WordPress and Elementor, featuring a blog, donation system, and event management.",
-//       image: process.env.PUBLIC_URL + "/meraki.png",
-//       technologies: ["Wordpress", "Elementor", "PHP", "MySQL"],
-//       githubUrl: "https://github.com/username/task-manager",
-//       liveUrl: "https://merakiinitiative.org",
-//       category: "Web Development"
-//     },
-//     {
-//       id: 3,
-//       title: "BOOK MANAGEMENT SYSTEM",
-//       description: "A book management system that allows users to add, edit, delete, and search for books in a library database.",
-//       image: process.env.PUBLIC_URL + "/bms.png",
-//       technologies: ["JavaScript", "HTML", "CSS"],
-//       githubUrl: "https://github.com/phionaaladina/BOOK-MANAGEMENT-SYSTEM-JAVASCRIPT-PROJECT",
-//       liveUrl: "https://phionaaladina.github.io/BOOK-MANAGEMENT-SYSTEM-JAVASCRIPT-PROJECT/",
-//       category: "Web Development"
-//     }
-//   ];
-
-//   const categories = ["All", ...new Set(projects.map(project => project.category))];
-//   const [selectedCategory, setSelectedCategory] = useState("All");
-
-//   const filteredProjects = selectedCategory === "All"
-//     ? projects
-//     : projects.filter(project => project.category === selectedCategory);
-
-//   return (
-//     <div className="projects-page">
-//       <div className="container">
-//         {/* Header Section */}
-//         <div className="projects-header">
-//           <h1 className="projects-title">My Projects</h1>
-//           <p className="projects-subtitle">
-//             A showcase of my development work and creative solutions
-//           </p>
-//         </div>
-
-//         {/* Category Filter */}
-//         <div className="category-filter">
-//           {categories.map(category => (
-//             <button
-//               key={category}
-//               className={`category-btn ${selectedCategory === category ? 'active' : ''}`}
-//               onClick={() => setSelectedCategory(category)}
-//             >
-//               {category}
-//             </button>
-//           ))}
-//         </div>
-
-//         {/* Projects Grid */}
-//         <div className="projects-grid">
-//           {filteredProjects.map(project => (
-//             <div key={project.id} className="project-card">
-//               <div className="project-image-container">
-//                 <img 
-//                   src={project.image} 
-//                   alt={project.title}
-//                   className="project-image"
-//                 />
-//                 <div className="project-overlay">
-//                   <div className="project-links">
-//                     <a 
-//                       href={project.githubUrl}
-//                       target="_blank"
-//                       rel="noopener noreferrer"
-//                       className="project-link github-link"
-//                     >
-//                       GitHub
-//                     </a>
-//                     {project.liveUrl && (
-//                       <a 
-//                         href={project.liveUrl}
-//                         target="_blank"
-//                         rel="noopener noreferrer"
-//                         className="project-link demo-link"
-//                       >
-//                         Live Demo
-//                       </a>
-//                     )}
-//                   </div>
-//                 </div>
-//               </div>
-
-//               <div className="project-content">
-//                 <div className="project-header">
-//                   <span className="category-badge">{project.category}</span>
-//                   <h3 className="project-title">{project.title}</h3>
-//                 </div>
-
-//                 <p className="project-description">{project.description}</p>
-
-//                 <div className="technologies">
-//                   {project.technologies.map((tech, index) => (
-//                     <span key={index} className="tech-badge">
-//                       {tech}
-//                     </span>
-//                   ))}
-//                 </div>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-
-//         {filteredProjects.length === 0 && (
-//           <div className="no-projects">
-//             <p>No projects found for the selected category.</p>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Projects;
-
-
-
-
-
-
-import React, { useState } from 'react';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Github, ExternalLink, ArrowRight, FileText, Send } from 'lucide-react';
 import '../styles/Projects.css';
 
-const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "UNIHUB SOLUTIONS UGANDA PLATFORM",
-      description: "A full-stack e-commerce solution built with React, Node.js, and MySQL. Features include user authentication, Guest Checkout, and admin dashboard.",
-      image: process.env.PUBLIC_URL + "/unipg.png",
-      technologies: ["React", "Node.js", "Python", "MySQL","Bootstrap"],
-      githubUrl: "https://github.com/username/ecommerce-platform",
-      liveUrl: "https://unihubug.com",
-      category: "Web Development"
-    },
-    {
-      id: 2,
-      title: "MERAKI ACTION INITIATIVE WEBSITE",
-      description: "A non-profit organization website built with WordPress and Elementor, featuring a blog, donation system, and event management.",
-      image: process.env.PUBLIC_URL + "/meraki.png",
-      technologies: ["Wordpress", "Elementor", "PHP", "MySQL"],
-      githubUrl: "https://github.com/username/task-manager",
-      liveUrl: "https://merakiinitiative.org",
-      category: "Web Development"
-    },
-    {
-      id: 3,
-      title: "BOOK MANAGEMENT SYSTEM",
-      description: "A book management system that allows users to add, edit, delete, and search for books in a library database.",
-      image: process.env.PUBLIC_URL + "/bms.png",
-      technologies: ["JavaScript", "HTML", "CSS"],
-      githubUrl: "https://github.com/phionaaladina/BOOK-MANAGEMENT-SYSTEM-JAVASCRIPT-PROJECT",
-      liveUrl: "https://phionaaladina.github.io/BOOK-MANAGEMENT-SYSTEM-JAVASCRIPT-PROJECT/",
-      category: "Web Development"
-    }
-  ];
+const projects = [
+  {
+    id: 3,
+    num: "01",
+    title: "MamaGym Wear 256",
+    category: "E-Commerce",
+    description: "A full e-commerce platform for selling fitness apparel and accessories, with shopping cart, checkout, and product management.",
+    image: "/mamagym.png",
+    tech: ["Next.js", "TailwindCSS", "MySQL", "Node.js"],
+    github: "https://github.com/phionaaladina",
+    live: "https:mamagymwear256.com"
+  },
+  {
+    id: 1,
+    num: "02",
+    title: "MIYA Initiative Website",
+    category: "Web Platform",
+    description: "MIYA Initiative builds digital citizens through practical training, ethical technology use, and inclusive community across Africa.",
+    image: "/miya.png",
+    tech: ["Next.js", "TailwindCSS", "MySQL", "Node.js"],
+    github: "https://miyainitiative.com/",
+    live: "https://miyainitiative.com/"
+  },
+  {
+    id: 2,
+    num: "03",
+    title: "HerStr't Foundation",
+    category: "Non-Profit Website",
+    description: "A platform for a non-profit dedicated to empowering young women and youth, sharing mission, programs, and impact stories.",
+    image: "/herstrt.png",
+    tech: ["Next.js", "TailwindCSS", "Node.js", "MySQL"],
+    github: "https://github.com/phionaaladina",
+    live: "http://herstrtfoundation.org/"
+  },
+  {
+    id: 4,
+    num: "04",
+    title: "UniHub Solutions Uganda",
+    category: "Full-Stack E-Commerce",
+    description: "A full-stack e-commerce solution with user authentication, secure checkout, and a comprehensive admin dashboard.",
+    image: process.env.PUBLIC_URL + "/unipg.png",
+    tech: ["React", "Node.js", "Python", "MySQL"],
+    github: "https://github.com/phionaaladina",
+    live: "https://unihubug.com"
+  },
+  {
+    id: 5,
+    num: "05",
+    title: "Meraki Action Initiative",
+    category: "Non-Profit Website",
+    description: "A non-profit website dedicated to empowering young women and youth through education and skill development programs.",
+    image: process.env.PUBLIC_URL + "/meraki.png",
+    tech: ["WordPress", "Elementor", "PHP", "Security"],
+    github: "https://github.com/phionaaladina",
+    live: "https://merakiinitiative.org"
+  },
+  {
+    id: 6,
+    num: "06",
+    title: "Book Management System",
+    category: "Web Application",
+    description: "An intuitive digital library system for efficient cataloging, real-time searching, and database management operations.",
+    image: process.env.PUBLIC_URL + "/bms.png",
+    tech: ["JavaScript", "HTML", "CSS", "Local Storage"],
+    github: "https://github.com/phionaaladina/BOOK-MANAGEMENT-SYSTEM-JAVASCRIPT-PROJECT",
+    live: "https://phionaaladina.github.io/BOOK-MANAGEMENT-SYSTEM-JAVASCRIPT-PROJECT/"
+  }
+];
 
-  const categories = ["All", ...new Set(projects.map(project => project.category))];
-  const [selectedCategory, setSelectedCategory] = useState("All");
+const Projects = () => (
+  <div className="editorial-page">
+    <Container>
 
-  const filteredProjects = selectedCategory === "All"
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
-
-  return (
-    <div className="projects-page">
-      <div className="container">
-        {/* Header Section */}
-        <div className="projects-header">
-          <h1 className="projects-title">My Projects</h1>
-          <p className="projects-subtitle">
-            A showcase of my development work and creative solutions
+      {/* ── Page Masthead (Editorial Layout) ── */}
+      <div className="editorial-masthead">
+        <div className="masthead-main-text">
+          <div className="masthead-eyebrow">Project Portfolio</div>
+          <h1 className="masthead-title">Featured <span>Work</span></h1>
+          <p className="masthead-sub">
+            A curated selection of software solutions, non-profit platforms, and community initiatives.
           </p>
-          <Link to="/gallery" className="gallery-link-btn">
-            View Gallery <i className="fas fa-arrow-right"></i>
-          </Link>
         </div>
 
-        {/* Category Filter */}
-        <div className="category-filter">
-          {categories.map(category => (
-            <button
-              key={category}
-              className={`category-btn ${selectedCategory === category ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
-        <div className="projects-grid">
-          {filteredProjects.map(project => (
-            <div key={project.id} className="project-card">
-              <div className="project-image-container">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="project-image"
-                />
-                <div className="project-overlay">
-                  <div className="project-links">
-                    <a 
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link github-link"
-                    >
-                      GitHub
-                    </a>
-                    {project.liveUrl && (
-                      <a 
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link demo-link"
-                      >
-                        Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="project-content">
-                <div className="project-header">
-                  <span className="category-badge">{project.category}</span>
-                  <h3 className="project-title">{project.title}</h3>
-                </div>
-
-                <p className="project-description">{project.description}</p>
-
-                <div className="technologies">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="tech-badge">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {filteredProjects.length === 0 && (
-          <div className="no-projects">
-            <p>No projects found for the selected category.</p>
-          </div>
-        )}
-
-        {/* Gallery CTA Section */}
-        <div className="gallery-cta">
-          <h3>Want to see more of my work?</h3>
-          <p>Check out my gallery for additional projects and creative work</p>
-          <Link to="/gallery" className="gallery-cta-btn">
-            Explore Gallery <i className="fas fa-images"></i>
+        <div className="masthead-ctas">
+          <a
+            href="/aladina_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="editorial-btn-primary"
+          >
+             <FileText size={15} /> View Resume
+          </a>
+          <Link to="/contact" className="editorial-btn-secondary">
+             Get In Touch
           </Link>
         </div>
       </div>
-    </div>
-  );
-};
+
+      <div className="editorial-rule" />
+
+      {/* ── Project List ── */}
+      <div className="project-list">
+        {projects.map((p, i) => {
+          const flip = i % 2 !== 0; // alternate image side
+          return (
+            <div key={p.id} className="project-row">
+              <Row className={`align-items-center g-5 ${flip ? 'flex-row-reverse' : ''}`}>
+
+                {/* Screenshot */}
+                <Col lg={6}>
+                  <div className="project-img-wrap">
+                    <img src={p.image} alt={p.title} className="project-screenshot" />
+                    {/* Number badge */}
+                    <div className="project-num-badge">{p.num}</div>
+                    {/* Hover overlay */}
+                    <div className="project-img-overlay">
+                      <div className="overlay-links">
+                        <a href={p.github} target="_blank" rel="noopener noreferrer" className="overlay-link">
+                          <Github size={18} /> Code
+                        </a>
+                        {p.live && p.live !== '#' && (
+                          <a href={p.live} target="_blank" rel="noopener noreferrer" className="overlay-link overlay-link-pink">
+                            <ExternalLink size={18} /> Live Site
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+
+                {/* Info */}
+                <Col lg={6}>
+                  <div className={`project-info ${flip ? 'info-flip' : ''}`}>
+                    <span className="project-category">{p.category}</span>
+                    <h2 className="project-title">{p.title}</h2>
+                    <p className="project-desc">{p.description}</p>
+                    <div className="project-tech">
+                      {p.tech.map((t, idx) => (
+                        <span key={idx} className="tech-pill">{t}</span>
+                      ))}
+                    </div>
+                    <div className="project-actions">
+                      {p.live && p.live !== '#' && (
+                        <a href={p.live} target="_blank" rel="noopener noreferrer" className="proj-btn-primary">
+                          View Live <ExternalLink size={14} />
+                        </a>
+                      )}
+                      <a href={p.github} target="_blank" rel="noopener noreferrer" className="proj-btn-ghost">
+                        <Github size={15} /> GitHub
+                      </a>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+              {/* Row divider */}
+              {i < projects.length - 1 && <div className="project-row-divider" />}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="projects-rule" />
+
+      {/* ── Footer CTA ── */}
+      <div className="projects-footer-cta">
+        <p className="footer-cta-label">Curious about my visual work?</p>
+        <Link to="/gallery" className="footer-cta-link">
+          Visit the Gallery <ArrowRight size={16} />
+        </Link>
+      </div>
+
+    </Container>
+  </div>
+);
 
 export default Projects;

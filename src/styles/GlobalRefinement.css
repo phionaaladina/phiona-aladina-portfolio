@@ -1,0 +1,88 @@
+/* Full Site Color Pass - Eliminating all Blue for Pink & White Theme */
+@import './variables.css';
+
+/* Services Section - Clean Pink Update */
+.services-section-premium {
+  padding: 6rem 0 8rem;
+  background-color: var(--bg-main);
+}
+
+.service-card-premium {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 32px;
+  border: 1px solid var(--slate-100);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.service-card-premium:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-premium);
+  border-color: var(--primary-accent-light);
+}
+
+.service-icon-box {
+  width: 60px;
+  height: 60px;
+  background: var(--primary-accent-light);
+  color: var(--primary-accent);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.service-title {
+  color: var(--text-main);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.service-desc {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Gallery Section - Clean Pink Update */
+.gallery-section-premium {
+  padding: 6rem 0 8rem;
+}
+
+.category-pill {
+  padding: 0.6rem 1.4rem;
+  border-radius: 50px;
+  background: var(--slate-100);
+  color: var(--text-muted);
+  font-weight: 700;
+  transition: var(--transition-smooth);
+}
+
+.category-pill.active {
+  background: var(--primary-accent);
+  color: white;
+  box-shadow: 0 10px 20px rgba(219, 39, 119, 0.2);
+}
+
+.gallery-card-premium {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Footer - Minimal Pink */
+.footer-premium {
+  padding: 4rem 0 2rem;
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--slate-100);
+}
+
+.footer-logo {
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.footer-link:hover {
+  color: var(--primary-accent);
+}

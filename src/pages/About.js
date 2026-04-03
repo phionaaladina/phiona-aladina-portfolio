@@ -1,235 +1,98 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
-// import "../styles/About.css";
-
-// const About = () => {
-//   return (
-//     <section className="about-section" id="about">
-//       <div className="container">
-//         {/* Header */}
-//         <div className="about-header">
-//           <h1 className="section-title">About Me</h1>
-//         </div>
-
-//         {/* Main Content */}
-//         <div className="about-main">
-//           {/* About Content - Left Side */}
-//           <div className="about-content">
-//             <h2 className="about-name">Fiona A. Aladina</h2>
-//             <p className="about-role">
-//               Software Engineer | Tech Educator | Community Leader
-//             </p>
-
-//             <div className="about-text">
-//               <p>
-//                 I’m Fiona Aladina — a Software Engineer, Tech Educator, and
-//                 community leader passionate about empowering young people
-//                 through technology, innovation, and mentorship.
-//               </p>
-
-//               <p>
-//                 My journey is one of <strong>resilience and purpose</strong>.
-//                 Growing up as the firstborn in a challenging environment taught
-//                 me strength, compassion, and the power of perseverance. From
-//                 work It shaped my drive to break barriers and create
-//                 opportunities, not only for myself but for my siblings and
-//                 others who dare to dream beyond their circumstances.
-//               </p>
-
-//               <p>
-//                 Over the years, I’ve trained and mentored more than{" "}
-//                 <strong>800 young women, youth, and children</strong> in digital
-//                 literacy, coding, life skills, and entrepreneurship. I’ve seen
-//                 technology transform lives, helping learners gain confidence,
-//                 launch businesses, and build careers they once thought
-//                 impossible.
-//               </p>
-
-//               <p>
-//                 I believe that{" "}
-//                 <em>
-//                   we can always rise again, no matter what life throws our way
-//                 </em>
-//                 . Every setback carries a lesson, and every effort, no matter
-//                 how small, brings us closer to the future we imagine.
-//               </p>
-
-//               <p>
-//                 Today, my mission is to{" "}
-//                 <strong>
-//                   bridge digital gaps, inspire creativity, and nurture the next
-//                   generation of innovators
-//                 </strong>{" "}
-//                 through inclusive learning and impactful tech solutions.
-//               </p>
-//             </div>
-
-//             {/* Simple Skills */}
-//             <div className="about-skills">
-//               <span className="skill-badge">
-//                 <i className="fas fa-code"></i> Software Development
-//               </span>
-//               <span className="skill-badge">
-//                 <i className="fas fa-chalkboard-teacher"></i> Tech Education
-//               </span>
-//               <span className="skill-badge">
-//                 <i className="fas fa-users"></i> Community Leadership
-//               </span>
-//             </div>
-
-//             {/* CTA Buttons */}
-//             <div className="about-cta">
-//               <Link to="/contact" className="btn-primary">
-//                 Get In Touch
-//               </Link>
-//               <Link to="/projects" className="btn-secondary">
-//                 View My Work
-//               </Link>
-//               <a
-//                 href="/aladina_resume.pdf"
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="btn-resume"
-//               >
-//                 <i className="fas fa-file-pdf"></i> View Resume
-//               </a>
-//             </div>
-//           </div>
-
-//           {/* Profile Image - Right Side */}
-//           <div className="profile-image">
-//             <img
-//               src={process.env.PUBLIC_URL + "/abt1.jpg"}
-//               alt="Fiona A. Aladina"
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default About;
-
-
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FileText, Send } from "lucide-react";
 import "../styles/About.css";
 
-const About = () => {
-  return (
-    <section className="about-section" id="about">
-      <div className="container">
-        {/* Header */}
-        <div className="about-header">
-          <h1 className="section-title">About Me</h1>
+const chapters = [
+  {
+    title: "Who I Am",
+    text: `I'm Fiona Aladina, a Software Engineer, Tech Educator, and Community Leader passionate about empowering young people through technology, innovation, and mentorship.`
+  },
+  {
+    title: "My Journey",
+    bold: "resilience and purpose",
+    text: `My journey is one of resilience and purpose. Growing up as the firstborn in a challenging environment taught me strength, compassion, and the power of perseverance. From working as a cleaner, beautician, and nanny (my favorite role) to make ends meet for my 4 siblings and myself, to getting into computer science and discovering my passion for technology and empowering others. Each experience, though humble, shaped my empathy and fueled my desire to create opportunities for others to rise and thrive.`
+  },
+  {
+    title: "Breaking Barriers",
+    text: `It shaped my drive to break barriers and create opportunities, not only for myself but for my siblings and others who dare to dream beyond their circumstances.`
+  },
+  {
+    title: "My Impact",
+    bold: "1000 young women, youth, and children",
+    text: `Over the years, I've trained and mentored more than 1000 young women, youth, and children in digital literacy, coding, life skills, and entrepreneurship. I've seen technology transform lives, helping learners gain confidence, launch businesses, and build careers they once thought impossible.`
+  },
+  {
+    title: "My Belief",
+    bold: "we can always rise again",
+    text: `I believe that we can always rise again, no matter what life throws our way. Every setback carries a lesson, and every effort, no matter how small, brings us closer to the future we imagine.`
+  },
+  {
+    title: "My Mission",
+    text: `Today, my mission is to bridge digital gaps, inspire creativity, and nurture the next generation of innovators through inclusive learning and impactful tech solutions.`
+  }
+];
+
+const renderText = (ch) => {
+  if (!ch.bold) return ch.text;
+  const [before, after] = ch.text.split(ch.bold);
+  return <>{before}<strong>{ch.bold}</strong>{after}</>;
+};
+
+const About = () => (
+  <div className="editorial-page">
+    <Container>
+
+      {/* ── Top: Unified Masthead ── */}
+      <div className="editorial-masthead">
+        <div className="masthead-main-text-about">
+          <h1 className="masthead-name">Fiona A. <span>Aladina</span></h1>
+          <div className="masthead-roles-row">
+            <span className="role-tag">Software Engineer</span>
+            <span className="role-dash">/</span>
+            <span className="role-tag">Digital Skills Trainer</span>
+            <span className="role-dash">/</span>
+            <span className="role-tag">Mentor</span>
+          </div>
         </div>
 
-        {/* Main Content */}
-        <div className="about-main">
-          {/* About Content - Left Side */}
-          <div className="about-content">
-            <h2 className="about-name">Fiona A. Aladina</h2>
-            <p className="about-role">
-              Software Engineer | Tech Educator | Community Leader
-            </p>
-
-            <div className="about-text">
-              <p>
-                I’m Fiona Aladina, a <strong>Software Engineer</strong>,{" "}
-                <strong>Tech Educator</strong>, and <strong>Community Leader</strong> passionate about
-                empowering young people through technology, innovation, and mentorship.
-              </p>
-
-              <p>
-                My journey is one of <strong>resilience and purpose</strong>.
-                Growing up as the firstborn in a challenging environment taught
-                me strength, compassion, and the power of perseverance.{" "}
-                From working as a{" "}
-                <strong>cleaner, beautician, and nanny (my favorite role) to make ends meet for my 4 siblings and myself</strong>, 
-                to getting into computer science and discovering my passion for{" "}
-                <strong>technology and empowering others</strong>. 
-                Each experience, though humble, shaped my empathy and fueled my desire 
-                to create opportunities for others to rise and thrive.
-              </p>
-
-              <p>
-                It shaped my drive to break barriers and create
-                opportunities, not only for myself but for my siblings and
-                others who dare to dream beyond their circumstances.
-              </p>
-
-              <p>
-                Over the years, I’ve trained and mentored more than{" "}
-                <strong>800 young women, youth, and children</strong> in digital
-                literacy, coding, life skills, and entrepreneurship. I’ve seen
-                technology transform lives, helping learners gain confidence,
-                launch businesses, and build careers they once thought
-                impossible.
-              </p>
-
-              <p>
-                I believe that{" "}
-                <em>
-                  we can always rise again, no matter what life throws our way
-                </em>
-                . Every setback carries a lesson, and every effort, no matter
-                how small, brings us closer to the future we imagine.
-              </p>
-
-              <p>
-                Today, my mission is to{" "}
-                <strong>
-                  bridge digital gaps, inspire creativity, and nurture the next
-                  generation of innovators
-                </strong>{" "}
-                through inclusive learning and impactful tech solutions.
-              </p>
-            </div>
-
-            {/* Simple Skills */}
-            <div className="about-skills">
-              <span className="skill-badge">
-                <i className="fas fa-code"></i> Software Development
-              </span>
-              <span className="skill-badge">
-                <i className="fas fa-chalkboard-teacher"></i> Tech Education
-              </span>
-              <span className="skill-badge">
-                <i className="fas fa-users"></i> Community Leadership
-              </span>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="about-cta">
-              <Link to="/contact" className="btn-primary">
-                Get In Touch
-              </Link>
-              <Link to="/projects" className="btn-secondary">
-                View My Work
-              </Link>
-              <a
-                href="/aladina_resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-resume"
-              >
-                <i className="fas fa-file-pdf"></i> View Resume
-              </a>
-            </div>
-          </div>
-
-          {/* Profile Image - Right Side */}
-          <div className="profile-image">
-            <img
-              src={process.env.PUBLIC_URL + "/abt1.jpg"}
-              alt="Fiona A. Aladina"
-            />
-          </div>
+        <div className="masthead-ctas">
+          <a
+            href="/aladina_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="editorial-btn-primary"
+          >
+            <FileText size={15} /> View Resume
+          </a>
+          <Link to="/projects" className="editorial-btn-secondary">
+            View Projects
+          </Link>
+          <Link to="/contact" className="editorial-btn-ghost">
+            <Send size={15} /> Get In Touch
+          </Link>
         </div>
       </div>
-    </section>
-  );
-};
+
+      <div className="editorial-rule" />
+
+      {/* ── Chapters ── */}
+      <div className="about-chapters">
+        {chapters.map((ch, i) => (
+          <Row key={i} className="chapter-row">
+            <Col xs={12} md={3} className="chapter-title-col">
+              <h2 className="chapter-title">{ch.title}</h2>
+            </Col>
+            <Col xs={12} md={9} className="chapter-text-col">
+              <p className="chapter-body">{renderText(ch)}</p>
+            </Col>
+          </Row>
+        ))}
+      </div>
+
+    </Container>
+  </div>
+);
 
 export default About;
