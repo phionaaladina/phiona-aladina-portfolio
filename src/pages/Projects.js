@@ -27,20 +27,20 @@ const projects = [
     github: "https://miyainitiative.com/",
     live: "https://miyainitiative.com/"
   },
+  // {
+  //   id: 2,
+  //   num: "03",
+  //   title: "HerStr't Foundation",
+  //   category: "Non-Profit Website",
+  //   description: "A platform for a non-profit dedicated to empowering young women and youth, sharing mission, programs, and impact stories.",
+  //   image: "/herstrt.png",
+  //   tech: ["Next.js", "TailwindCSS", "Node.js", "MySQL"],
+  //   github: "https://github.com/phionaaladina",
+  //   live: "http://herstrtfoundation.org/"
+  // },
   {
-    id: 2,
+    id: 3,
     num: "03",
-    title: "HerStr't Foundation",
-    category: "Non-Profit Website",
-    description: "A platform for a non-profit dedicated to empowering young women and youth, sharing mission, programs, and impact stories.",
-    image: "/herstrt.png",
-    tech: ["Next.js", "TailwindCSS", "Node.js", "MySQL"],
-    github: "https://github.com/phionaaladina",
-    live: "http://herstrtfoundation.org/"
-  },
-  {
-    id: 4,
-    num: "04",
     title: "UniHub Solutions Uganda",
     category: "Full-Stack E-Commerce",
     description: "A full-stack e-commerce solution with user authentication, secure checkout, and a comprehensive admin dashboard.",
@@ -50,8 +50,8 @@ const projects = [
     live: "https://unihubug.com"
   },
   {
-    id: 5,
-    num: "05",
+    id: 4,
+    num: "04",
     title: "Meraki Action Initiative",
     category: "Non-Profit Website",
     description: "A non-profit website dedicated to empowering young women and youth through education and skill development programs.",
@@ -61,8 +61,8 @@ const projects = [
     live: "https://merakiinitiative.org"
   },
   {
-    id: 6,
-    num: "06",
+    id: 5,
+    num: "05",
     title: "Book Management System",
     category: "Web Application",
     description: "An intuitive digital library system for efficient cataloging, real-time searching, and database management operations.",
