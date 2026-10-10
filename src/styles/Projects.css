@@ -44,10 +44,10 @@
   margin: 0;
 }
 
-/* ── Pink Rule ────────────────────────────────────── */
+/* ── Rule ─────────────────────────────────────────── */
 .projects-rule {
   height: 2px;
-  background: linear-gradient(to right, var(--primary-accent) 0%, #fbcfe8 40%, transparent 100%);
+  background: linear-gradient(to right, var(--primary-accent) 0%, rgba(58, 131, 247, 0.25) 40%, transparent 100%);
   border-radius: 99px;
   margin-bottom: 4rem;
 }
@@ -77,7 +77,7 @@
 }
 
 .project-img-wrap:hover {
-  box-shadow: 0 30px 80px rgba(219,39,119,0.1), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 30px 80px rgba(58, 131, 247, 0.12), 0 8px 24px rgba(0,0,0,0.06);
 }
 
 .project-screenshot {
@@ -111,7 +111,7 @@
 .project-img-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(63, 63, 70, 0.85); /* Sophisticated subtle grey instead of pink */
+  background: rgba(39, 39, 42, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,7 +149,7 @@
 }
 
 .overlay-link-pink {
-  background: #3f3f46;
+  background: var(--primary-accent);
   color: white;
 }
 
@@ -232,19 +232,19 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.72rem 1.6rem;
-  background: linear-gradient(135deg, #db2777, #be185d);
+  background: var(--primary-accent-gradient);
   color: white;
   font-weight: 700;
   font-size: 0.88rem;
   border-radius: 50px;
   text-decoration: none !important;
   transition: var(--transition-smooth);
-  box-shadow: 0 6px 18px rgba(219,39,119,0.2);
+  box-shadow: 0 6px 18px rgba(58, 131, 247, 0.25);
 }
 
 .proj-btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(219,39,119,0.3);
+  box-shadow: 0 10px 24px rgba(58, 131, 247, 0.35);
   color: white;
 }
 

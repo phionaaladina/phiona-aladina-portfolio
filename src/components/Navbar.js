@@ -1,13 +1,75 @@
-import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "../styles/Navbar.css";
+
+const navItems = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "What I Do" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact", isButton: true }
+];
 
 const CustomNavbar = () => {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   const closeNav = () => setExpanded(false);
+
+  // ScrollSpy: track which section is currently in view as user scrolls
+  useEffect(() => {
+    const sectionIds = ["home", "about", "skills", "projects", "contact"];
+
+    const handleScroll = () => {
+      // If user has scrolled almost to the very bottom, activate contact
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+        setActiveSection("contact");
+        return;
+      }
+
+      const scrollPos = window.scrollY + 140; // optical offset below navbar
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sectionIds[i]);
+        if (section) {
+          const top = section.offsetTop;
+          if (scrollPos >= top) {
+            setActiveSection(sectionIds[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Update active state and scroll if URL hash or pathname changes
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    const path = location.pathname.replace("/", "");
+    const target = hash || path;
+    if (target && ["home", "about", "skills", "projects", "contact"].includes(target)) {
+      setActiveSection(target);
+    }
+  }, [location]);
+
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    closeNav();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      window.history.replaceState(null, "", `#${id}`);
+      setActiveSection(id);
+    } else {
+      window.location.href = `/#${id}`;
+    }
+  };
 
   return (
     <Navbar 
@@ -18,31 +80,41 @@ const CustomNavbar = () => {
       onToggle={setExpanded}
     >
       <Container>
-        <Navbar.Brand as={Link} to="/" onClick={closeNav}>
+        <Navbar.Brand 
+          href="#home" 
+          onClick={(e) => handleNavClick(e, "home")}
+        >
           <span className="brand-name">Aladina</span>
-          <span className="brand-tagline">Software Engineer | Digital Skills Trainer</span>
+          <span className="brand-tagline">Computer Scientist | Digital Skills Trainer | Mentor</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/" onClick={closeNav} active={location.pathname === "/"}>
-              Home
-            </Nav.Link>
-            <Nav.Link as={Link} to="/projects" onClick={closeNav} active={location.pathname === "/projects"}>
-              Projects
-            </Nav.Link>
-            <Nav.Link as={Link} to="/skills" onClick={closeNav} active={location.pathname === "/skills"}>
-              Skills
-            </Nav.Link>
-            <Nav.Link as={Link} to="/about" onClick={closeNav} active={location.pathname === "/about"}>
-              About
-            </Nav.Link>
-            <Nav.Link as={Link} to="/gallery" onClick={closeNav} active={location.pathname === "/gallery"}>
-              Gallery
-            </Nav.Link>
-            <Nav.Link as={Link} to="/contact" onClick={closeNav} active={location.pathname === "/contact"}>
-              Contact
-            </Nav.Link>
+          <Nav className="ms-auto align-items-lg-center">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              if (item.isButton) {
+                return (
+                  <Nav.Link
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e) => handleNavClick(e, item.id)}
+                    className={`nav-contact-button ${isActive ? "active" : ""}`}
+                  >
+                    {item.label}
+                  </Nav.Link>
+                );
+              }
+              return (
+                <Nav.Link
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                  active={isActive}
+                >
+                  {item.label}
+                </Nav.Link>
+              );
+            })}
           </Nav>
         </Navbar.Collapse>
       </Container>

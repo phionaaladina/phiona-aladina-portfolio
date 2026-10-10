@@ -39,7 +39,7 @@
 }
 
 .footer-socials a:hover {
-  background: var(--primary-accent); /* Pink on hover */
+  background: var(--primary-accent); /* Primary Blue on hover */
   color: white;
   transform: translateY(-4px);
 }
@@ -65,7 +65,7 @@
 }
 
 .footer-links ul li a:hover {
-  color: var(--secondary-accent); /* light pink on hover */
+  color: var(--secondary-accent); /* Secondary Orange on hover */
   padding-left: 4px;
 }
 

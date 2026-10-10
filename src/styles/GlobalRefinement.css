@@ -1,7 +1,7 @@
-/* Full Site Color Pass - Eliminating all Blue for Pink & White Theme */
+/* Modern Brand Color Palette — Blue (#3A83F7), Orange (#F97316), Gray (#52525B) & White */
 @import './variables.css';
 
-/* Services Section - Clean Pink Update */
+/* Services Section */
 .services-section-premium {
   padding: 6rem 0 8rem;
   background-color: var(--bg-main);
@@ -45,7 +45,7 @@
   line-height: 1.7;
 }
 
-/* Gallery Section - Clean Pink Update */
+/* Gallery Section */
 .gallery-section-premium {
   padding: 6rem 0 8rem;
 }
@@ -62,7 +62,7 @@
 .category-pill.active {
   background: var(--primary-accent);
   color: white;
-  box-shadow: 0 10px 20px rgba(219, 39, 119, 0.2);
+  box-shadow: 0 10px 20px rgba(58, 131, 247, 0.25);
 }
 
 .gallery-card-premium {
@@ -71,7 +71,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* Footer - Minimal Pink */
+/* Footer */
 .footer-premium {
   padding: 4rem 0 2rem;
   background: var(--bg-subtle);

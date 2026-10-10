@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 // Standard Styling
@@ -12,14 +12,57 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 
-// Pages
+// Sections
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
+import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
-import Gallery from "./pages/Gallery";
-import Services from "./pages/Services";
+
+const PortfolioPage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if user loaded the site with a hash or path
+    const hash = window.location.hash.replace("#", "");
+    const path = location.pathname.replace("/", "");
+    const target = hash || (path && path !== "" ? path : null);
+
+    if (target && ["home", "about", "skills", "projects", "contact"].includes(target)) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(target);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [location]);
+
+  return (
+    <div className="portfolio-continuous-flow">
+      <section id="home" className="portfolio-section">
+        <Home />
+      </section>
+      
+      <section id="about" className="portfolio-section">
+        <About />
+      </section>
+
+      <section id="skills" className="portfolio-section">
+        <Skills />
+      </section>
+
+      <section id="projects" className="portfolio-section">
+        <Projects />
+      </section>
+
+      <section id="contact" className="portfolio-section">
+        <Contact />
+      </section>
+    </div>
+  );
+};
 
 const AppContent = () => {
   return (
@@ -28,13 +71,13 @@ const AppContent = () => {
 
       <main className="flex-grow-1">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/contact" element={<Contact />} /> 
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/services" element={<Services />} /> 
+          <Route path="/" element={<PortfolioPage />} />
+          <Route path="/about" element={<PortfolioPage />} />
+          <Route path="/skills" element={<PortfolioPage />} />
+          <Route path="/projects" element={<PortfolioPage />} />
+          <Route path="/contact" element={<PortfolioPage />} />
+          <Route path="/services" element={<PortfolioPage />} />
+          <Route path="*" element={<PortfolioPage />} />
         </Routes>
       </main>
 

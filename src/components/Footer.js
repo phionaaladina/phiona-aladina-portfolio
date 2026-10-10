@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { Linkedin, Github, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Github, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "../styles/Footer.css";
 
 const Footer = () => {
@@ -10,72 +10,152 @@ const Footer = () => {
       <Container>
         <Row className="gy-4">
           <Col lg={4} md={6}>
-            <div className="footer-brand">
-              <h3>Fiona A. Aladina</h3>
-              <p>
-                Software Engineer and Tech Educator dedicated to bridging digital gaps 
-                and empowering the next generation of innovators through technology 
-                and mentorship.
-              </p>
-              <div className="footer-socials">
-                <a href="www.linkedin.com/in/phionaaladina" target="_blank" rel="noopener noreferrer">
-                  <Linkedin size={18} />
-                </a>
-                <a href="https://github.com/phionaaladina" target="_blank" rel="noopener noreferrer">
-                  <Github size={18} />
-                </a>
-                <a href="https://twitter.com/phionaaladina" target="_blank" rel="noopener noreferrer">
-                  <Twitter size={18} />
-                </a>
+            <ScrollReveal animation="fade-up" delay={50}>
+              <div className="footer-brand">
+                <h3>Fiona A. Aladina</h3>
+                <p>
+                  Software Engineer and Tech Educator dedicated to bridging digital gaps 
+                  and empowering the next generation of innovators through technology 
+                  and mentorship.
+                </p>
+                <div className="footer-socials">
+                  <a href="https://www.linkedin.com/in/phionaaladina" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <Linkedin size={18} />
+                  </a>
+                  <a href="https://github.com/phionaaladina" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <Github size={18} />
+                  </a>
+
+                  <a href="https://instagram.com/Its_Aladina" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <Instagram size={18} />
+                  </a>
+                  <a href="https://www.youtube.com/channel/UCAzqZP6oRDRgInhLlQH3gog" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <Youtube size={18} />
+                  </a>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </Col>
 
           <Col lg={2} md={6} className="offset-lg-1">
-            <div className="footer-links">
-              <h4>Quick Links</h4>
-              <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/projects">Projects</Link></li>
-                <li><Link to="/gallery">Gallery</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-              </ul>
-            </div>
+            <ScrollReveal animation="fade-up" delay={100}>
+              <div className="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="#home"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+                        window.history.replaceState(null, "", "#home");
+                      }}
+                    >
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#about"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                        window.history.replaceState(null, "", "#about");
+                      }}
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#skills"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+                        window.history.replaceState(null, "", "#skills");
+                      }}
+                    >
+                      What I Do
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#projects"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                        window.history.replaceState(null, "", "#projects");
+                      }}
+                    >
+                      Projects
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                        window.history.replaceState(null, "", "#contact");
+                      }}
+                    >
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </ScrollReveal>
           </Col>
 
           <Col lg={2} md={6}>
-            <div className="footer-links">
-              <h4>Resources</h4>
-              <ul>
-                <li><Link to="/contact">Contact</Link></li>
-                <li><a href="/aladina_resume.pdf" target="_blank">Resume</a></li>
-              </ul>
-            </div>
+            <ScrollReveal animation="fade-up" delay={150}>
+              <div className="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                        window.history.replaceState(null, "", "#contact");
+                      }}
+                    >
+                      Contact
+                    </a>
+                  </li>
+                  <li><a href="/aladina_resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                </ul>
+              </div>
+            </ScrollReveal>
           </Col>
 
           <Col lg={3} md={6}>
-            <div className="footer-contact">
-              <h4>Contact</h4>
-              <div className="contact-item">
-                <Mail size={16} />
-                <a href="mailto:phionaaladina@gmail.com">phionaaladina@gmail.com</a>
+            <ScrollReveal animation="fade-up" delay={200}>
+              <div className="footer-contact">
+                <h4>Contact</h4>
+                <div className="contact-item">
+                  <Mail size={16} />
+                  <a href="mailto:phionaaladina@gmail.com">phionaaladina@gmail.com</a>
+                </div>
+                <div className="contact-item">
+                  <Phone size={16} />
+                  <a href="tel:+256773874765">+256 773 874 765</a>
+                </div>
+                <div className="contact-item">
+                  <MapPin size={16} />
+                  <span>Kampala, Uganda</span>
+                </div>
               </div>
-              <div className="contact-item">
-                <Phone size={16} />
-                <a href="tel:+256773874765">+256 773 874 765</a>
-              </div>
-              <div className="contact-item">
-                <MapPin size={16} />
-                <span>Kampala, Uganda</span>
-              </div>
-            </div>
+            </ScrollReveal>
           </Col>
         </Row>
 
-        <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} <span>Fiona A. Aladina</span>. All rights reserved.</p>
-        </div>
+        <ScrollReveal animation="fade" delay={220}>
+          <div className="footer-bottom">
+            <p>&copy; {new Date().getFullYear()} <span>Fiona A. Aladina</span>. All rights reserved.</p>
+          </div>
+        </ScrollReveal>
       </Container>
     </footer>
   );

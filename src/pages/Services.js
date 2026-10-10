@@ -1,33 +1,69 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Laptop, GraduationCap, Users, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
+import { Laptop, GraduationCap, Users, Cpu, Wrench, ArrowRight, Sparkles, Download } from "lucide-react";
 import "../styles/Services.css";
 
 const Services = () => {
   const services = [
     {
       id: 1,
-      icon: <Laptop size={32} />,
-      title: "Software Development",
-      description: "Custom web and mobile applications tailored to your business needs, built with high-performance modern technologies.",
-      features: ["Full-stack web development", "Responsive design", "API integration", "Database architecture"],
-      accent: "blue"
+      icon: <Laptop size={28} />,
+      eyebrow: "01 / BUILD",
+      title: "Full-Stack Web & App Engineering",
+      description: "Developing scalable, accessible web applications and APIs using React, Next.js, Node.js, and Python with seamless UX.",
+      tags: ["React & Next.js", "Node.js & Python", "REST APIs", "Mobile-First"],
+      image: "/itsupport.jpg",
+      accent: "blue",
+      link: "/projects",
+      linkText: "View Code Projects"
     },
     {
       id: 2,
-      icon: <GraduationCap size={32} />,
-      title: "1-on-1 Training",
-      description: "Personalized coaching sessions in Web Development, ICT basics, and Graphic Design to accelerate your learning curve.",
-      features: ["Web development skills", "Basic ICT literacy", "Graphic design basics", "Personal project guidance"],
-      accent: "orange"
+      icon: <GraduationCap size={28} />,
+      eyebrow: "02 / TEACH",
+      title: "Technical Training & Curriculum",
+      description: "Designing outcome-driven coding curricula. Trained 1,000+ youth with an 80% outcome rate into jobs and new ventures.",
+      tags: ["1,000+ Trained", "Python & Web", "80% Placement", "E-Learning"],
+      image: "/training.jpg",
+      accent: "orange",
+      link: "/contact",
+      linkText: "Partner on Training"
     },
     {
       id: 3,
-      icon: <Users size={32} />,
-      title: "Workshops & Mentorship",
-      description: "Group workshops and structured mentorship programs designed to empower children, youth, and organizations.",
-      features: ["Digital literacy bootcamps", "Coding for kids", "Professional mentorship", "Community tech projects"],
-      accent: "green"
+      icon: <Users size={28} />,
+      eyebrow: "03 / EMPOWER",
+      title: "Inclusive Mentorship & Accessibility",
+      description: "Championing disability inclusion and female tech leadership, certified in Ugandan Sign Language with 1-on-1 career coaching.",
+      tags: ["Sign Language", "Disability a11y", "Career Coaching", "iUPSHIFT"],
+      image: "/cldn.jpg",
+      accent: "green",
+      link: "/contact",
+      linkText: "Connect for Mentorship"
+    },
+    {
+      id: 4,
+      icon: <Cpu size={28} />,
+      eyebrow: "04 / INNOVATE",
+      title: "Emerging Tech & Makerspace Labs",
+      description: "Spearheaded WITU Makerspace launch with Team 4 Tech & Cadence; integrating 3D printing and VR to inspire STEM careers.",
+      tags: ["3D Printing", "VR / AR", "Team4Tech Partner", "Micro:bit"],
+      image: "/partc1.jpg",
+      accent: "purple",
+      link: "/about",
+      linkText: "Learn About Impact"
+    },
+    {
+      id: 5,
+      icon: <Wrench size={28} />,
+      eyebrow: "05 / SUPPORT",
+      title: "IT Infrastructure & Lab Management",
+      description: "Maintaining reliable multi-station computer labs, diagnostics, network configurations, and e-learning platforms with minimal downtime.",
+      tags: ["Lab Diagnostics", "Hardware Support", "Network Setup", "Uptime"],
+      image: "/itsupport1.jpg",
+      accent: "blue",
+      link: "/contact",
+      linkText: "Discuss Lab Support"
     }
   ];
 
@@ -43,35 +79,48 @@ const Services = () => {
       <div className="container">
         {/* Header Section */}
         <div className="services-header-premium">
-          <h1 className="services-title-premium">Professional Services</h1>
+          <p className="services-kicker">WHAT I DO &amp; DELIVER</p>
+          <h1 className="services-title-premium">Build. Teach. Empower<span>.</span></h1>
           <p className="services-subtitle-premium">
-            Bridging the gap between technical innovation and community empowerment through tailored digital solutions.
+            Full-stack engineering, accessible technical education, and dependable digital systems built for real-world impact.
           </p>
+
+          <div className="services-action-pills mt-3">
+            <a
+              href={process.env.PUBLIC_URL + "/aladina_resume.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="services-resume-link"
+              download="Fiona_Aladina_Resume.pdf"
+            >
+              <Download size={15} /> Download Resume (PDF)
+            </a>
+          </div>
         </div>
 
-        {/* Services Grid - Using Bootstrap Grid */}
+        {/* Services Grid */}
         <div className="row g-4 services-grid-premium">
           {services.map(service => (
             <div key={service.id} className="col-lg-4 col-md-6">
               <div className={`service-card-premium accent-${service.accent}`}>
-                <div className="service-icon-wrapper-premium">
-                  {service.icon}
+                <div className="service-card-visual">
+                  <img src={process.env.PUBLIC_URL + service.image} alt={service.title} />
+                  <span className="service-icon-wrapper-premium">{service.icon}</span>
+                  <span className="service-card-number">{service.eyebrow}</span>
                 </div>
-                <h3 className="service-card-title">{service.title}</h3>
-                <p className="service-desc-premium">{service.description}</p>
-                
-                <ul className="service-features-premium">
-                  {service.features.map((feature, index) => (
-                    <li key={index} className="feature-item-premium">
-                      <CheckCircle size={18} />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="service-card-content">
+                  <h3 className="service-card-title">{service.title}</h3>
+                  <p className="service-desc-premium">{service.description}</p>
 
-                <div className="service-card-footer">
-                  <Link to="/contact" className="service-link-premium">
-                    Request Service <ArrowRight size={16} />
+                  {/* Tags */}
+                  <div className="service-tags-strip mt-3 mb-2">
+                    {service.tags.map((tag, tIdx) => (
+                      <span key={tIdx} className="service-tag-pill">{tag}</span>
+                    ))}
+                  </div>
+
+                  <Link to={service.link} className="service-link-premium" aria-label={`Learn more about ${service.title}`}>
+                    {service.linkText} <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
@@ -79,16 +128,27 @@ const Services = () => {
           ))}
         </div>
 
-        {/* CTA Section - Fixed & Styled */}
+        {/* CTA Section */}
         <div className="services-footer-cta">
           <div className="footer-card-premium">
             <div className="cta-content-wrapper">
               <Sparkles size={32} className="cta-icon" />
-              <h3>Ready to Start Your Next Project?</h3>
-              <p>Whether it's a new software solution or a teaching opportunity, I'm ready to help you succeed.</p>
-              <Link to="/contact" className="btn-services-cta">
-                Let's Talk Today <ArrowRight size={20} />
-              </Link>
+              <h3>Looking for an engineer and tech enabler?</h3>
+              <p>Let’s build something useful, accessible, and high-impact together.</p>
+              <div className="d-flex justify-content-center gap-3 flex-wrap">
+                <Link to="/contact" className="btn-services-cta">
+                  Let's Talk Today <ArrowRight size={18} />
+                </Link>
+                <a
+                  href={process.env.PUBLIC_URL + "/aladina_resume.pdf"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-services-cta-secondary"
+                  download="Fiona_Aladina_Resume.pdf"
+                >
+                  <Download size={17} /> Download Resume
+                </a>
+              </div>
             </div>
           </div>
         </div>

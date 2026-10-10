@@ -52,7 +52,7 @@ const MyStory = () => {
                 <div className="snippet-icon"><Zap size={24} /></div>
                 <h3>The Firstborn's Path</h3>
                 <p>
-                  As the firstborn in my family, I learned the weight of responsibility early. This shaped my commitment to resilience, leadership, and the relentless pursuit of growth—not just for myself, but for those who look up to me.
+                  As the firstborn in my family, I learned the weight of responsibility early. This shaped my commitment to resilience, leadership, and the relentless pursuit of growth, not just for myself, but for those who look up to me.
                 </p>
               </div>
 

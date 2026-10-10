@@ -51,28 +51,48 @@
   margin-top: 0.4rem; /* optical alignment with larger serif font */
 }
 
-/* Nav Item Styling: Default Grey, Pink on Active/Hover */
+/* Nav Item Styling: Default Grey, Primary Blue on Active/Hover */
 .custom-navbar .nav-link {
   font-family: var(--font-body); /* DM Sans */
-  color: var(--text-muted) !important; /* Default Grey per request */
+  color: var(--text-muted) !important;
   font-weight: 600;
   font-size: 0.9rem;
-  padding: 0.2rem 1.4rem !important;
+  padding: 0.2rem 1.05rem !important;
   transition: var(--transition-fast);
   position: relative;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
-/* Pink Hover & Active State */
+/* Primary Blue Hover & Active State */
 .custom-navbar .nav-link:hover,
 .custom-navbar .nav-link.active {
-  color: var(--primary-accent) !important; /* Pink per request */
+  color: var(--primary-accent) !important;
+}
+
+.custom-navbar .nav-link.nav-contact-button {
+  justify-content: center;
+  margin-left: 0.45rem;
+  padding: 0.65rem 1.2rem !important;
+  border: 1px solid var(--secondary-accent);
+  border-radius: 999px;
+  background: var(--secondary-accent);
+  color: var(--white) !important;
+  transition: var(--transition-fast);
+}
+
+.custom-navbar .nav-link.nav-contact-button:hover,
+.custom-navbar .nav-link.nav-contact-button.active {
+  border-color: var(--secondary-accent);
+  background: var(--secondary-accent-gradient);
+  color: var(--white) !important;
+  transform: translateY(-1px);
 }
 
 /* Vertical Separator Like Reference - Only visible on desktop */
 @media (min-width: 992px) {
-  .custom-navbar .nav-link:not(:last-child)::after {
+  .custom-navbar .nav-link:not(:last-child):not(.nav-contact-button)::after {
     content: '';
     position: absolute;
     right: 0;
@@ -101,6 +121,12 @@
   }
 
   .custom-navbar .nav-link::after { display: none; }
+
+  .custom-navbar .nav-link.nav-contact-button {
+    width: fit-content;
+    margin: 0.75rem 0 0;
+    padding: 0.7rem 1.3rem !important;
+  }
 }
 
 /* Navbar Toggle Style */
