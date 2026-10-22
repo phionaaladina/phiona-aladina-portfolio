@@ -3,6 +3,97 @@
    ===================================================== */
 @import './variables.css';
 
+/* ── Full-Bleed Editorial Section with Background Image & Overlay ── */
+.contact-editorial-section {
+  position: relative;
+  width: 100%;
+  background-size: cover;
+  background-position: center 32%;
+  background-repeat: no-repeat;
+  padding: 5.5rem 0 6.5rem;
+  overflow: hidden;
+}
+
+.contact-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 75% 20%, rgba(58, 131, 247, 0.18) 0%, transparent 60%),
+    linear-gradient(
+      135deg,
+      rgba(24, 24, 27, 0.90) 0%,
+      rgba(26, 41, 66, 0.84) 45%,
+      rgba(39, 39, 42, 0.88) 80%,
+      rgba(24, 24, 27, 0.93) 100%
+    );
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  z-index: 1;
+}
+
+.contact-container-relative {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-editorial-section .masthead-eyebrow {
+  color: var(--secondary);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.contact-editorial-section .masthead-title {
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 0.9rem;
+}
+
+.contact-editorial-section .masthead-title span {
+  color: var(--primary);
+}
+
+.contact-editorial-section .masthead-sub {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 580px;
+  margin: 0;
+}
+
+.contact-editorial-section .editorial-rule {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 99px;
+  margin-bottom: 3.5rem;
+}
+
+.contact-editorial-section .contact-info-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 2.8rem 2.2rem;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+}
+
+.contact-editorial-section .contact-form-card {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+}
+
 .contact-page {
   background: #ffffff;
   min-height: 100vh;
@@ -174,6 +265,16 @@
   gap: 0.45rem;
 }
 
+.contact-field {
+  display: block;
+  width: 100%;
+}
+
+.contact-field .contact-label {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
 .contact-label {
   font-size: 0.72rem;
   font-weight: 600;
@@ -211,11 +312,11 @@ textarea.contact-input {
   background: white;
 }
 
-/* Submit button — Orange (#F97316) */
+/* Primary submit action — Brand Orange */
 .contact-submit-btn {
   width: 100%;
   padding: 1rem 1.8rem;
-  background: var(--secondary-accent-gradient);
+  background: var(--secondary-accent);
   color: white;
   border: none;
   border-radius: 14px;
@@ -231,8 +332,9 @@ textarea.contact-input {
 }
 
 .contact-submit-btn:hover:not(:disabled) {
+  background: var(--secondary-accent-gradient);
   transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(249, 115, 22, 0.35);
+  box-shadow: 0 10px 28px rgba(249, 115, 22, 0.38);
 }
 
 .contact-submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }

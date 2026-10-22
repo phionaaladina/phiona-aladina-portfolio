@@ -63,7 +63,9 @@ const CustomNavbar = () => {
     closeNav();
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      el.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+      });
       window.history.replaceState(null, "", `#${id}`);
       setActiveSection(id);
     } else {
@@ -83,9 +85,10 @@ const CustomNavbar = () => {
         <Navbar.Brand 
           href="#home" 
           onClick={(e) => handleNavClick(e, "home")}
+          aria-label="Fiona A. Aladina, home"
         >
           <span className="brand-name">Aladina</span>
-          <span className="brand-tagline">Computer Scientist | Digital Skills Trainer | Mentor</span>
+          <span className="brand-tagline">Software Engineer · Tech Educator · Mentor</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">

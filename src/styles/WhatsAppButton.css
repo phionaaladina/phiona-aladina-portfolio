@@ -1,7 +1,7 @@
 .whatsapp-premium-float {
   position: fixed;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   bottom: 28px;
   right: 28px;
   background: #25d366;
@@ -10,35 +10,51 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.2);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45);
   z-index: 1000;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-decoration: none;
-  opacity: 0.85;
+  opacity: 1;
 }
 
 .whatsapp-premium-float:hover {
-  transform: scale(1.08);
-  opacity: 1;
+  transform: scale(1.1) translateY(-3px);
   background: #128c7e;
-  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-premium-float svg {
+  display: block;
+  flex-shrink: 0;
 }
 
 .whatsapp-tooltip {
   position: absolute;
-  right: 85px;
-  background: #0f172a;
+  right: 62px;
+  background: #1a1a2e;
   color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 700;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(10px);
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transform: translateX(8px);
+  transition: all 0.25s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.18);
+  pointer-events: none;
+}
+
+.whatsapp-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right: none;
+  border-left-color: #1a1a2e;
 }
 
 .whatsapp-premium-float:hover .whatsapp-tooltip {
@@ -47,33 +63,15 @@
   transform: translateX(0);
 }
 
-.whatsapp-premium-float::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 14px;
-  background: #25d366;
-  z-index: -1;
-  opacity: 0;
-}
-
-@keyframes whatsapp-ping {
-  75%, 100% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-}
-
 @media (max-width: 768px) {
   .whatsapp-premium-float {
-    width: 42px;
-    height: 42px;
+    width: 48px;
+    height: 48px;
     bottom: 20px;
     right: 20px;
     border-radius: 12px;
   }
-  
+
   .whatsapp-tooltip {
     display: none;
   }

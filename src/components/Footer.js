@@ -4,6 +4,14 @@ import { Linkedin, Github, Instagram, Youtube, Mail, Phone, MapPin } from "lucid
 import ScrollReveal from "./ScrollReveal";
 import "../styles/Footer.css";
 
+const scrollToSection = (event, id) => {
+  event.preventDefault();
+  document.getElementById(id)?.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+  });
+  window.history.replaceState(null, "", `#${id}`);
+};
+
 const Footer = () => {
   return (
     <footer className="footer-premium">
@@ -14,9 +22,8 @@ const Footer = () => {
               <div className="footer-brand">
                 <h3>Fiona A. Aladina</h3>
                 <p>
-                  Software Engineer and Tech Educator dedicated to bridging digital gaps 
-                  and empowering the next generation of innovators through technology 
-                  and mentorship.
+                  Software Engineer and Tech Educator dedicated to bridging digital gaps
+                  and empowering the next generation through technology and mentorship.
                 </p>
                 <div className="footer-socials">
                   <a href="https://www.linkedin.com/in/phionaaladina" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -45,11 +52,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#home"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
-                        window.history.replaceState(null, "", "#home");
-                      }}
+                      onClick={(event) => scrollToSection(event, "home")}
                     >
                       Home
                     </a>
@@ -57,11 +60,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#about"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-                        window.history.replaceState(null, "", "#about");
-                      }}
+                      onClick={(event) => scrollToSection(event, "about")}
                     >
                       About
                     </a>
@@ -69,11 +68,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#skills"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
-                        window.history.replaceState(null, "", "#skills");
-                      }}
+                      onClick={(event) => scrollToSection(event, "skills")}
                     >
                       What I Do
                     </a>
@@ -81,11 +76,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#projects"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                        window.history.replaceState(null, "", "#projects");
-                      }}
+                      onClick={(event) => scrollToSection(event, "projects")}
                     >
                       Projects
                     </a>
@@ -93,11 +84,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#contact"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                        window.history.replaceState(null, "", "#contact");
-                      }}
+                      onClick={(event) => scrollToSection(event, "contact")}
                     >
                       Contact
                     </a>
@@ -112,18 +99,6 @@ const Footer = () => {
               <div className="footer-links">
                 <h4>Resources</h4>
                 <ul>
-                  <li>
-                    <a
-                      href="#contact"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                        window.history.replaceState(null, "", "#contact");
-                      }}
-                    >
-                      Contact
-                    </a>
-                  </li>
                   <li><a href="/aladina_resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
                 </ul>
               </div>

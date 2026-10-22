@@ -51,6 +51,10 @@ html {
     transform: none !important;
     transition: none !important;
   }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 * {
@@ -186,12 +190,17 @@ code {
 
 .editorial-page {
   background: #ffffff;
-  padding: 5rem 0 5.5rem;
+  padding: 4.5rem 0 5rem;
 }
 
 .portfolio-section#skills .skills-clean-page {
-  padding: 5rem 0 5.5rem;
+  padding: 0;
 }
+
+/* Section backgrounds — About uses its own #f5f5f5 in About.css */
+.portfolio-section#skills .skills-clean-page { background: #f8fafc; }
+.portfolio-section#projects .editorial-page { background: #ffffff; }
+.portfolio-section#contact  .editorial-page { background: #f8fafc; }
 
 .editorial-masthead {
   display: flex;
@@ -261,12 +270,12 @@ code {
 
 .masthead-title, .masthead-heading {
   font-family: var(--font-main);
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(1.8rem, 3.8vw, 2.4rem);
   font-weight: 700;
   color: #3f3f46;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.1;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .masthead-title span, .masthead-heading span {
@@ -274,9 +283,9 @@ code {
 }
 
 .masthead-sub {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
 }
 
@@ -309,10 +318,10 @@ code {
 }
 
 .editorial-rule {
-  height: 2px;
-  background: linear-gradient(to right, var(--primary-accent) 0%, rgba(58, 131, 247, 0.25) 40%, transparent 100%);
+  height: 1px;
+  background: linear-gradient(to right, var(--border-light) 0%, transparent 100%);
   border-radius: 99px;
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 /* Editorial Buttons */

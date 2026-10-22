@@ -1,123 +1,94 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { FileText, Send } from "lucide-react";
+import { Container } from "react-bootstrap";
 import ScrollReveal from "../components/ScrollReveal";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import "../styles/About.css";
 
-const chapters = [
-  {
-    title: "Who I Am",
-    bold: "Software Engineer and Tech Educator",
-    text: `I'm Fiona A., a Software Engineer and Tech Educator passionate about empowering young people through technology, innovation, and mentorship.`
-  },
-  {
-    title: "My Journey",
-    bold: "resilience and purpose",
-    text: `My journey is one of resilience and purpose. Growing up in a challenging environment taught me strength, compassion, and perseverance. I worked as a cleaner, beautician, and nanny (my favorite role) to make ends meet for my four siblings and myself before discovering my passion for technology. Over the past decade, I have also navigated episodes of depression, serious mental health struggles, and suicidal thoughts, and sought counseling to support my wellbeing. These experiences are part of my story, and have deepened my empathy and strengthened my commitment to creating opportunities for others to rise and thrive.`
-  },
-  {
-    title: "Breaking Barriers",
-    bold: "dare to dream beyond their circumstances",
-    text: `It shaped my drive to break barriers and create opportunities, not only for myself but for my siblings and others who dare to dream beyond their circumstances. After leaving medical school because of tuition challenges, I took a casual job to care for my siblings. I was fortunate to discover a passion for technology, enroll in a Computer Science course, and complete it. That journey continues to shape the impact I hope to make for others.`
-  },
-  {
-    title: "My Impact",
-    bold: "1000 young women, youth, and children",
-    text: `Over the years, I've trained and mentored more than 1000 young women, youth, and children in digital literacy, coding, life skills, and entrepreneurship. I've seen technology transform lives, helping learners gain confidence and build careers they once thought impossible.`
-  },
-  {
-    title: "My Belief",
-    bold: "Every setback carries a lesson",
-    text: `I believe that we can always rise again. Every setback carries a lesson, and every effort, no matter how small, brings us closer to the future we imagine.`
-  },
-  {
-    title: "My Mission",
-    bold: "bridge digital gaps, inspire creativity, and nurture the next generation",
-    text: `Today, my mission is to bridge digital gaps, inspire creativity, and nurture the next generation of innovators through inclusive learning and impactful tech solutions.`
-  }
-];
-
-const renderText = (ch) => {
-  if (!ch.bold) return ch.text;
-  const [before, after] = ch.text.split(ch.bold);
-  return <>{before}<strong>{ch.bold}</strong>{after}</>;
+const scrollToSection = (event, id) => {
+  event.preventDefault();
+  document.getElementById(id)?.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+  });
+  window.history.replaceState(null, "", `#${id}`);
 };
 
 const About = () => (
-  <div className="editorial-page">
+  <section className="about-section" aria-labelledby="about-heading">
     <Container>
-
-      {/* ── Top: Unified Masthead ── */}
       <ScrollReveal animation="fade-up">
-        <div className="editorial-masthead">
-          <div className="masthead-main-text-about">
-            <h1 className="masthead-title">Fiona A. <span>Aladina</span></h1>
-            <div className="masthead-roles-row">
-              <span className="role-tag">Software Engineer</span>
-              <span className="role-dash">/</span>
-              <span className="role-tag">Digital Skills Trainer</span>
-              <span className="role-dash">/</span>
-              <span className="role-tag">Mentor</span>
+        <div className="about-wrap">
+
+          {/* Text */}
+          <div className="about-text-col">
+            <h2 id="about-heading" className="about-greeting">
+              Hello,
+            </h2>
+
+            <p>
+              I'm <strong>Aladina</strong>, a Software Engineer, Digital Skills Educator,
+              and Mentor based in Kampala, Uganda.
+            </p>
+
+            <p>
+              I build practical digital solutions and use technology and education to
+              create opportunities for others.
+            </p>
+
+            <p>
+              Growing up I have always wanted to be a Doctor. However, due to financial challenges
+              I  to leave medical school. A decade ago, as a first born, I found myself taking on jobs as a cleaner, beautician,
+              and nanny to support my four siblings and myself. Discovering Computer
+              Science opened a new path I hadn't imagined. My journey taught me that
+              where we begin, or the circumstances we face,{" "}
+              <strong>need not determine where we end up.</strong>
+            </p>
+
+            <p>
+              Today, I've trained and mentored{" "}
+              <strong className="about-highlight">1,000+ young women, youth, and children</strong>{" "}
+              across Uganda in digital literacy, coding, life skills, and entrepreneurship.
+            </p>
+
+            <p>
+              My mission is to bridge digital gaps, nurture creativity, and create
+              opportunities for people to discover their potential and change the
+              trajectory of their lives, regardless of their circumstances.
+            </p>
+
+            {/* CTA */}
+            <div className="about-cta-row">
+              <a
+                href="#contact"
+                onClick={(e) => scrollToSection(e, "contact")}
+                className="about-cta-btn"
+              >
+                Let's Work Together <ArrowRight size={16} />
+              </a>
+              <a
+                href={process.env.PUBLIC_URL + "/aladina_resume.pdf"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="about-cta-ghost"
+              >
+                My Resume <ArrowUpRight size={15} />
+              </a>
             </div>
           </div>
 
-          <div className="masthead-ctas">
-            <a
-              href="/aladina_resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="editorial-btn-primary"
-            >
-              <FileText size={15} /> View Resume
-            </a>
-            <a
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                window.history.replaceState(null, "", "#projects");
-              }}
-              className="editorial-btn-secondary"
-            >
-              View Projects
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                window.history.replaceState(null, "", "#contact");
-              }}
-              className="editorial-btn-ghost"
-            >
-              <Send size={15} /> Get In Touch
-            </a>
+          {/* Photo */}
+          <div className="about-photo-col">
+            <img
+              src={process.env.PUBLIC_URL + "/sitting.jpeg"}
+              alt="Fiona A. Aladina, Software Engineer and Tech Educator"
+              className="about-photo"
+              loading="lazy"
+            />
           </div>
+
         </div>
       </ScrollReveal>
-
-      <ScrollReveal animation="fade" delay={100}>
-        <div className="editorial-rule" />
-      </ScrollReveal>
-
-      {/* ── Chapters ── */}
-      <div className="about-chapters">
-        {chapters.map((ch, i) => (
-          <ScrollReveal key={i} animation="fade-up" delay={i * 80}>
-            <Row className="chapter-row">
-              <Col xs={12} md={3} className="chapter-title-col">
-                <h2 className="chapter-title">{ch.title}</h2>
-              </Col>
-              <Col xs={12} md={9} className="chapter-text-col">
-                <p className="chapter-body">{renderText(ch)}</p>
-              </Col>
-            </Row>
-          </ScrollReveal>
-        ))}
-      </div>
-
     </Container>
-  </div>
+  </section>
 );
 
 export default About;

@@ -1,0 +1,47 @@
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 90px; /* stacked above whatsapp button */
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background: #3f3f46;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.scroll-to-top-btn.scroll-to-top-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scroll-to-top-btn:hover {
+  background: var(--primary, #3A83F7);
+  box-shadow: 0 8px 22px rgba(58, 131, 247, 0.35);
+  transform: translateY(-2px);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top-btn {
+    width: 40px;
+    height: 40px;
+    bottom: 78px;
+    right: 20px;
+    border-radius: 10px;
+  }
+}

@@ -9,7 +9,7 @@ const Services = () => {
       id: 1,
       icon: <Laptop size={28} />,
       eyebrow: "01 / BUILD",
-      title: "Full-Stack Web & App Engineering",
+      title: "Full-Stack Development & IT",
       description: "Developing scalable, accessible web applications and APIs using React, Next.js, Node.js, and Python with seamless UX.",
       tags: ["React & Next.js", "Node.js & Python", "REST APIs", "Mobile-First"],
       image: "/itsupport.jpg",

@@ -9,7 +9,7 @@ const galleryItems = [
   { id: 2, image: process.env.PUBLIC_URL + "/cldn.jpg",      category: "Mentorship",  title: "Youth Tech Mentorship",  caption: "Empowering the next generation with foundational tech skills." },
   { id: 3, image: process.env.PUBLIC_URL + "/itsupport1.jpg",category: "IT Support",  title: "Hardware Support",       caption: "Hands-on computer repair and hardware maintenance." },
   { id: 4, image: process.env.PUBLIC_URL + "/itsupport.jpg", category: "IT Support",  title: "System Maintenance",     caption: "Expert troubleshooting and system diagnostics." },
-  { id: 5, image: process.env.PUBLIC_URL + "/partc1.jpg",    category: "Training",    title: "Graduation Moment",      caption: "Celebrating a milestone with graduating program participants." },
+  { id: 5, image: process.env.PUBLIC_URL + "/class.jpeg",    category: "Training",    title: "Graduation Moment",      caption: "Celebrating a milestone with graduating program participants." },
   { id: 6, image: process.env.PUBLIC_URL + "/training.jpg",  category: "Training",    title: "Workshops Lead",         caption: "Conducting technical workshops for community growth." },
   // { id: 7, image: process.env.PUBLIC_URL + "/unipg.png",     category: "Projects",    title: "UniHub Platform",        caption: "Robust e-commerce solution with integrated payments." },
   // { id: 8, image: process.env.PUBLIC_URL + "/meraki.png",    category: "Projects",    title: "Meraki Action",          caption: "Comprehensive non-profit digital presence." },

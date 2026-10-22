@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { Send, Mail, Phone, MapPin, Linkedin, Github, Instagram, Youtube, CheckCircle, AlertCircle, FileText } from "lucide-react";
+import { Send, Mail, Phone, MapPin, Linkedin, Github, Instagram, Youtube, CheckCircle, AlertCircle } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import "../styles/Contact.css";
 
@@ -36,40 +36,24 @@ const Contact = () => {
   };
 
   return (
-    <div className="editorial-page">
-      <Container>
+    <div
+      className="contact-editorial-section"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL + "/cldn.jpg"})`,
+      }}
+    >
+      <div className="contact-bg-overlay" />
+      <Container className="contact-container-relative">
 
         {/* ── Page Masthead (Editorial Layout) ── */}
         <ScrollReveal animation="fade-up">
           <div className="editorial-masthead">
             <div className="masthead-main-text">
               <div className="masthead-eyebrow">Get In Touch</div>
-              <h1 className="masthead-title">Let's Build <span>Something Great</span></h1>
+              <h1 className="masthead-title">Let’s Build <span>Something Great</span></h1>
               <p className="masthead-sub">
-                Have a project, opportunity, or just want to say hi? My inbox is always open.
+                Have a project, opportunity, or idea to explore? I’d love to hear from you.
               </p>
-            </div>
-
-            <div className="masthead-ctas">
-              <a
-                href="/aladina_resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="editorial-btn-primary"
-              >
-                <FileText size={15} /> View Resume
-              </a>
-              <a
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                  window.history.replaceState(null, "", "#projects");
-                }}
-                className="editorial-btn-secondary"
-              >
-                Our Projects
-              </a>
             </div>
           </div>
         </ScrollReveal>
@@ -126,7 +110,7 @@ const Contact = () => {
             <ScrollReveal animation="fade-left" delay={160}>
               <div className="contact-form-card">
                 <div className="form-card-title">Send a Message</div>
-                <p className="form-card-sub">I'll get back to you within 24 hours.</p>
+                <p className="form-card-sub">Send a note using the form below.</p>
 
                 {status.submitted ? (
                   <div className="contact-success">
@@ -150,27 +134,36 @@ const Contact = () => {
                     )}
                     <Row className="g-3 mb-3">
                       <Col md={6}>
-                        <input
-                          type="text" name="name" value={formData.name}
-                          onChange={handleChange} className="contact-input"
-                          placeholder="Your name" required
-                        />
+                        <label className="contact-field">
+                          <span className="contact-label">Name</span>
+                          <input
+                            type="text" name="name" value={formData.name}
+                            onChange={handleChange} className="contact-input"
+                            autoComplete="name" placeholder="Your name" required
+                          />
+                        </label>
                       </Col>
                       <Col md={6}>
-                        <input
-                          type="email" name="email" value={formData.email}
-                          onChange={handleChange} className="contact-input"
-                          placeholder="Email address" required
-                        />
+                        <label className="contact-field">
+                          <span className="contact-label">Email address</span>
+                          <input
+                            type="email" name="email" value={formData.email}
+                            onChange={handleChange} className="contact-input"
+                            autoComplete="email" placeholder="Email address" required
+                          />
+                        </label>
                       </Col>
                     </Row>
                     <div className="mb-4">
-                      <textarea
-                        name="message" value={formData.message}
-                        onChange={handleChange} className="contact-input"
-                        rows="6" placeholder="Tell me about your project or idea..."
-                        required
-                      />
+                      <label className="contact-field">
+                        <span className="contact-label">Project or message</span>
+                        <textarea
+                          name="message" value={formData.message}
+                          onChange={handleChange} className="contact-input"
+                          rows="6" placeholder="Tell me about your project or idea..."
+                          required
+                        />
+                      </label>
                     </div>
                     <button type="submit" className="contact-submit-btn" disabled={status.submitting}>
                       {status.submitting ? "Sending..." : "Send Message"} <Send size={17} />

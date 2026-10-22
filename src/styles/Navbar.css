@@ -51,6 +51,20 @@
   margin-top: 0.4rem; /* optical alignment with larger serif font */
 }
 
+@media (max-width: 575px) {
+  .custom-navbar .navbar-brand {
+    gap: 0;
+  }
+
+  .brand-name {
+    font-size: 1.35rem;
+  }
+
+  .brand-tagline {
+    display: none;
+  }
+}
+
 /* Nav Item Styling: Default Grey, Primary Blue on Active/Hover */
 .custom-navbar .nav-link {
   font-family: var(--font-body); /* DM Sans */

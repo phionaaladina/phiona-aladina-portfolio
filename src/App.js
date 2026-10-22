@@ -11,6 +11,7 @@ import './App.css';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Sections
 import Home from "./pages/Home";
@@ -32,7 +33,9 @@ const PortfolioPage = () => {
       const timer = setTimeout(() => {
         const el = document.getElementById(target);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          el.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+          });
         }
       }, 150);
       return () => clearTimeout(timer);
@@ -83,6 +86,7 @@ const AppContent = () => {
 
       <Footer />
       <WhatsAppButton />
+      <ScrollToTop />
     </div>
   );
 };

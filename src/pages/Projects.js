@@ -1,8 +1,16 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Github, ExternalLink, FileText } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import '../styles/Projects.css';
+
+const scrollToSection = (event, id) => {
+  event.preventDefault();
+  document.getElementById(id)?.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+  });
+  window.history.replaceState(null, "", `#${id}`);
+};
 
 const projects = [
   {
@@ -10,7 +18,7 @@ const projects = [
     num: "01",
     title: "MamaGym Wear 256",
     category: "E-Commerce",
-    description: "A full e-commerce platform for selling fitness apparel and accessories, with shopping cart, checkout, and product management. With fully functional admin and user dashboards.",
+    description: "An e-commerce platform for fitness apparel featuring product management, a shopping cart, checkout, and user and admin dashboards.",
     image: "/mamagym.png",
     tech: ["Next.js", "TailwindCSS", "MySQL", "Node.js"],
     github: "https://github.com/phionaaladina",
@@ -21,7 +29,7 @@ const projects = [
     num: "02",
     title: "MIYA Initiative Website",
     category: "Web Platform",
-    description: "MIYA Initiative builds digital citizens through practical training, ethical technology use, and inclusive community across Africa.",
+    description: "A digital platform for MIYA Initiative, supporting its work to build digital citizens through practical training, ethical technology use, and inclusive communities across Africa.",
     image: "/miya.png",
     tech: ["Next.js", "TailwindCSS", "MySQL", "Node.js"],
     github: "https://miyainitiative.com/",
@@ -40,31 +48,10 @@ const Projects = () => (
             <div className="masthead-eyebrow">Project Portfolio</div>
             <h1 className="masthead-title">Featured <span>Work</span></h1>
             <p className="masthead-sub">
-              A curated selection of software solutions, non-profit platforms, and community initiatives.
+              A selection of software solutions, digital platforms, and community initiatives I’ve contributed to.
             </p>
           </div>
 
-          <div className="masthead-ctas">
-            <a
-              href="/aladina_resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="editorial-btn-primary"
-            >
-               <FileText size={15} /> View Resume
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                window.history.replaceState(null, "", "#contact");
-              }}
-              className="editorial-btn-secondary"
-            >
-              Get In Touch
-            </a>
-          </div>
         </div>
       </ScrollReveal>
 
@@ -84,7 +71,7 @@ const Projects = () => (
                 <Col lg={6}>
                   <ScrollReveal animation={flip ? "fade-left" : "fade-right"} delay={80}>
                     <div className="project-img-wrap">
-                      <img src={p.image} alt={p.title} className="project-screenshot" />
+                      <img src={process.env.PUBLIC_URL + p.image} alt={`${p.title} website screenshot`} className="project-screenshot" />
                       {/* Number badge */}
                       <div className="project-num-badge">{p.num}</div>
                       {/* Hover overlay */}
