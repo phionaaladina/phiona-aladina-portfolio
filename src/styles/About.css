@@ -6,7 +6,7 @@
 
 .about-section {
   padding: 5.5rem 0;
-  background: #f5f5f5;
+  background: var(--bg-tint-blue);
   font-family: var(--font-body);
 }
 
@@ -189,16 +189,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.about-mission-label {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--secondary);
-  margin-bottom: 1rem;
 }
 
 .about-mission-text {
@@ -387,5 +377,73 @@
   .tl-icon,
   .about-cta-btn {
     transition: none;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   TIMELINE MOTION — line draws in, icons pop
+   ══════════════════════════════════════════════ */
+.tl-node::before {
+  transform-origin: left center;
+  transform: translateY(-50%) scaleX(0);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.tl-item.is-revealed .tl-node::before {
+  transform: translateY(-50%) scaleX(1);
+}
+
+.tl-icon {
+  transform: scale(0.4);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s;
+}
+
+.tl-item.is-revealed .tl-icon {
+  transform: scale(1);
+}
+
+.tl-item.is-revealed:hover .tl-icon {
+  transform: scale(1.08);
+  transition-delay: 0s;
+}
+
+/* "Today" icon keeps a soft glow pulse */
+@keyframes tlGlow {
+  0%, 100% { box-shadow: 0 0 0 1px var(--border-light), 0 0 0 0 rgba(249, 115, 22, 0.45); }
+  50%      { box-shadow: 0 0 0 1px var(--border-light), 0 0 0 12px rgba(249, 115, 22, 0); }
+}
+
+.tl-item--now.is-revealed .tl-icon {
+  animation: tlGlow 2.4s ease-out 1.2s infinite;
+}
+
+@media (max-width: 767px) {
+  .tl-node::before {
+    transform-origin: center top;
+    transform: translateX(-50%) scaleY(0);
+  }
+  .tl-item.is-revealed .tl-node::before {
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-node::before,
+  .tl-item.is-revealed .tl-node::before {
+    transition: none;
+    transform: translateY(-50%);
+  }
+  .tl-icon,
+  .tl-item.is-revealed .tl-icon {
+    transition: none;
+    transform: none;
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 767px) {
+  .tl-node::before,
+  .tl-item.is-revealed .tl-node::before {
+    transform: translateX(-50%);
   }
 }

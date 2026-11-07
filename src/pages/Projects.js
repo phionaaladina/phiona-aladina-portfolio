@@ -1,131 +1,87 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Github, ExternalLink } from 'lucide-react';
+import { Container } from 'react-bootstrap';
+import { Github, ArrowUpRight } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import '../styles/Projects.css';
 
-const scrollToSection = (event, id) => {
-  event.preventDefault();
-  document.getElementById(id)?.scrollIntoView({
-    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
-  });
-  window.history.replaceState(null, "", `#${id}`);
-};
-
+// github: add a repository URL to show a "Code" link on the card (leave null to hide it)
 const projects = [
   {
-    id: 3,
-    num: "01",
+    id: "mamagym",
     title: "MamaGym Wear 256",
     category: "E-Commerce",
-    description: "An e-commerce platform for fitness apparel featuring product management, a shopping cart, checkout, and user and admin dashboards.",
+    description: "Online store for fitness apparel with cart, checkout and an admin dashboard.",
     image: "/mamagym.png",
     tech: ["Next.js", "TailwindCSS", "MySQL", "Node.js"],
-    github: "https://github.com/phionaaladina",
+    github: null,
     live: "https://mamagymwear256.com/"
   },
   {
-    id: 1,
-    num: "02",
-    title: "MIYA Initiative Website",
+    id: "miya",
+    title: "MIYA Initiative",
     category: "Web Platform",
-    description: "A digital platform for MIYA Initiative, supporting its work to build digital citizens through practical training, ethical technology use, and inclusive communities across Africa.",
+    description: "Platform for MIYA's digital-citizenship training and community across Africa.",
     image: "/miya.png",
     tech: ["Next.js", "TailwindCSS", "MySQL", "Node.js"],
-    github: "https://miyainitiative.com/",
+    github: null,
     live: "https://miyainitiative.com/"
   }
 ];
 
 const Projects = () => (
-  <div className="editorial-page">
+  <div className="pj-section">
     <Container>
-
-      {/* ── Page Masthead (Editorial Layout) ── */}
-      <ScrollReveal animation="fade-up">
-        <div className="editorial-masthead">
-          <div className="masthead-main-text">
-            <div className="masthead-eyebrow">Project Portfolio</div>
-            <h1 className="masthead-title">Featured <span>Work</span></h1>
-            <p className="masthead-sub">
-              A selection of software solutions, digital platforms, and community initiatives I’ve contributed to.
-            </p>
-          </div>
-
-        </div>
+      <ScrollReveal animation="fade-up" once>
+        <h2 className="pj-heading section-accent">Featured <span>Work</span></h2>
       </ScrollReveal>
 
-      <ScrollReveal animation="fade" delay={100}>
-        <div className="editorial-rule" />
-      </ScrollReveal>
+      <div className="pj-grid">
+        {projects.map((p, i) => (
+          <ScrollReveal key={p.id} animation="fade-up" delay={i * 120} once className="pj-cell">
+            <article className="pj-card">
+              <a
+                href={p.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pj-shot"
+                aria-label={`Visit ${p.title}`}
+              >
+                <span className="pj-browser-bar" aria-hidden="true">
+                  <i /><i /><i />
+                </span>
+                <img
+                  src={process.env.PUBLIC_URL + p.image}
+                  alt={`${p.title} homepage`}
+                  loading="lazy"
+                />
+              </a>
 
-      {/* ── Project List ── */}
-      <div className="project-list">
-        {projects.map((p, i) => {
-          const flip = i % 2 !== 0; // alternate image side
-          return (
-            <div key={p.id} className="project-row">
-              <Row className={`align-items-center g-5 ${flip ? 'flex-row-reverse' : ''}`}>
+              <div className="pj-body">
+                <span className="pj-category">{p.category}</span>
+                <h3 className="pj-title">{p.title}</h3>
+                <p className="pj-desc">{p.description}</p>
 
-                {/* Screenshot */}
-                <Col lg={6}>
-                  <ScrollReveal animation={flip ? "fade-left" : "fade-right"} delay={80}>
-                    <div className="project-img-wrap">
-                      <img src={process.env.PUBLIC_URL + p.image} alt={`${p.title} website screenshot`} className="project-screenshot" />
-                      {/* Number badge */}
-                      <div className="project-num-badge">{p.num}</div>
-                      {/* Hover overlay */}
-                      <div className="project-img-overlay">
-                        <div className="overlay-links">
-                          <a href={p.github} target="_blank" rel="noopener noreferrer" className="overlay-link">
-                            <Github size={18} /> Code
-                          </a>
-                          {p.live && p.live !== '#' && (
-                            <a href={p.live} target="_blank" rel="noopener noreferrer" className="overlay-link overlay-link-pink">
-                              <ExternalLink size={18} /> Live Site
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                </Col>
+                <ul className="pj-tech" aria-label="Built with">
+                  {p.tech.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
 
-                {/* Info */}
-                <Col lg={6}>
-                  <ScrollReveal animation={flip ? "fade-right" : "fade-left"} delay={140}>
-                    <div className={`project-info ${flip ? 'info-flip' : ''}`}>
-                      <span className="project-category">{p.category}</span>
-                      <h2 className="project-title">{p.title}</h2>
-                      <p className="project-desc">{p.description}</p>
-                      <div className="project-tech">
-                        {p.tech.map((t, idx) => (
-                          <span key={idx} className="tech-pill">{t}</span>
-                        ))}
-                      </div>
-                      <div className="project-actions">
-                        {p.live && p.live !== '#' && (
-                          <a href={p.live} target="_blank" rel="noopener noreferrer" className="proj-btn-primary">
-                            View Live <ExternalLink size={14} />
-                          </a>
-                        )}
-                        <a href={p.github} target="_blank" rel="noopener noreferrer" className="proj-btn-ghost">
-                          <Github size={15} /> GitHub
-                        </a>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                </Col>
-              </Row>
-              {/* Row divider */}
-              {i < projects.length - 1 && <div className="project-row-divider" />}
-            </div>
-          );
-        })}
+                <div className="pj-links">
+                  <a href={p.live} target="_blank" rel="noopener noreferrer" className="pj-link">
+                    Visit site <ArrowUpRight size={16} />
+                  </a>
+                  {p.github && (
+                    <a href={p.github} target="_blank" rel="noopener noreferrer" className="pj-link pj-link--muted">
+                      <Github size={16} /> Code
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          </ScrollReveal>
+        ))}
       </div>
-
-      <div className="projects-rule" />
-
     </Container>
   </div>
 );

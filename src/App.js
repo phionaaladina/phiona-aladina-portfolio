@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
 import StatsStrip from "./components/StatsStrip";
+import AccessibilityWidget from "./components/AccessibilityWidget";
 
 // Sections
 import Home from "./pages/Home";
@@ -90,6 +91,7 @@ const AppContent = () => {
       <Footer />
       <WhatsAppButton />
       <ScrollToTop />
+      <AccessibilityWidget />
     </div>
   );
 };

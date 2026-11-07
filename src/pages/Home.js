@@ -22,7 +22,7 @@ const Home = () => {
       <Container className="home-hero-container">
         <div className="hero-grid">
           {/* Text column */}
-          <div className="hero-content hero-anim">
+          <div className="hero-content">
             <div className="hero-text">
               <h1 className="hero-main-heading">
                 Where we begin <span className="hero-accent">need not determine</span>{" "}
@@ -54,7 +54,7 @@ const Home = () => {
           </div>
 
           {/* Portrait column */}
-          <div className="hero-visual hero-anim hero-anim--delay">
+          <div className="hero-visual">
             <div className="hero-portrait-ring">
               <img
                 src={process.env.PUBLIC_URL + "/newprof.png"}

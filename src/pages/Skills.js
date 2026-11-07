@@ -1,47 +1,43 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
+import { Container } from "react-bootstrap";
+import { ArrowRight, GraduationCap, Code2, Mic } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import "../styles/Skills.css";
 
 const skillsPillars = [
   {
     id: "training",
-    number: "01",
-    eyebrow: "01 / TECHNICAL EDUCATION & INCLUSION",
+    icon: GraduationCap,
     title: "Digital Skills Training",
     accent: "orange",
-    image: "/class.jpeg",
-    description: "Designing and delivering practical digital skills programs that help young people and underserved communities participate in the digital economy.",
-    highlight: "1,000+ learners trained across Uganda.",
-    label: "Key areas",
-    areasParagraph: "Web Development & Programming, Basic ICT & Digital Literacy, Cybersecurity Fundamentals, Digital Marketing, Graphic Design & Creative Media, Cloud Computing, Soft Skills & Career Mentorship, and Entrepreneurship & Freelancing.",
-    ctaText: "Partner on Training",
-    ctaLink: "#contact"
+    description: "Practical digital skills and the confidence to thrive in a digital world.",
+    cta: { label: "Partner on training", target: "contact" }
   },
   {
     id: "engineering",
-    number: "02",
-    eyebrow: "02 / DEVELOPMENT & INFRASTRUCTURE",
-    title: "Full-Stack Development & IT",
+    icon: Code2,
+    title: "Software Development",
     accent: "blue",
-    image: "/itsupport1.jpg",
-    description: "Building responsive digital products, integrating APIs, managing databases, and supporting reliable technology infrastructure.",
-    highlight: "5+ solutions built.",
-    label: "Key areas",
-    areasParagraph: "React & Next.js, Node.js & Python, REST APIs, PostgreSQL & MySQL, Git & CI/CD, Hardware Diagnostics, and Network & Lab Setup.",
-    ctaText: "Explore Projects",
-    ctaLink: "#projects"
+    description: "Building digital products that solve real problems.",
+    cta: { label: "See my projects", target: "projects" }
+  },
+  {
+    id: "speaking",
+    icon: Mic,
+    title: "Speaking & Mentorship",
+    accent: "orange",
+    description: "Lived experience and practical insight that help people build confidence and grow.",
+    cta: { label: "Invite me to speak", target: "contact" }
   }
 ];
 
 const impactImages = [
-  { image: "/class.jpeg", title: "Classroom Digital Training" },
-  { image: "/cldn.jpg", title: "Youth Tech Mentorship" },
-  { image: "/partc.jpg", title: "Hands-on Coding Sessions" },
-  { image: "/itsupport1.jpg", title: "Technical Support & Troubleshooting" },
-  { image: "/itsupport.jpg", title: "Keeping Learning Labs Running" },
-  { image: "/training.jpg", title: "Digital Skills in the Community" }
+  "/class.jpeg",
+  "/cldn.jpg",
+  "/partc.jpg",
+  "/itsupport1.jpg",
+  "/itsupport.jpg",
+  "/training.jpg"
 ];
 
 const scrollToSection = (event, id) => {
@@ -60,11 +56,7 @@ const Skills = () => (
           <div className="skills-hero-content">
             <div className="editorial-masthead skills-editorial-masthead">
               <div className="masthead-main-text">
-                <p className="masthead-eyebrow">What I Do</p>
-                <h2 className="masthead-title">Technology with <span>purpose</span></h2>
-                <p className="masthead-sub">
-                  I build useful digital products and create practical learning opportunities that help more people take part in the digital world.
-                </p>
+                <h2 className="masthead-title wid-heading section-accent">What I <span>Do</span></h2>
               </div>
             </div>
           </div>
@@ -74,72 +66,71 @@ const Skills = () => (
 
     <section className="skills-pillars-clean">
       <Container>
-        <Row className="g-5">
-          {skillsPillars.map((pillar, index) => {
-            const imageRight = index % 2 !== 0;
-            const targetId = pillar.ctaLink.slice(1);
-            return (
-              <Col key={pillar.id} xs={12}>
-                <ScrollReveal delay={index * 100}>
-                  <article className={`side-pillar-card ${imageRight ? "img-right" : ""}`}>
-                    <div className="side-pillar-img-wrap">
-                      <img
-                        src={process.env.PUBLIC_URL + pillar.image}
-                        alt={pillar.title}
-                        className={`side-pillar-img ${pillar.id === "training" ? "side-pillar-img-classroom" : ""}`}
-                        loading="lazy"
-                      />
-                      <span className={`side-pillar-img-badge badge-${pillar.accent}`} aria-hidden="true">
-                        <span className="badge-num">{pillar.number}</span>
-                      </span>
-                    </div>
+        <div className="wid-grid">
+          {skillsPillars.map(({ id, icon: Icon, title, accent, description, cta }, index) => (
+            <ScrollReveal key={id} delay={index * 100} once className="wid-cell">
+              <article className={`wid-item wid-${accent}`}>
+                <span className="wid-icon" aria-hidden="true"><Icon size={34} strokeWidth={1.75} /></span>
+                <h3 className="wid-title">{title}</h3>
+                <p className="wid-text">{description}</p>
+                <a
+                  href={`#${cta.target}`}
+                  onClick={(event) => scrollToSection(event, cta.target)}
+                  className="wid-link"
+                >
+                  {cta.label} <ArrowRight size={16} />
+                </a>
+              </article>
+            </ScrollReveal>
+          ))}
+        </div>
 
-                    <div className={`side-pillar-body body-${pillar.accent}`}>
-                      <p className="side-pillar-eyebrow">{pillar.eyebrow}</p>
-                      <h3 className="side-pillar-title">{pillar.title}</h3>
-                      <p className="side-pillar-tagline">{pillar.description}</p>
-                      <p className={`split-pillar-highlight highlight-${pillar.accent}`}>{pillar.highlight}</p>
-                      <p className="side-pillar-areas-paragraph">
-                        <strong className="areas-lead-label">{pillar.label}: </strong>
-                        {pillar.areasParagraph}
-                      </p>
-                      <a
-                        href={pillar.ctaLink}
-                        onClick={(event) => scrollToSection(event, targetId)}
-                        className={`pillar-btn-link link-${pillar.accent} side-pillar-cta`}
-                      >
-                        {pillar.ctaText} <ArrowUpRight size={16} />
-                      </a>
-                    </div>
-                  </article>
-                </ScrollReveal>
-              </Col>
-            );
-          })}
-        </Row>
+        {/* CTA banner with photo — commented out for now. Delete this comment's opening and closing lines to bring it back.
+        <ScrollReveal animation="fade-up" once>
+          <div className="wid-cta wid-cta--photo">
+            <div className="wid-cta-text">
+              <h2 className="wid-cta-title">Have an idea or a story to share?</h2>
+              <p className="wid-cta-sub">I’d love to hear from you.</p>
+              <a
+                href="#contact"
+                onClick={(event) => scrollToSection(event, "contact")}
+                className="wid-cta-btn"
+              >
+                Start a Conversation <ArrowRight size={18} />
+              </a>
+            </div>
+            <div className="wid-cta-photo">
+              <img
+                src={process.env.PUBLIC_URL + "/aboutimg.png"}
+                alt="Phiona Aladina smiling while working on her laptop"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </ScrollReveal>
+        */}
       </Container>
     </section>
 
-    <section className="skills-gallery-section" aria-labelledby="impact-heading">
+    <section className="gal-section" aria-labelledby="impact-heading">
       <Container>
-        <ScrollReveal>
-          <div className="skills-gallery-heading">
-            <h2 id="impact-heading">Impact <span>in Action</span></h2>
-            <p>A look at the learning, mentorship, and hands-on technical work behind my programs.</p>
-          </div>
+        <ScrollReveal once>
+          <h2 id="impact-heading" className="gal-heading section-accent">Impact <span>in Action</span></h2>
         </ScrollReveal>
-        <div className="skills-gallery-grid">
-          {impactImages.map((item, index) => (
+        <div className="gal-grid">
+          {impactImages.map((image, index) => (
             <ScrollReveal
-              key={item.image}
-              delay={index * 60}
-              className={`skills-bento-item skills-bento-item-${index + 1}`}
+              key={image}
+              animation="zoom-in"
+              delay={index * 90}
+              once
+              className={`gal-item gal-item-${index + 1}`}
             >
-              <figure className="skills-gallery-card">
+              <figure className="gal-card">
                 <img
-                  src={process.env.PUBLIC_URL + item.image}
-                  alt={item.title}
-                  className="skills-gallery-image"
+                  src={process.env.PUBLIC_URL + image}
+                  alt={`Phiona Aladina's work in action (${index + 1} of ${impactImages.length})`}
+                  className="gal-img"
                   loading="lazy"
                 />
               </figure>
@@ -149,41 +140,6 @@ const Skills = () => (
       </Container>
     </section>
 
-    <section
-      className="skills-cta-full"
-      style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL + "/class.jpeg"})`,
-      }}
-    >
-      <div className="skills-cta-overlay" />
-      <Container className="skills-cta-container">
-        <ScrollReveal>
-          <div className="cta-content">
-            <h2 className="cta-title">Let’s Build Something Meaningful</h2>
-            <p className="cta-desc">
-              Whether you need software development expertise or a partner to deliver impactful digital skills programs, let’s explore how we can work together.
-            </p>
-            <div className="cta-btn-group">
-              <a
-                href="#contact"
-                onClick={(event) => scrollToSection(event, "contact")}
-                className="btn-cta-orange"
-              >
-                Let’s Connect <ArrowRight size={17} />
-              </a>
-              <a
-                href={process.env.PUBLIC_URL + "/aladina_resume.pdf"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-cta-outline"
-              >
-                <Download size={16} /> View Resume
-              </a>
-            </div>
-          </div>
-        </ScrollReveal>
-      </Container>
-    </section>
   </div>
 );
 

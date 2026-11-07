@@ -13,7 +13,7 @@
   align-items: center;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
-  padding: 2.5rem 0 3rem;
+  padding: 2.5rem 0 3.5rem;
   background:
     linear-gradient(120deg,
       rgba(58, 131, 247, 0.07) 0%,
@@ -269,5 +269,63 @@
   .hero-btn-outline {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   HERO MOTION — staggered entrance + gentle float
+   ══════════════════════════════════════════════ */
+@keyframes heroZoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes heroDrift {
+  from { transform: translate(0, 0) rotate(-18deg); }
+  to   { transform: translate(40px, 18px) rotate(-14deg); }
+}
+
+@keyframes heroPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.12); }
+}
+
+/* text builds in line by line */
+.hero-main-heading { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
+.hero-lead         { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+.hero-card-actions { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
+
+/* portrait zooms in, then floats softly */
+.hero-visual {
+  animation: heroZoomIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.hero-portrait-ring {
+  animation: heroFloat 6s ease-in-out 1.2s infinite;
+}
+
+.hero-portrait-ring::after {
+  animation: heroPulse 4s ease-in-out infinite;
+}
+
+/* background shapes drift slowly */
+.hero-bg-shape--one   { animation: heroDrift 14s ease-in-out infinite alternate; }
+.hero-bg-shape--two   { animation: heroDrift 18s ease-in-out infinite alternate-reverse; }
+.hero-bg-shape--three { animation: heroPulse 12s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-main-heading,
+  .hero-lead,
+  .hero-card-actions,
+  .hero-visual,
+  .hero-portrait-ring,
+  .hero-portrait-ring::after,
+  .hero-bg-shape {
+    animation: none !important;
   }
 }

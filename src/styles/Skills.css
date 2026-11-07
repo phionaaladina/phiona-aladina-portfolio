@@ -409,7 +409,6 @@
    SPLIT / OLD CARD STYLES (fallback)
    ═══════════════════════════════════════════════════════════════ */
 
-
 .split-pillar-card {
   display: flex;
   flex-direction: row;
@@ -671,179 +670,6 @@
   gap: 0.65rem;
 }
 
-/* Impact photo showcase */
-.skills-gallery-section {
-  padding: 1rem 0 5rem;
-  background: var(--bg-main);
-}
-
-.skills-gallery-heading {
-  margin-bottom: 2rem;
-}
-
-.skills-gallery-heading h2 {
-  font-family: var(--font-main);
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text-main);
-  margin-bottom: 0.55rem;
-}
-
-.skills-gallery-heading h2 span {
-  color: var(--primary-accent);
-}
-
-.skills-gallery-heading p {
-  max-width: 620px;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   EDITORIAL BENTO MOSAIC GALLERY
-   ═══════════════════════════════════════════════════════════════ */
-.skills-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: 270px 270px 240px;
-  gap: 1.25rem;
-}
-
-.skills-bento-item {
-  width: 100%;
-  height: 100%;
-}
-
-/* Featured Hero Anchor (class.jpeg) - Spans 2 cols, 2 rows */
-.skills-bento-item-1 {
-  grid-column: 1 / 3;
-  grid-row: 1 / 3;
-}
-
-/* Highlight Image: Black & White by default, changes to full color on hover */
-.skills-bento-item-1 .skills-gallery-image {
-  filter: grayscale(100%) contrast(1.1);
-  transition: filter 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.skills-bento-item-1:hover .skills-gallery-image,
-.skills-bento-item-1 .skills-gallery-card:hover .skills-gallery-image {
-  filter: grayscale(0%) contrast(1);
-  transform: scale(1.04);
-}
-
-/* Right top companion (cldn.jpg) */
-.skills-bento-item-2 {
-  grid-column: 3 / 4;
-  grid-row: 1 / 2;
-}
-
-/* Right middle companion (partc.jpg) */
-.skills-bento-item-3 {
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
-}
-
-/* Bottom trio (itsupport1, itsupport, training) */
-.skills-bento-item-4 {
-  grid-column: 1 / 2;
-  grid-row: 3 / 4;
-}
-
-.skills-bento-item-5 {
-  grid-column: 2 / 3;
-  grid-row: 3 / 4;
-}
-
-.skills-bento-item-6 {
-  grid-column: 3 / 4;
-  grid-row: 3 / 4;
-}
-
-.skills-gallery-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--border-light);
-  border-radius: 18px;
-  background: var(--bg-main);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
-}
-
-.skills-gallery-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
-}
-
-.skills-gallery-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(24, 24, 27, 0.22) 0%, transparent 45%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-}
-
-.skills-gallery-card:hover::after {
-  opacity: 1;
-}
-
-.skills-gallery-image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.skills-gallery-card:hover .skills-gallery-image {
-  transform: scale(1.05);
-}
-
-@media (max-width: 991px) {
-  .skills-gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto;
-    gap: 1rem;
-  }
-
-  .skills-bento-item-1 {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    height: 340px;
-  }
-
-  .skills-bento-item:not(.skills-bento-item-1) {
-    grid-column: auto;
-    grid-row: auto;
-    height: 220px;
-  }
-}
-
-@media (max-width: 576px) {
-  .skills-gallery-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 0.85rem;
-  }
-
-  .skills-bento-item-1 {
-    height: 250px;
-  }
-
-  .skills-bento-item:not(.skills-bento-item-1) {
-    height: 200px;
-  }
-}
-
 /* ═══════════════════════════════════════════════════════════════
    FULL-BLEED RECRUITER CTA SECTION WITH BACKGROUND IMAGE & OVERLAY
    ═══════════════════════════════════════════════════════════════ */
@@ -983,9 +809,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
-  .skills-gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+
   .clean-pillar-card {
     padding: 1.6rem 1.5rem;
   }
@@ -1033,12 +857,6 @@
   .split-pillar-icon-wrap {
     width: 52px;
     height: 52px;
-  }
-}
-
-@media (max-width: 480px) {
-  .skills-gallery-grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -1146,34 +964,6 @@
   margin-top: 0.25rem;
 }
 
-.skills-gallery-section {
-  padding: 4rem 0 5rem;
-  background: var(--bg-subtle);
-}
-
-.skills-gallery-heading {
-  margin-bottom: 2.5rem;
-}
-
-.skills-gallery-card {
-  border: 0;
-  border-radius: 4px;
-  box-shadow: none;
-}
-
-.skills-gallery-card:hover {
-  transform: translateY(-3px);
-  box-shadow: none;
-}
-
-.skills-gallery-image {
-  aspect-ratio: 3 / 2;
-}
-
-.skills-gallery-caption {
-  padding: 0.9rem 0 0.25rem;
-}
-
 .skills-cta-clean {
   padding: 4rem 0 5rem;
 }
@@ -1197,5 +987,423 @@
 
   .side-pillar-body {
     padding: 1.75rem 1.5rem;
+  }
+}
+/* ══════════════════════════════════════════════
+   WHAT I DO — clean three-column row
+   ══════════════════════════════════════════════ */
+.wid-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+.wid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+.wid-icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  transition: transform 0.25s ease;
+}
+
+.wid-item:hover .wid-icon {
+  transform: translateY(-4px);
+}
+
+.wid-orange .wid-icon { background: var(--secondary); }
+.wid-blue   .wid-icon { background: var(--primary); }
+
+.wid-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-weight: 600;
+  color: var(--slate-dark);
+  margin: 0 0 0.65rem;
+}
+
+.wid-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--tertiary);
+  max-width: 320px;
+  margin: 0;
+}
+
+.wid-highlight {
+  margin: 0.9rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.wid-orange .wid-highlight { color: var(--secondary); }
+.wid-blue   .wid-highlight { color: var(--primary); }
+
+@media (max-width: 767px) {
+  .wid-grid {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+  .wid-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wid-icon { transition: none; }
+}
+
+/* Centred "What I Do" heading */
+.skills-editorial-masthead {
+  justify-content: center;
+  text-align: center;
+}
+
+.skills-editorial-masthead .masthead-main-text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wid-heading {
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════
+   WHAT I DO — CTA banner
+   ══════════════════════════════════════════════ */
+.wid-cta {
+  margin-top: 5rem;
+  background: var(--primary);
+  border-radius: 28px;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.wid-cta-text {
+  max-width: 640px;
+}
+
+.wid-cta-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0 0 1rem;
+}
+
+.wid-cta-sub {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0;
+}
+
+.wid-cta-sub strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.wid-cta-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1rem 2rem;
+  background: #ffffff;
+  color: var(--primary) !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.wid-cta-btn:hover {
+  color: var(--secondary) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 767px) {
+  .wid-cta {
+    margin-top: 3.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 20px;
+  }
+  .wid-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wid-cta-btn { transition: none; }
+}
+
+/* ══════════════════════════════════════════════
+   IMPACT IN ACTION — photo mosaic with captions
+   ══════════════════════════════════════════════ */
+.gal-section {
+  padding: 4.5rem 0 5.5rem;
+  background: var(--bg-tint-warm);
+}
+
+.gal-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--slate-dark);
+  text-align: center;
+  margin: 0 0 2.5rem;
+}
+
+.gal-heading span {
+  color: var(--primary);
+}
+
+/* Desktop mosaic: one feature photo (2×2) + five supporting photos */
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 240px;
+  gap: 1rem;
+}
+
+.gal-item-1 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.gal-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--slate-100);
+}
+
+.gal-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gal-card:hover .gal-img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 991px) {
+  .gal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 200px;
+  }
+  .gal-item-1 {
+    grid-column: 1 / -1;
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 575px) {
+  .gal-section {
+    padding: 3.5rem 0 4rem;
+  }
+  .gal-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+    gap: 0.85rem;
+  }
+  .gal-item-1 {
+    grid-column: auto;
+    grid-row: span 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gal-img { transition: none; }
+  .gal-card:hover .gal-img { transform: none; }
+}
+
+/* CTA banner with photo on the right */
+.wid-cta.wid-cta--photo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.wid-cta--photo .wid-cta-text {
+  max-width: none;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 4.5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.wid-cta--photo .wid-cta-sub {
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+.wid-cta-photo {
+  position: relative;
+  min-height: 380px;
+}
+
+.wid-cta-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 45% 28%;
+}
+
+@media (max-width: 767px) {
+  .wid-cta.wid-cta--photo {
+    grid-template-columns: 1fr;
+  }
+  .wid-cta-photo {
+    order: -1;
+    min-height: 260px;
+  }
+  .wid-cta--photo .wid-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   WHAT I DO — framed cards + text links
+   ══════════════════════════════════════════════ */
+.wid-grid {
+  gap: 1.75rem;
+}
+
+.wid-cell {
+  height: 100%;
+}
+
+.wid-item {
+  height: 100%;
+  padding: 2.75rem 2rem 2.25rem;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-top: 4px solid var(--secondary);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(63, 63, 70, 0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wid-blue.wid-item {
+  border-top-color: var(--primary);
+}
+
+.wid-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(63, 63, 70, 0.12);
+}
+
+.wid-item:hover .wid-icon {
+  transform: none;
+}
+
+.wid-text {
+  flex-grow: 1;
+}
+
+.wid-link {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.wid-orange .wid-link { color: var(--secondary) !important; }
+.wid-blue   .wid-link { color: var(--primary) !important; }
+
+.wid-link:hover {
+  gap: 0.7rem;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .wid-grid {
+    gap: 1.1rem;
+  }
+  .wid-item {
+    padding: 2.25rem 1.25rem 1.75rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .wid-grid {
+    gap: 1.25rem;
+  }
+  .wid-item {
+    padding: 2.25rem 1.5rem 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wid-item,
+  .wid-link { transition: none; }
+  .wid-item:hover { transform: none; }
+}
+
+/* ══════════════════════════════════════════════
+   WHAT I DO MOTION — icons pop in when cards appear
+   ══════════════════════════════════════════════ */
+.wid-cell .wid-icon {
+  transform: scale(0.5) rotate(-12deg);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.wid-cell.is-revealed .wid-icon {
+  transform: none;
+}
+
+.wid-cell.is-revealed .wid-item:hover .wid-icon {
+  transform: rotate(-6deg) scale(1.06);
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wid-cell .wid-icon,
+  .wid-cell.is-revealed .wid-icon,
+  .wid-cell.is-revealed .wid-item:hover .wid-icon {
+    transform: none;
+    transition: none;
   }
 }

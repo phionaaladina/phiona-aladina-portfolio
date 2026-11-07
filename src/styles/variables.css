@@ -19,6 +19,10 @@
   --tertiary-accent-light: rgba(82, 82, 91, 0.08);
   --tertiary-accent-gradient: linear-gradient(135deg, #52525B 0%, #3f3f46 100%);
 
+  /* Section tints — alternate these to separate sections */
+  --bg-tint-blue: #f2f7ff;   /* very soft brand blue */
+  --bg-tint-warm: #fff7ef;   /* very soft brand orange */
+
   /* Neutral Surface Palette */
   --bg-main: #ffffff;
   --bg-subtle: #f8fafc;

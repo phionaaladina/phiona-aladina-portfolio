@@ -1,12 +1,25 @@
 @import './variables.css';
 
-/* Full-width impact strip between the hero and About */
+/* ============================================================
+   IMPACT STATS — solid brand band dividing hero and About
+   ============================================================ */
 .stats-strip {
-  background: #ffffff;
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-  padding: 2.25rem 0;
+  position: relative;
+  background: linear-gradient(120deg, var(--primary) 0%, #2563eb 100%); /* brand blue */
+  padding: 3rem 0;
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* thin orange line along the top edge */
+.stats-strip::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--secondary);
 }
 
 .stats-strip-list {
@@ -21,37 +34,38 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.55rem;
   text-align: center;
   padding: 0 1rem;
 }
 
 .stats-strip-item + .stats-strip-item {
-  border-left: 1px solid var(--border-light);
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .stats-strip-value {
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.3rem, 4.4vw, 3.4rem);
   font-weight: 800;
-  color: var(--primary);
+  color: #ffffff;
   letter-spacing: -0.03em;
   line-height: 1;
 }
 
 .stats-strip-label {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--tertiary);
+  color: rgba(255, 255, 255, 0.92);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 @media (max-width: 575px) {
   .stats-strip {
-    padding: 1.5rem 0;
+    padding: 2rem 0;
   }
   .stats-strip-item {
-    padding: 0 0.4rem;
+    padding: 0 0.3rem;
   }
   .stats-strip-label {
     font-size: 0.62rem;

@@ -4,19 +4,28 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import "../styles/Navbar.css";
 
 const navItems = [
-  { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "skills", label: "What I Do" },
   { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact", isButton: true }
+  { id: "resume", label: "Resume", href: process.env.PUBLIC_URL + "/aladina_resume.pdf" },
+  { id: "contact", label: "Let’s Connect", isButton: true }
 ];
 
 const CustomNavbar = () => {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
   const closeNav = () => setExpanded(false);
+
+  // Add a subtle shadow + frosted background once the page scrolls
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // ScrollSpy: track which section is currently in view as user scrolls
   useEffect(() => {
@@ -75,7 +84,7 @@ const CustomNavbar = () => {
 
   return (
     <Navbar 
-      className="custom-navbar" 
+      className={`custom-navbar ${scrolled ? "is-scrolled" : ""}`}
       expand="lg" 
       sticky="top"
       expanded={expanded}
@@ -88,13 +97,25 @@ const CustomNavbar = () => {
           aria-label="Fiona A. Aladina, home"
         >
           <span className="brand-name">Aladina</span>
-          <span className="brand-tagline">Software Engineer · Tech Educator · Mentor</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto align-items-lg-center">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
+              if (item.href) {
+                return (
+                  <Nav.Link
+                    key={item.id}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeNav}
+                  >
+                    {item.label}
+                  </Nav.Link>
+                );
+              }
               if (item.isButton) {
                 return (
                   <Nav.Link

@@ -1,8 +1,21 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Send, Mail, Phone, MapPin, Linkedin, Github, Instagram, Youtube, CheckCircle, AlertCircle } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import "../styles/Contact.css";
+
+const details = [
+  { icon: Mail, label: "Email", value: "phionaaladina@gmail.com", href: "mailto:phionaaladina@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+256 773 874 765", href: "tel:+256773874765" },
+  { icon: MapPin, label: "Location", value: "Kampala, Uganda" },
+];
+
+const socials = [
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/phionaaladina" },
+  { icon: Github, label: "GitHub", href: "https://github.com/phionaaladina" },
+  { icon: Instagram, label: "Instagram", href: "https://instagram.com/Its_Aladina" },
+  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/channel/UCAzqZP6oRDRgInhLlQH3gog" },
+];
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -36,144 +49,103 @@ const Contact = () => {
   };
 
   return (
-    <div
-      className="contact-editorial-section"
-      style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL + "/cldn.jpg"})`,
-      }}
-    >
-      <div className="contact-bg-overlay" />
-      <Container className="contact-container-relative">
-
-        {/* ── Page Masthead (Editorial Layout) ── */}
-        <ScrollReveal animation="fade-up">
-          <div className="editorial-masthead">
-            <div className="masthead-main-text">
-              <div className="masthead-eyebrow">Get In Touch</div>
-              <h1 className="masthead-title">Let’s Build <span>Something Great</span></h1>
-              <p className="masthead-sub">
-                Have a project, opportunity, or idea to explore? I’d love to hear from you.
-              </p>
-            </div>
+    <div className="ct-section">
+      <Container>
+        <ScrollReveal animation="fade-up" once>
+          <div className="ct-head">
+            <h2 className="ct-heading section-accent">Let’s <span>Connect</span></h2>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal animation="fade" delay={100}>
-          <div className="editorial-rule" />
-        </ScrollReveal>
+        <ScrollReveal animation="fade-up" delay={100} once>
+          <div className="ct-card">
+            {/* ── Left: details ── */}
+            <aside className="ct-info">
+              <h3 className="ct-info-title">Contact details</h3>
 
-        <Row className="g-4 align-items-start">
+              <ul className="ct-details">
+                {details.map(({ icon: Icon, label, value, href }) => (
+                  <li key={label} className="ct-detail">
+                    <span className="ct-detail-icon"><Icon size={18} /></span>
+                    <span className="ct-detail-text">
+                      <span className="ct-detail-label">{label}</span>
+                      {href ? <a href={href}>{value}</a> : <span>{value}</span>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
 
-          {/* Left: Info */}
-          <Col lg={4}>
-            <ScrollReveal animation="fade-right" delay={120}>
-              <div className="contact-info-card">
-                <div className="contact-info-title">Contact Info</div>
-
-                <div className="contact-detail-row">
-                  <div className="contact-detail-icon"><Mail size={18} /></div>
-                  <div className="contact-detail-info">
-                    <h4>Email</h4>
-                    <a href="mailto:phionaaladina@gmail.com">phionaaladina@gmail.com</a>
-                  </div>
-                </div>
-
-                <div className="contact-detail-row">
-                  <div className="contact-detail-icon"><Phone size={18} /></div>
-                  <div className="contact-detail-info">
-                    <h4>Phone</h4>
-                    <a href="tel:+256773874765">+256 773 874 765</a>
-                  </div>
-                </div>
-
-                <div className="contact-detail-row">
-                  <div className="contact-detail-icon"><MapPin size={18} /></div>
-                  <div className="contact-detail-info">
-                    <h4>Location</h4>
-                    <p>Kampala, Uganda</p>
-                  </div>
-                </div>
-
-                <div className="contact-socials">
-                  <a href="https://www.linkedin.com/in/phionaaladina" target="_blank" rel="noreferrer" className="contact-social-btn" aria-label="LinkedIn"><Linkedin size={17} /></a>
-                  <a href="https://github.com/phionaaladina" target="_blank" rel="noreferrer" className="contact-social-btn" aria-label="GitHub"><Github size={17} /></a>
-
-                  <a href="https://instagram.com/Its_Aladina" target="_blank" rel="noreferrer" className="contact-social-btn" aria-label="Instagram"><Instagram size={17} /></a>
-                  <a href="https://www.youtube.com/channel/UCAzqZP6oRDRgInhLlQH3gog" target="_blank" rel="noreferrer" className="contact-social-btn" aria-label="YouTube"><Youtube size={17} /></a>
-                </div>
+              <div className="ct-socials">
+                {socials.map(({ icon: Icon, label, href }) => (
+                  <a key={label} href={href} target="_blank" rel="noreferrer" className="ct-social" aria-label={label}>
+                    <Icon size={18} />
+                  </a>
+                ))}
               </div>
-            </ScrollReveal>
-          </Col>
+            </aside>
 
-          {/* Right: Form */}
-          <Col lg={8}>
-            <ScrollReveal animation="fade-left" delay={160}>
-              <div className="contact-form-card">
-                <div className="form-card-title">Send a Message</div>
-                <p className="form-card-sub">Send a note using the form below.</p>
+            {/* ── Right: form ── */}
+            <div className="ct-form-wrap">
+              {status.submitted ? (
+                <div className="ct-success" role="status">
+                  <CheckCircle size={52} />
+                  <h3>Message sent!</h3>
+                  <p>Thank you for reaching out. I’ll reply as soon as possible.</p>
+                  <button
+                    type="button"
+                    onClick={() => setStatus({ ...status, submitted: false })}
+                    className="ct-submit ct-submit--inline"
+                  >
+                    Send another
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="ct-form">
+                  <h3 className="ct-form-title">Send a message</h3>
 
-                {status.submitted ? (
-                  <div className="contact-success">
-                    <CheckCircle size={52} color="#3A83F7" />
-                    <h4>Message Sent!</h4>
-                    <p>Thank you for reaching out. I'll reply as soon as possible.</p>
-                    <button
-                      onClick={() => setStatus({ ...status, submitted: false })}
-                      className="contact-submit-btn"
-                      style={{ maxWidth: 240, margin: '0 auto' }}
-                    >
-                      Send Another
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit}>
-                    {status.error && (
-                      <div className="contact-error">
-                        <AlertCircle size={17} /> {status.error}
-                      </div>
-                    )}
-                    <Row className="g-3 mb-3">
-                      <Col md={6}>
-                        <label className="contact-field">
-                          <span className="contact-label">Name</span>
-                          <input
-                            type="text" name="name" value={formData.name}
-                            onChange={handleChange} className="contact-input"
-                            autoComplete="name" placeholder="Your name" required
-                          />
-                        </label>
-                      </Col>
-                      <Col md={6}>
-                        <label className="contact-field">
-                          <span className="contact-label">Email address</span>
-                          <input
-                            type="email" name="email" value={formData.email}
-                            onChange={handleChange} className="contact-input"
-                            autoComplete="email" placeholder="Email address" required
-                          />
-                        </label>
-                      </Col>
-                    </Row>
-                    <div className="mb-4">
-                      <label className="contact-field">
-                        <span className="contact-label">Project or message</span>
-                        <textarea
-                          name="message" value={formData.message}
-                          onChange={handleChange} className="contact-input"
-                          rows="6" placeholder="Tell me about your project or idea..."
-                          required
-                        />
-                      </label>
+                  {status.error && (
+                    <div className="ct-error" role="alert">
+                      <AlertCircle size={17} /> {status.error}
                     </div>
-                    <button type="submit" className="contact-submit-btn" disabled={status.submitting}>
-                      {status.submitting ? "Sending..." : "Send Message"} <Send size={17} />
-                    </button>
-                  </form>
-                )}
-              </div>
-            </ScrollReveal>
-          </Col>
-        </Row>
+                  )}
+
+                  <div className="ct-row">
+                    <label className="ct-field">
+                      <span className="ct-label">Name</span>
+                      <input
+                        type="text" name="name" value={formData.name}
+                        onChange={handleChange} className="ct-input"
+                        autoComplete="name" placeholder="Your name" required
+                      />
+                    </label>
+                    <label className="ct-field">
+                      <span className="ct-label">Email</span>
+                      <input
+                        type="email" name="email" value={formData.email}
+                        onChange={handleChange} className="ct-input"
+                        autoComplete="email" placeholder="you@example.com" required
+                      />
+                    </label>
+                  </div>
+
+                  <label className="ct-field">
+                    <span className="ct-label">Message</span>
+                    <textarea
+                      name="message" value={formData.message}
+                      onChange={handleChange} className="ct-input ct-textarea"
+                      rows="5" placeholder="Tell me about your project or idea…"
+                      required
+                    />
+                  </label>
+
+                  <button type="submit" className="ct-submit" disabled={status.submitting}>
+                    {status.submitting ? "Sending…" : "Send Message"} <Send size={17} />
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </ScrollReveal>
       </Container>
     </div>
   );

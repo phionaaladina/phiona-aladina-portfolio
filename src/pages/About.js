@@ -47,7 +47,7 @@ const About = () => (
     <Container>
       <ScrollReveal animation="fade-up" once>
         <span className="about-eyebrow">About Me</span>
-        <h2 id="about-heading" className="about-heading">
+        <h2 id="about-heading" className="about-heading section-accent section-accent--left">
           My <span className="about-name">Journey</span>
         </h2>
       </ScrollReveal>
@@ -87,7 +87,6 @@ const About = () => (
       {/* ── Mission statement ─────────────────────── */}
       <ScrollReveal animation="fade-up" once>
         <div className="about-mission">
-          <span className="about-mission-label">My Mission</span>
           <p className="about-mission-text">
             Where we begin <span className="about-mission-script">need not determine</span>{" "}
             where we end up.

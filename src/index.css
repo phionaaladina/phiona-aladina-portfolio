@@ -387,3 +387,34 @@ code {
   transform: translateY(-3px);
   text-decoration: none !important;
 }
+
+/* =====================================================
+   SECTION HEADING ACCENT — short orange bar that grows in
+   ===================================================== */
+.section-accent::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 4px;
+  margin: 0.9rem auto 0;
+  border-radius: 4px;
+  background: var(--secondary);
+  transform: scaleX(0);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+
+.section-accent--left::after {
+  margin-left: 0;
+  transform-origin: left;
+}
+
+.is-revealed .section-accent::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-accent::after {
+    transform: none;
+    transition: none;
+  }
+}
