@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
+import StatsStrip from "./components/StatsStrip";
 
 // Sections
 import Home from "./pages/Home";
@@ -47,7 +48,9 @@ const PortfolioPage = () => {
       <section id="home" className="portfolio-section">
         <Home />
       </section>
-      
+
+      <StatsStrip />
+
       <section id="about" className="portfolio-section">
         <About />
       </section>

@@ -9,6 +9,7 @@ const ScrollReveal = ({
   className = "",
   style = {},
   once = false,
+  as: Tag = "div",
   ...props
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,7 +39,7 @@ const ScrollReveal = ({
   }, [threshold, once]);
 
   return (
-    <div
+    <Tag
       ref={domRef}
       className={`scroll-reveal-item reveal-${animation} ${isVisible ? "is-revealed" : ""} ${className}`}
       style={{
@@ -49,7 +50,7 @@ const ScrollReveal = ({
       {...props}
     >
       {children}
-    </div>
+    </Tag>
   );
 };
 

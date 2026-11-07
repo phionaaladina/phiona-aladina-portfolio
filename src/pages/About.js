@@ -1,7 +1,14 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import ScrollReveal from "../components/ScrollReveal";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Stethoscope,
+  HeartHandshake,
+  Laptop,
+  Rocket,
+} from "lucide-react";
 import "../styles/About.css";
 
 const scrollToSection = (event, id) => {
@@ -12,79 +19,100 @@ const scrollToSection = (event, id) => {
   window.history.replaceState(null, "", `#${id}`);
 };
 
+const journey = [
+  {
+    icon: Stethoscope,
+    title: "The Dream",
+    text: "Aspiring doctor. Financial challenges changed my path.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "The Hustle",
+    text: "Cleaner · Beautician · Nanny. Supporting myself and four siblings.",
+  },
+  {
+    icon: Laptop,
+    title: "The Turning Point",
+    text: "Discovered Computer Science and a new world of possibilities.",
+  },
+  {
+    icon: Rocket,
+    title: "Today",
+    text: "Software Engineer · Tech Educator · Mentor.",
+  },
+];
+
 const About = () => (
   <section className="about-section" aria-labelledby="about-heading">
     <Container>
-      <ScrollReveal animation="fade-up">
-        <div className="about-wrap">
+      <ScrollReveal animation="fade-up" once>
+        <span className="about-eyebrow">About Me</span>
+        <h2 id="about-heading" className="about-heading">
+          My <span className="about-name">Journey</span>
+        </h2>
+      </ScrollReveal>
 
-          {/* Text */}
-          <div className="about-text-col">
-            <h2 id="about-heading" className="about-greeting">
-              Hello,
-            </h2>
-
-            <p>
-              I'm <strong>Aladina</strong>, a Software Engineer, Digital Skills Educator,
-              and Mentor based in Kampala, Uganda.
-            </p>
-
-            <p>
-              I build practical digital solutions and use technology and education to
-              create opportunities for others.
-            </p>
-
-            <p>
-              Growing up I have always wanted to be a Doctor. However, due to financial challenges
-              I  to leave medical school. A decade ago, as a first born, I found myself taking on jobs as a cleaner, beautician,
-              and nanny to support my four siblings and myself. Discovering Computer
-              Science opened a new path I hadn't imagined. My journey taught me that
-              where we begin, or the circumstances we face,{" "}
-              <strong>need not determine where we end up.</strong>
-            </p>
-
-            <p>
-              Today, I've trained and mentored{" "}
-              <strong className="about-highlight">1,000+ young women, youth, and children</strong>{" "}
-              across Uganda in digital literacy, coding, life skills, and entrepreneurship.
-            </p>
-
-            <p>
-              My mission is to bridge digital gaps, nurture creativity, and create
-              opportunities for people to discover their potential and change the
-              trajectory of their lives, regardless of their circumstances.
-            </p>
-
-            {/* CTA */}
-            <div className="about-cta-row">
-              <a
-                href="#contact"
-                onClick={(e) => scrollToSection(e, "contact")}
-                className="about-cta-btn"
-              >
-                Let's Work Together <ArrowRight size={16} />
-              </a>
-              <a
-                href={process.env.PUBLIC_URL + "/aladina_resume.pdf"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="about-cta-ghost"
-              >
-                My Resume <ArrowUpRight size={15} />
-              </a>
+      {/* ── Horizontal timeline (vertical on mobile) ── */}
+      <ol className="tl-list">
+        {journey.map(({ icon: Icon, title, text }, i) => (
+          <ScrollReveal
+            as="li"
+            animation="fade-up"
+            delay={i * 120}
+            once
+            key={title}
+            className={[
+              "tl-item",
+              i % 2 === 0 ? "tl-item--title-top" : "tl-item--title-bottom",
+              i === journey.length - 1 ? "tl-item--now" : "",
+            ].join(" ")}
+          >
+            <div className="tl-head">
+              <span className="tl-num">0{i + 1}</span>
+              <h3 className="tl-title">{title}</h3>
             </div>
-          </div>
 
-          {/* Photo */}
-          <div className="about-photo-col">
-            <img
-              src={process.env.PUBLIC_URL + "/sitting.jpeg"}
-              alt="Fiona A. Aladina, Software Engineer and Tech Educator"
-              className="about-photo"
-              loading="lazy"
-            />
-          </div>
+            <div className="tl-node">
+              <span className="tl-icon"><Icon size={22} /></span>
+            </div>
 
+            <div className="tl-detail">
+              <span className="tl-stem" aria-hidden="true" />
+              <p className="tl-text">{text}</p>
+            </div>
+          </ScrollReveal>
+        ))}
+      </ol>
+
+      {/* ── Mission statement ─────────────────────── */}
+      <ScrollReveal animation="fade-up" once>
+        <div className="about-mission">
+          <span className="about-mission-label">My Mission</span>
+          <p className="about-mission-text">
+            Where we begin <span className="about-mission-script">need not determine</span>{" "}
+            where we end up.
+          </p>
+          <p className="about-mission-sub">
+            I bridge digital gaps, equip people with practical skills and create opportunities
+            for them to realise their potential.
+          </p>
+          <div className="about-cta-row">
+            <a
+              href="#contact"
+              onClick={(e) => scrollToSection(e, "contact")}
+              className="about-cta-btn"
+            >
+              Let's Work Together <ArrowRight size={16} />
+            </a>
+            <a
+              href={process.env.PUBLIC_URL + "/aladina_resume.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="about-cta-ghost"
+            >
+              My Resume <ArrowUpRight size={15} />
+            </a>
+          </div>
         </div>
       </ScrollReveal>
     </Container>

@@ -1,0 +1,60 @@
+@import './variables.css';
+
+/* Full-width impact strip between the hero and About */
+.stats-strip {
+  background: #ffffff;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  padding: 2.25rem 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.stats-strip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stats-strip-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.stats-strip-item + .stats-strip-item {
+  border-left: 1px solid var(--border-light);
+}
+
+.stats-strip-value {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.stats-strip-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 575px) {
+  .stats-strip {
+    padding: 1.5rem 0;
+  }
+  .stats-strip-item {
+    padding: 0 0.4rem;
+  }
+  .stats-strip-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+  }
+}
