@@ -452,3 +452,81 @@
 .about-section .container > .scroll-reveal-item:first-child {
   text-align: center;
 }
+
+/* ══════════════════════════════════════════════
+   TIMELINE SEQUENCE — steps play in order 01 → 04
+   Each step: line draws → icon pops → title → stem → text
+   ══════════════════════════════════════════════ */
+.tl-item {
+  --step: calc(var(--i, 0) * 0.55s);
+}
+
+.tl-item .tl-node::before {
+  transition-delay: var(--step);
+}
+
+.tl-item .tl-icon {
+  transition-delay: calc(var(--step) + 0.25s);
+}
+
+.tl-head,
+.tl-text {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tl-item--title-top .tl-head    { transform: translateY(-14px); }
+.tl-item--title-bottom .tl-head { transform: translateY(14px); }
+.tl-item--title-top .tl-text    { transform: translateY(14px); }
+.tl-item--title-bottom .tl-text { transform: translateY(-14px); }
+
+.tl-item .tl-head { transition-delay: calc(var(--step) + 0.45s); }
+.tl-item .tl-text { transition-delay: calc(var(--step) + 0.8s); }
+
+.tl-stem {
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
+  transition-delay: calc(var(--step) + 0.6s);
+}
+
+.tl-item--title-top .tl-stem    { transform-origin: top; }    /* grows down from the line */
+.tl-item--title-bottom .tl-stem { transform-origin: bottom; } /* grows up from the line */
+
+.tl-item.is-revealed .tl-head,
+.tl-item.is-revealed .tl-text {
+  opacity: 1;
+  transform: none;
+}
+
+.tl-item.is-revealed .tl-stem {
+  transform: scaleY(1);
+}
+
+/* mobile (vertical): everything rises gently from below */
+@media (max-width: 767px) {
+  .tl-item .tl-head,
+  .tl-item .tl-text {
+    transform: translateY(12px);
+  }
+  .tl-item.is-revealed .tl-head,
+  .tl-item.is-revealed .tl-text {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-head,
+  .tl-text,
+  .tl-stem {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+html.a11y-no-motion .tl-head,
+html.a11y-no-motion .tl-text,
+html.a11y-no-motion .tl-stem {
+  opacity: 1 !important;
+  transform: none !important;
+}

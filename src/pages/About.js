@@ -56,10 +56,11 @@ const About = () => (
         {journey.map(({ icon: Icon, title, text }, i) => (
           <ScrollReveal
             as="li"
-            animation="fade-up"
-            delay={i * 120}
+            animation="fade"
+            duration={300}
             once
             key={title}
+            style={{ "--i": i }} /* step index — drives the staggered sequence in About.css */
             className={[
               "tl-item",
               i % 2 === 0 ? "tl-item--title-top" : "tl-item--title-bottom",
