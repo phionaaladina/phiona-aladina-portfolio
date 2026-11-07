@@ -7,8 +7,8 @@ const navItems = [
   { id: "about", label: "About" },
   { id: "skills", label: "What I Do" },
   { id: "projects", label: "Projects" },
-  { id: "resume", label: "Resume", href: process.env.PUBLIC_URL + "/aladina_resume.pdf" },
-  { id: "contact", label: "Let’s Connect", isButton: true }
+  { id: "contact", label: "Contact" },
+  { id: "resume", label: "Resume", href: process.env.PUBLIC_URL + "/aladina_resume.pdf", isButton: true }
 ];
 
 const CustomNavbar = () => {
@@ -111,6 +111,7 @@ const CustomNavbar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeNav}
+                    className={item.isButton ? "nav-contact-button" : undefined}
                   >
                     {item.label}
                   </Nav.Link>
