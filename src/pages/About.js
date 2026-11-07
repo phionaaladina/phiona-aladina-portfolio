@@ -46,9 +46,8 @@ const About = () => (
   <section className="about-section" aria-labelledby="about-heading">
     <Container>
       <ScrollReveal animation="fade-up" once>
-        <span className="about-eyebrow">About Me</span>
         <h2 id="about-heading" className="about-heading section-accent">
-          My <span className="about-name">Journey</span>
+          About <span className="about-name">Me</span>
         </h2>
       </ScrollReveal>
 
