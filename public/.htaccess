@@ -1,0 +1,10 @@
+# Serve the React app for every route (e.g. /about, /projects)
+# so refreshing or sharing a deep link doesn't return a 404.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

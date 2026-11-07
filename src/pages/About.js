@@ -23,22 +23,22 @@ const journey = [
   {
     icon: Stethoscope,
     title: "The Dream",
-    text: "Aspiring doctor. Financial challenges changed my path.",
+    text: "Aspiring doctor growing up. Dropped out of medical school due to financial challenges. My parents left.",
   },
   {
     icon: HeartHandshake,
     title: "The Hustle",
-    text: "Cleaner · Beautician · Nanny. Supporting myself and four siblings.",
+    text: "Cleaner · Beautician · Nanny. Supporting myself and four siblings. Overwhelmed, depressed, suicidal.",
   },
   {
     icon: Laptop,
     title: "The Turning Point",
-    text: "Discovered Computer Science and a new world of possibilities.",
+    text: "Discovered technology, became a digital skills trainer and studied Computer Science on scholarship. Went through counselling.",
   },
   {
     icon: Rocket,
     title: "Today",
-    text: "Software Engineer · Tech Educator · Mentor.",
+    text: "Passionate tech trainer · Software developer · Mentor. 1,000+ young people trained and optimistic about the future.",
   },
 ];
 
@@ -47,7 +47,7 @@ const About = () => (
     <Container>
       <ScrollReveal animation="fade-up" once>
         <span className="about-eyebrow">About Me</span>
-        <h2 id="about-heading" className="about-heading section-accent section-accent--left">
+        <h2 id="about-heading" className="about-heading section-accent">
           My <span className="about-name">Journey</span>
         </h2>
       </ScrollReveal>

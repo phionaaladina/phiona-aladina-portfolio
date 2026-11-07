@@ -155,7 +155,7 @@
 
 .tl-text {
   margin: 0;
-  max-width: 210px;
+  max-width: 250px;
   font-size: 0.95rem;
   line-height: 1.5;
   color: var(--tertiary);
@@ -446,4 +446,9 @@
   .tl-item.is-revealed .tl-node::before {
     transform: translateX(-50%);
   }
+}
+
+/* Centred section heading */
+.about-section .container > .scroll-reveal-item:first-child {
+  text-align: center;
 }

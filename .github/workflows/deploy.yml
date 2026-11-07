@@ -1,36 +1,49 @@
-name: 🚀 Build & Deploy to cPanel
+name: 🚀 Build & Deploy to phionaaladina.com
 
 on:
   push:
     branches:
-      - main  
+      - main
+  workflow_dispatch: # adds a "Run workflow" button in the Actions tab
+
+# never run two deploys at the same time
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - name: 🚚 Get Latest Code
-        uses: actions/checkout@v3
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
 
       - name: 🧪 Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: 🔨 Build React App
+      - name: 🔨 Build React app
         run: |
-          npm install
+          npm ci
           CI=false npm run build
 
+      # Repository secrets (Settings → Secrets and variables → Actions → Secrets):
+      #   FTP_SERVER    e.g. ftp.phionaaladina.com
+      #   FTP_USERNAME  your cPanel / FTP username
+      #   FTP_PASSWORD  your cPanel / FTP password
+      # Optional repository variable (… → Variables):
+      #   FTP_SERVER_DIR  folder to upload into; defaults to ./public_html/
       - name: 📂 Deploy via FTP to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build/
-          server-dir: ./public_html/phionaaladina.unihubug.com/
-          # Exclude unwanted files
+          server-dir: ${{ vars.FTP_SERVER_DIR || './public_html/' }}
           exclude: |
             **/.git*
             **/.git*/**
