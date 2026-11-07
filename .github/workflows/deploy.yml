@@ -34,8 +34,7 @@ jobs:
       #   FTP_SERVER    e.g. ftp.phionaaladina.com
       #   FTP_USERNAME  your cPanel / FTP username
       #   FTP_PASSWORD  your cPanel / FTP password
-      # Optional repository variable (… → Variables):
-      #   FTP_SERVER_DIR  folder to upload into; defaults to ./public_html/
+      # Upload folder is fixed below to the domain document root.
       # The host occasionally refuses new FTP data connections mid-upload
       # (connection limits), so the upload is retried up to twice after a pause.
       - name: 📂 Deploy via FTP to cPanel
@@ -47,7 +46,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build/
-          server-dir: ${{ vars.FTP_SERVER_DIR || './public_html/' }}
+          server-dir: ./phionaaladina.com/ # = /home/unihubug/phionaaladina.com. NEVER public_html (that is unihubug.com)
           timeout: 120000
           exclude: |
             **/.git*
@@ -68,7 +67,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build/
-          server-dir: ${{ vars.FTP_SERVER_DIR || './public_html/' }}
+          server-dir: ./phionaaladina.com/ # = /home/unihubug/phionaaladina.com. NEVER public_html (that is unihubug.com)
           timeout: 120000
           exclude: |
             **/.git*
@@ -88,7 +87,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build/
-          server-dir: ${{ vars.FTP_SERVER_DIR || './public_html/' }}
+          server-dir: ./phionaaladina.com/ # = /home/unihubug/phionaaladina.com. NEVER public_html (that is unihubug.com)
           timeout: 120000
           exclude: |
             **/.git*
