@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
-import { UserRound } from "lucide-react";
+import { Link } from "react-router-dom";
+import { UserRound, ChevronLeft, ChevronRight, Pause, Play, ArrowRight } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import "../styles/LearnerTestimonials.css";
 
@@ -154,40 +155,198 @@ const renderParagraph = (text, highlight) => {
   );
 };
 
-const TestimonialCard = ({ name, attribution, highlight, quote, variant, delay }) => (
-  <ScrollReveal animation="fade-up" delay={delay} once>
-    <figure className={`lt-card lt-card--${variant}`}>
-      <span className="lt-mark" aria-hidden="true">“</span>
-      <figcaption className="lt-person">
-        <span className="lt-avatar" aria-hidden="true">
-          {name ? name.charAt(0) : <UserRound size={20} strokeWidth={1.75} />}
-        </span>
-        <span className="lt-name">{name || attribution}</span>
-      </figcaption>
-      <blockquote className="lt-quote">
-        {quote.map((paragraph, i) => (
-          <p key={i}>{renderParagraph(paragraph, highlight)}</p>
-        ))}
-      </blockquote>
-    </figure>
-  </ScrollReveal>
+// Card content shared by the grid and the carousel
+const CardBody = ({ name, attribution, highlight, quote, variant }) => (
+  <figure className={`lt-card lt-card--${variant}`}>
+    <span className="lt-mark" aria-hidden="true">“</span>
+    <figcaption className="lt-person">
+      <span className="lt-avatar" aria-hidden="true">
+        {name ? name.charAt(0) : <UserRound size={20} strokeWidth={1.75} />}
+      </span>
+      <span className="lt-name">{name || attribution}</span>
+    </figcaption>
+    <blockquote className="lt-quote">
+      {quote.map((paragraph, i) => (
+        <p key={i}>{renderParagraph(paragraph, highlight)}</p>
+      ))}
+    </blockquote>
+  </figure>
 );
 
+/* ── Grid layout (all cards visible) ── */
 const TestimonialColumns = ({ columns, variant }) => (
   <div className={`lt-columns lt-columns--${variant}`}>
     {columns.map((column, c) => (
       <div className="lt-column" key={c}>
         {column.map((t, i) => (
-          <TestimonialCard
-            key={`${variant}-${c}-${i}`}
-            {...t}
-            variant={variant}
-            delay={c * 120}
-          />
+          <ScrollReveal key={`${variant}-${c}-${i}`} animation="fade-up" delay={c * 120} once>
+            <CardBody {...t} variant={variant} />
+          </ScrollReveal>
         ))}
       </div>
     ))}
   </div>
+);
+
+/* ── Carousel layout (two testimonials at a time, auto-advancing) ── */
+// Columns are interleaved so the slide order alternates between them
+const interleave = ([a, b]) => a.flatMap((item, i) => (b[i] ? [item, b[i]] : [item]));
+const featuredSlides = interleave(featuredColumns).map((t) => ({ ...t, variant: "featured" }));
+const shortSlides = interleave(shortColumns).map((t) => ({ ...t, variant: "short" }));
+const allSlides = [...featuredSlides, ...shortSlides];
+
+const AUTOPLAY_MS = 7000; // time each pair stays on screen
+
+const prefersReducedMotion = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+  document.documentElement.classList.contains("a11y-no-motion");
+
+// Two cards per page on tablet/desktop, one on phones
+const usePerPage = () => {
+  const query = "(min-width: 768px)";
+  const [perPage, setPerPage] = useState(() => (window.matchMedia(query).matches ? 2 : 1));
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const update = () => setPerPage(mq.matches ? 2 : 1);
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return perPage;
+};
+
+const TestimonialCarousel = ({ slides, label = "Learner testimonials" }) => {
+  const perPage = usePerPage();
+  const pages = [];
+  for (let i = 0; i < slides.length; i += perPage) pages.push(slides.slice(i, i + perPage));
+  const total = pages.length;
+
+  const [current, setCurrent] = useState(0);
+  const [playing, setPlaying] = useState(() => !prefersReducedMotion());
+  const [held, setHeld] = useState(false); // hover or keyboard focus inside
+  const touchStartX = useRef(null);
+
+  // Keep the index valid when the layout switches between 1 and 2 per page
+  useEffect(() => {
+    setCurrent((c) => Math.min(c, total - 1));
+  }, [total]);
+
+  const goTo = useCallback((i) => setCurrent((i + total) % total), [total]);
+  const prev = () => goTo(current - 1);
+  const next = useCallback(() => setCurrent((c) => (c + 1) % total), [total]);
+
+  // Auto-advance; pauses while hovered, focused, or paused by the visitor
+  useEffect(() => {
+    if (!playing || held || total < 2) return undefined;
+    const timer = setInterval(next, AUTOPLAY_MS);
+    return () => clearInterval(timer);
+  }, [playing, held, next, total]);
+
+  const onKeyDown = (e) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+  };
+
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 50) (dx < 0 ? next : prev)();
+    touchStartX.current = null;
+  };
+
+  const labelFor = (page) => page.map((t) => t.name || t.attribution).join(" and ");
+
+  return (
+    <ScrollReveal animation="fade-up" once>
+      <div
+        className="lt-carousel"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label={label}
+        onKeyDown={onKeyDown}
+        onMouseEnter={() => setHeld(true)}
+        onMouseLeave={() => setHeld(false)}
+        onFocus={() => setHeld(true)}
+        onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setHeld(false); }}
+      >
+        {/* All pages share one grid cell, so the height never jumps */}
+        <div
+          className="lt-slides"
+          aria-live={playing && !held ? "off" : "polite"}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          {pages.map((page, i) => {
+            const state = i === current ? "is-active" : i < current ? "is-before" : "is-after";
+            return (
+              <div
+                key={`${perPage}-${i}`}
+                className={`lt-slide lt-slide--${perPage}up ${state}`}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${i + 1} of ${total}: ${labelFor(page)}`}
+                aria-hidden={i !== current}
+                inert={i !== current}
+              >
+                {page.map((t) => (
+                  <CardBody key={t.name || t.attribution} {...t} />
+                ))}
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="lt-controls">
+          <button type="button" className="lt-arrow" onClick={prev} aria-label="Previous testimonials">
+            <ChevronLeft size={22} strokeWidth={1.75} />
+          </button>
+
+          <div className="lt-dots">
+            {pages.map((page, i) => (
+              <button
+                key={i}
+                type="button"
+                className={`lt-dot ${i === current ? "is-active" : ""}`}
+                onClick={() => goTo(i)}
+                aria-label={`Show ${labelFor(page)}`}
+                aria-current={i === current ? "true" : undefined}
+              >
+                <span aria-hidden="true" />
+              </button>
+            ))}
+          </div>
+
+          <button type="button" className="lt-arrow" onClick={next} aria-label="Next testimonials">
+            <ChevronRight size={22} strokeWidth={1.75} />
+          </button>
+
+          <button
+            type="button"
+            className="lt-arrow lt-play"
+            onClick={() => setPlaying((p) => !p)}
+            aria-label={playing ? "Pause automatic rotation" : "Start automatic rotation"}
+          >
+            {playing ? <Pause size={18} strokeWidth={1.75} /> : <Play size={18} strokeWidth={1.75} />}
+          </button>
+        </div>
+      </div>
+    </ScrollReveal>
+  );
+};
+
+
+// Compare layouts:
+//   "hybrid"   — four featured stories as cards, shorter ones in a carousel
+//   "carousel" — all twelve, two at a time
+//   "grid"     — all twelve cards visible
+const LAYOUT = "carousel";
+
+// Every story as cards — used by the grid layout and the Learner Stories page
+export const AllTestimonials = () => (
+  <>
+    <TestimonialColumns columns={featuredColumns} variant="featured" />
+    <TestimonialColumns columns={shortColumns} variant="short" />
+  </>
 );
 
 const LearnerTestimonials = () => (
@@ -201,8 +360,26 @@ const LearnerTestimonials = () => (
         </header>
       </ScrollReveal>
 
-      <TestimonialColumns columns={featuredColumns} variant="featured" />
-      <TestimonialColumns columns={shortColumns} variant="short" />
+      {LAYOUT === "hybrid" ? (
+        <>
+          <TestimonialColumns columns={featuredColumns} variant="featured" />
+          <div className="lt-more">
+            <TestimonialCarousel slides={shortSlides} label="More learner testimonials" />
+          </div>
+        </>
+      ) : LAYOUT === "carousel" ? (
+        <TestimonialCarousel slides={allSlides} />
+      ) : (
+        <AllTestimonials />
+      )}
+
+      {LAYOUT !== "grid" && (
+        <div className="lt-readall-wrap">
+          <Link to="/learner-stories" className="lt-readall">
+            Read all learner stories <ArrowRight size={18} />
+          </Link>
+        </div>
+      )}
 
       <p className="lt-permission">Shared with permission from learners.</p>
     </Container>

@@ -34,6 +34,12 @@ const CustomNavbar = () => {
     const sectionIds = ["home", "about", "skills", "impact", "gallery", "projects", "contact"];
 
     const handleScroll = () => {
+      // Separate pages (e.g. Learner Stories) have no sections to track
+      if (!document.getElementById("home")) {
+        setActiveSection(null);
+        return;
+      }
+
       // If user has scrolled almost to the very bottom, activate contact
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
         setActiveSection("contact");
@@ -64,7 +70,11 @@ const CustomNavbar = () => {
     const hash = window.location.hash.replace("#", "");
     const path = location.pathname.replace("/", "");
     const target = hash || path;
-    if (target && ["home", "about", "skills", "impact", "gallery", "projects", "contact"].includes(target)) {
+    if (!document.getElementById("home")) {
+      setActiveSection(null);
+      return;
+    }
+    if (target &&["home", "about", "skills", "impact", "gallery", "projects", "contact"].includes(target)) {
       setActiveSection(target);
     }
   }, [location]);

@@ -24,6 +24,7 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import LearnerStories from "./pages/LearnerStories";
 
 const PortfolioPage = () => {
   const location = useLocation();
@@ -96,6 +97,7 @@ const AppContent = () => {
           <Route path="/skills" element={<PortfolioPage />} />
           <Route path="/impact" element={<PortfolioPage />} />
           <Route path="/gallery" element={<PortfolioPage />} />
+          <Route path="/learner-stories" element={<LearnerStories />} />
           <Route path="/projects" element={<PortfolioPage />} />
           <Route path="/contact" element={<PortfolioPage />} />
           <Route path="/services" element={<PortfolioPage />} />

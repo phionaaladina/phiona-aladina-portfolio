@@ -21,7 +21,12 @@ const socials = [
 
 const scrollToSection = (event, id) => {
   event.preventDefault();
-  document.getElementById(id)?.scrollIntoView({
+  // On pages without this section (e.g. Learner Stories), go to it on the home page
+  if (!document.getElementById(id)) {
+    window.location.href = `/#${id}`;
+    return;
+  }
+  document.getElementById(id).scrollIntoView({
     behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
   });
   window.history.replaceState(null, "", `#${id}`);

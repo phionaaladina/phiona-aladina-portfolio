@@ -215,3 +215,328 @@
 @media (prefers-reduced-motion: reduce) {
   .lt-card { transition: none; }
 }
+
+/* ══════════════════════════════════════════════
+   CAROUSEL — one testimonial at a time
+   ══════════════════════════════════════════════ */
+.lt-carousel {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Every slide sits in the same grid cell: the box is as tall as the
+   longest testimonial, so nothing below jumps when slides change */
+.lt-slides {
+  display: grid;
+  touch-action: pan-y;
+}
+
+.lt-slide {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.55s;
+}
+
+.lt-slide.is-before { transform: translateX(-32px); }
+.lt-slide.is-after  { transform: translateX(32px); }
+
+.lt-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.45s ease 0.08s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.08s, visibility 0s;
+}
+
+/* Carousel cards fill the slide height and read a little larger */
+.lt-slide .lt-card {
+  flex: 1;
+  padding: 2.75rem 3rem 3rem;
+}
+
+.lt-slide .lt-card:hover {
+  transform: none;
+}
+
+.lt-slide .lt-quote {
+  font-size: 1.12rem;
+  line-height: 1.8;
+}
+
+/* Controls: arrows either side of the indicators */
+.lt-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.lt-arrow {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  background: var(--white);
+  color: var(--slate-dark);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.lt-arrow:hover {
+  color: var(--white);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.lt-arrow:focus-visible,
+.lt-dot:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.lt-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* 24px tap target around a small visible dot */
+.lt-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.lt-dot span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--tertiary);
+  opacity: 0.3;
+  transition: width 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.lt-dot:hover span {
+  opacity: 0.6;
+}
+
+.lt-dot.is-active span {
+  width: 22px;
+  background: var(--primary);
+  opacity: 1;
+}
+
+.lt-counter {
+  margin: 0.9rem 0 0;
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--tertiary);
+}
+
+@media (max-width: 767px) {
+  .lt-slide .lt-card {
+    padding: 1.75rem 1.4rem 1.75rem;
+  }
+
+  .lt-slide .lt-quote {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .lt-controls {
+    gap: 0.5rem;
+  }
+
+  .lt-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .lt-dot {
+    width: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-slide,
+  .lt-slide.is-active {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hybrid layout: shorter stories carousel beneath the featured cards */
+.lt-more {
+  margin-top: 2.5rem;
+}
+
+.lt-more .lt-slide .lt-card {
+  padding: 2.25rem 2.75rem 2.5rem;
+}
+
+@media (max-width: 767px) {
+  .lt-more {
+    margin-top: 1.75rem;
+  }
+
+  .lt-more .lt-slide .lt-card {
+    padding: 1.6rem 1.4rem 1.6rem;
+  }
+}
+
+/* ── Two-up carousel ── */
+.lt-carousel {
+  max-width: none;
+}
+
+.lt-slide--2up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.lt-slide--1up {
+  max-width: 820px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Cards in a page share the page height */
+.lt-slide .lt-card,
+.lt-more .lt-slide .lt-card {
+  height: 100%;
+  padding: 2.25rem 2.5rem 2.4rem;
+}
+
+.lt-slide--2up .lt-quote {
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.lt-play {
+  margin-left: 0.5rem;
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 767px) {
+  .lt-slide .lt-card,
+  .lt-more .lt-slide .lt-card {
+    padding: 1.6rem 1.4rem 1.6rem;
+  }
+
+  .lt-play {
+    margin-left: 0;
+  }
+}
+
+/* Phones: 12 indicators must fit on one line */
+@media (max-width: 767px) {
+  .lt-dots {
+    flex-wrap: nowrap;
+  }
+
+  .lt-dot {
+    width: 14px;
+  }
+
+  .lt-dot span {
+    width: 6px;
+    height: 6px;
+  }
+
+  .lt-dot.is-active span {
+    width: 14px;
+  }
+}
+
+/* ── "Read all learner stories" link (matches the hero outline button) ── */
+.lt-readall-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.25rem;
+}
+
+.lt-readall {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.7rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--secondary);
+  background: var(--white);
+  color: var(--secondary) !important;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lt-readall:hover {
+  background: var(--secondary);
+  color: var(--white) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+}
+
+.lt-readall:focus-visible,
+.lt-back:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* ── Dedicated Learner Stories page ── */
+.lt-page {
+  padding: 3rem 0 6rem;
+}
+
+.lt-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--tertiary) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.lt-back:hover {
+  color: var(--primary) !important;
+}
+
+/* Heading is not inside a scroll-reveal wrapper, so show its underline */
+.section-accent.is-static::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 767px) {
+  .lt-page {
+    padding: 2rem 0 4rem;
+  }
+
+  .lt-back {
+    margin-bottom: 1.5rem;
+  }
+}
