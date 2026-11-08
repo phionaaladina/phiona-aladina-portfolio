@@ -6,6 +6,8 @@ import "../styles/Navbar.css";
 const navItems = [
   { id: "about", label: "About" },
   { id: "skills", label: "What I Do" },
+  { id: "impact", label: "Impact" },
+  { id: "gallery", label: "Gallery" },
   { id: "projects", label: "Projects" },
   { id: "contact", label: "Contact" },
   { id: "resume", label: "Resume", href: process.env.PUBLIC_URL + "/aladina_resume.pdf", isButton: true }
@@ -29,7 +31,7 @@ const CustomNavbar = () => {
 
   // ScrollSpy: track which section is currently in view as user scrolls
   useEffect(() => {
-    const sectionIds = ["home", "about", "skills", "projects", "contact"];
+    const sectionIds = ["home", "about", "skills", "impact", "gallery", "projects", "contact"];
 
     const handleScroll = () => {
       // If user has scrolled almost to the very bottom, activate contact
@@ -62,7 +64,7 @@ const CustomNavbar = () => {
     const hash = window.location.hash.replace("#", "");
     const path = location.pathname.replace("/", "");
     const target = hash || path;
-    if (target && ["home", "about", "skills", "projects", "contact"].includes(target)) {
+    if (target && ["home", "about", "skills", "impact", "gallery", "projects", "contact"].includes(target)) {
       setActiveSection(target);
     }
   }, [location]);

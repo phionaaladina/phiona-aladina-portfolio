@@ -14,6 +14,9 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
 import StatsStrip from "./components/StatsStrip";
 import AccessibilityWidget from "./components/AccessibilityWidget";
+import LearnerWordCloud from "./components/LearnerWordCloud";
+import LearnerTestimonials from "./components/LearnerTestimonials";
+import ImpactGallery from "./components/ImpactGallery";
 
 // Sections
 import Home from "./pages/Home";
@@ -31,7 +34,7 @@ const PortfolioPage = () => {
     const path = location.pathname.replace("/", "");
     const target = hash || (path && path !== "" ? path : null);
 
-    if (target && ["home", "about", "skills", "projects", "contact"].includes(target)) {
+    if (target && ["home", "about", "skills", "impact", "gallery", "projects", "contact"].includes(target)) {
       const timer = setTimeout(() => {
         const el = document.getElementById(target);
         if (el) {
@@ -60,6 +63,16 @@ const PortfolioPage = () => {
         <Skills />
       </section>
 
+      {/* Impact: learner word cloud followed by individual learner stories */}
+      <section id="impact" className="portfolio-section">
+        <LearnerWordCloud />
+        <LearnerTestimonials />
+      </section>
+
+      <section id="gallery" className="portfolio-section">
+        <ImpactGallery />
+      </section>
+
       <section id="projects" className="portfolio-section">
         <Projects />
       </section>
@@ -81,6 +94,8 @@ const AppContent = () => {
           <Route path="/" element={<PortfolioPage />} />
           <Route path="/about" element={<PortfolioPage />} />
           <Route path="/skills" element={<PortfolioPage />} />
+          <Route path="/impact" element={<PortfolioPage />} />
+          <Route path="/gallery" element={<PortfolioPage />} />
           <Route path="/projects" element={<PortfolioPage />} />
           <Route path="/contact" element={<PortfolioPage />} />
           <Route path="/services" element={<PortfolioPage />} />

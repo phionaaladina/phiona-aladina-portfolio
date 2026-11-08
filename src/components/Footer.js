@@ -6,6 +6,8 @@ import "../styles/Footer.css";
 const links = [
   { id: "about", label: "About" },
   { id: "skills", label: "What I Do" },
+  { id: "impact", label: "Impact" },
+  { id: "gallery", label: "Gallery" },
   { id: "projects", label: "Projects" },
   { id: "resume", label: "Resume", href: process.env.PUBLIC_URL + "/aladina_resume.pdf" },
 ];

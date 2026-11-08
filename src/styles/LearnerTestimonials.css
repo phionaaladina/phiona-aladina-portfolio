@@ -1,0 +1,217 @@
+/* ══════════════════════════════════════════════
+   LEARNER STORIES — full testimonials, always visible
+   Uses only existing brand tokens from variables.css
+   ══════════════════════════════════════════════ */
+.lt-section {
+  padding: 1.5rem 0 6rem;
+  background: var(--bg-tint-blue); /* continues the Impact word cloud above */
+  font-family: var(--font-body);
+}
+
+/* ── Header ── */
+.lt-header {
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+  text-align: center;
+}
+
+.lt-heading {
+  font-family: var(--font-main);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--slate-dark);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.lt-heading span {
+  color: var(--primary);
+}
+
+/* ── Two balanced columns (desktop), one column (mobile) ── */
+.lt-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 1.5rem;
+}
+
+.lt-columns + .lt-columns {
+  margin-top: 1.5rem;
+}
+
+.lt-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Card ── */
+.lt-card {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 22px;
+  padding: 2rem 2.1rem 2.1rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lt-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium);
+}
+
+.lt-card--featured {
+  padding: 2.4rem 2.5rem 2.5rem;
+}
+
+/* Large, faint quote mark tucked into the top-right corner */
+.lt-mark {
+  position: absolute;
+  top: -0.35rem;
+  right: 1.4rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 8rem;
+  line-height: 1;
+  color: var(--primary);
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+
+.lt-card--short .lt-mark {
+  color: var(--secondary);
+  font-size: 6.5rem;
+  opacity: 0.1;
+}
+
+/* Learner: initial badge + name */
+.lt-person {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 0 1.4rem;
+}
+
+.lt-avatar {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--primary-accent-light);
+  color: var(--primary);
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.lt-card--short .lt-avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 1.05rem;
+  background: var(--secondary-accent-light);
+  color: var(--secondary);
+}
+
+.lt-name {
+  font-family: var(--font-main);
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--slate-dark);
+}
+
+.lt-card--short .lt-name {
+  font-size: 1.02rem;
+}
+
+.lt-quote {
+  position: relative;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--tertiary);
+}
+
+.lt-card--featured .lt-quote {
+  font-size: 1.08rem;
+}
+
+.lt-quote p {
+  margin: 0 0 1rem;
+}
+
+.lt-quote p:last-child {
+  margin-bottom: 0;
+}
+
+/* The learner's key sentence — soft marker highlight, their words unchanged */
+.lt-hl {
+  padding: 0;
+  color: var(--slate-dark);
+  font-weight: 500;
+  background: linear-gradient(transparent 58%, var(--primary-accent-light) 58%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.lt-card--short .lt-hl {
+  background: linear-gradient(transparent 58%, var(--secondary-accent-light) 58%);
+}
+
+/* ── Footnote ── */
+.lt-permission {
+  margin: 2.75rem 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--tertiary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .lt-section {
+    padding: 1rem 0 4rem;
+  }
+
+  .lt-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .lt-columns {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .lt-columns + .lt-columns {
+    margin-top: 1.25rem;
+  }
+
+  .lt-column {
+    gap: 1.25rem;
+  }
+
+  .lt-card,
+  .lt-card--short {
+    padding: 1.6rem 1.4rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .lt-quote,
+  .lt-card--featured .lt-quote {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-card { transition: none; }
+}
