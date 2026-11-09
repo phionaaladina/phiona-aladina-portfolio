@@ -7,7 +7,6 @@ const navItems = [
   { id: "about", label: "About" },
   { id: "skills", label: "What I Do" },
   { id: "impact", label: "Impact" },
-  { id: "gallery", label: "Gallery" },
   { id: "projects", label: "Projects" },
   { id: "contact", label: "Contact" },
   { id: "resume", label: "Resume", href: process.env.PUBLIC_URL + "/aladina_resume.pdf", isButton: true }
@@ -31,7 +30,7 @@ const CustomNavbar = () => {
 
   // ScrollSpy: track which section is currently in view as user scrolls
   useEffect(() => {
-    const sectionIds = ["home", "about", "skills", "impact", "gallery", "projects", "contact"];
+    const sectionIds = ["home", "about", "skills", "impact", "projects", "contact"];
 
     const handleScroll = () => {
       // Separate pages (e.g. Learner Stories) have no sections to track
@@ -74,7 +73,7 @@ const CustomNavbar = () => {
       setActiveSection(null);
       return;
     }
-    if (target &&["home", "about", "skills", "impact", "gallery", "projects", "contact"].includes(target)) {
+    if (target &&["home", "about", "skills", "impact", "projects", "contact"].includes(target)) {
       setActiveSection(target);
     }
   }, [location]);

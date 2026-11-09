@@ -10,7 +10,7 @@ const skillsPillars = [
     icon: GraduationCap,
     title: "Digital Skills Training",
     accent: "orange",
-    description: "Practical digital skills and the confidence to thrive in a digital world.",
+    description: "Hands-on training in practical digital skills, from everyday tools to workplace software, giving learners the confidence to thrive in a digital world.",
     cta: { label: "Partner on training", target: "contact" }
   },
   {
@@ -18,16 +18,16 @@ const skillsPillars = [
     icon: Code2,
     title: "Software Development",
     accent: "blue",
-    description: "Building digital products that solve real problems.",
+    description: "Building digital products that solve real problems, taking ideas from concept to working solutions that are practical, reliable and easy to use.",
     cta: { label: "See my projects", target: "projects" }
   },
   {
     id: "speaking",
     icon: Mic,
-    title: "Speaking & Mentorship",
+    title: "Workshops & Mentorship",
     accent: "orange",
-    description: "Lived experience and practical insight that help people build confidence and grow.",
-    cta: { label: "Invite me to speak", target: "contact" }
+    description: "Workshops, speaking engagements and mentorship that share lived experience and practical insight to help people build confidence and grow.",
+    cta: { label: "Book a workshop or talk", target: "contact" }
   }
 ];
 

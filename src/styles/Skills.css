@@ -1027,10 +1027,18 @@
 
 .wid-title {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
   font-weight: 600;
   color: var(--slate-dark);
   margin: 0 0 0.65rem;
+  white-space: nowrap; /* keep each card title on one line */
+}
+
+/* Tablet: three narrow cards side by side — let long titles wrap */
+@media (max-width: 991px) and (min-width: 768px) {
+  .wid-title {
+    white-space: normal;
+  }
 }
 
 .wid-text {
